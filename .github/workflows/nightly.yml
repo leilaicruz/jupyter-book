@@ -18,16 +18,16 @@ jobs:
           auto-activate-base: false
           miniconda-version: 'latest'
           python-version: 3.7
-          environment-file: environment.yml
-          activate-environment: qe-mini-example
+          environment-file: environment_win.yml
+          activate-environment: wintest
 
       - name: Install jupyter_book
         shell: bash -l {0}
-        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+        run: pip install git+https://github.com/leilaicruz/jupyter-book.git@master
 
-      - name: Build QuantEcon Mini Example
+      - name: Build Jupyter Book
         shell: bash -l {0}
-        run: jb build mini_book/
+        run: runjb docs
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.2.0
@@ -39,4 +39,4 @@ jobs:
         with:
           SSH: true
           BRANCH: gh-pages
-          FOLDER: mini_book/_build/html
+          FOLDER: mini_book/docs/_build/html
