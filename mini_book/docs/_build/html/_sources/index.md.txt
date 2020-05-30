@@ -1,4 +1,4 @@
-# To reproduce this Jupyter book, and you are a Windows user:
+# To reproduce an example of  Jupyter book, and you are a Windows user:
 
 **Do this**: 
 

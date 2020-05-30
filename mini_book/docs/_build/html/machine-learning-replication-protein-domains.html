@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Example &#8212; My Jupyter Book</title>
+    <title>Machine learning algorithm based on protein domains &#8212; My Jupyter Book</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="To reproduce this Jupyter book, and you are a Windows user:" href="index.html" />
+    <link rel="prev" title="To reproduce an example of Jupyter book, and you are a Windows user:" href="index.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -65,10 +65,10 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="index.html">To reproduce this Jupyter book, and you are a Windows user:</a>
+    <a href="index.html">To reproduce an example of  Jupyter book, and you are a Windows user:</a>
   </li>
   <li class="active">
-    <a href="">Example</a>
+    <a href="">Machine learning algorithm based on protein domains</a>
   </li>
 </ul>
 </nav>
@@ -135,9 +135,20 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#paper-replication" class="nav-link">Paper replication</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#building-the-feature-matrix" class="nav-link">Building the feature matrix</a>
+        </li>
     
     </ul>
 </nav>
@@ -151,8 +162,10 @@
               <div>
                 
   <p>(machine-learning-replication-protein-domains)=</p>
-<div class="section" id="example">
-<h1>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="machine-learning-algorithm-based-on-protein-domains">
+<h1>Machine learning algorithm based on protein domains<a class="headerlink" href="#machine-learning-algorithm-based-on-protein-domains" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="paper-replication">
+<h2>Paper replication<a class="headerlink" href="#paper-replication" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</p>
 <ul>
@@ -177,6 +190,77 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Datasets</span>
+<span class="n">data_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\proteins-domains-from-Pfam.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
+<span class="n">data_domains</span><span class="o">=</span><span class="n">data_domains</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">data_sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-synthetic-lethals.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data_nonsl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-positive-genetic.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="building-the-feature-matrix">
+<h2>Building the feature matrix<a class="headerlink" href="#building-the-feature-matrix" title="Permalink to this headline">¶</a></h2>
+<p>One matrix for true SL where each row is one pair of SL. Every raw will be a vector of 0,1 or 2 depending on the comparison with the domain list. For row i the jth element = 0 if the jth element of the domain list is not in neither protein A and B, 1, if it is in one of them and 2 if it is in both of them .</p>
+</div>
+</div>
+<div class="section" id="building-the-list-of-proteins-domains-id-per-protein-pair-separately">
+<h1>Building the list of proteins domains id per protein pair separately :<a class="headerlink" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" title="Permalink to this headline">¶</a></h1>
+<p>List of protein A: Search for the Sl/nSL database the query gene name and look in the protein domain database which protein domains id has each of those queries.
+List of protein B: Search for the Sl/nSL database the target gene name of the previous query and look in the protein domain database which protein domains id has each of those target genes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting the meaningful columns in the respective dataset</span>
+<span class="n">domain_id_list</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span>
+<span class="n">query_gene</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span>
+<span class="n">target_gene</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span>
+<span class="n">query_gene_nonlethal</span><span class="o">=</span><span class="n">data_nonsl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span>
+<span class="n">target_gene_nonlethal</span><span class="o">=</span><span class="n">data_nonsl</span><span class="p">[</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span>
+
+
+
+<span class="c1"># Initialising the arrays</span>
+<span class="n">protein_a_list</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">protein_b_list</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">protein_a_list_non</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">protein_b_list_non</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_sl</span><span class="p">))</span>
+
+<span class="c1"># For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair</span>
+
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="mi">10000</span><span class="p">):</span>
+    <span class="n">protein_a</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
+    <span class="n">protein_b</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
+    <span class="n">protein_a_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_a</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">protein_b_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_b</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+    <span class="n">protein_a_non</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_gene_nonlethal</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
+    <span class="n">protein_b_non</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_gene_nonlethal</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
+    <span class="n">protein_a_list_non</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_a_non</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">protein_b_list_non</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_b_non</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_sl</span><span class="p">),</span><span class="s1">&#39;SL protein pairs&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list_non</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nonsl</span><span class="p">),</span><span class="s1">&#39;positive protein pairs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>We are going to analyze 10000 protein pairs, out of 17871 SL protein pairs
+We are going to analyze 10000 protein pairs, out of 43340 positive protein pairs
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -188,7 +272,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">To reproduce this Jupyter book, and you are a Windows user:</a>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">To reproduce an example of  Jupyter book, and you are a Windows user:</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
