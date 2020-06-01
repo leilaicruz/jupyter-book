@@ -85,5 +85,5 @@ jobs:
           FOLDER: mini_book/docs/_build/html/
           
 ```
-
+- Add an empty file `.nojekyll` to the root of the repo to prevent github on deploying a jekyll website.
 
