@@ -40,9 +40,9 @@ The link: https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leil
 
 ```{code-cell} python3
 ## Datasets 
-my_path_domains= r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\proteins-domains-from-Pfam.xlsx'
-my_path_sl= r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-synthetic-lethals.xlsx'
-my_path_non_sl= r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-positive-genetic.xlsx'
+my_path_domains= r'datasets/proteins-domains-from-Pfam.xlsx'
+my_path_sl= r'datasets/data-synthetic-lethals.xlsx'
+my_path_non_sl= r'datasets/data-positive-genetic.xlsx'
 
 data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')
 data_domains=data_domains.dropna()
