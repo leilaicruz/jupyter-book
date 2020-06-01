@@ -1,3 +1,6 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages)
+
+
 # To reproduce an example of  Jupyter book, and you are a Windows user:
 
 **Do this**: 
