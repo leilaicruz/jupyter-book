@@ -24,11 +24,12 @@ jobs:
 
       - name: Install jupyter_book
         shell: bash -l {0}
-        run: pip install jupyter-book --pre
+        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+
 
       - name: Build Jupyter Book
         shell: bash -l {0}
-        run: runjb docs
+        run: jb build docs/
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.2.0
