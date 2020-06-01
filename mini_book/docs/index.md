@@ -17,7 +17,7 @@ The following workflow should succeed using a miniconda powershell terminal on W
 7. `cd mini_book`
 8. `runjb docs`
 
-After the build, view the html with:
+After the build, view the html with (local deployment):
 
 `start docs\_build\html\index.html`
 
