@@ -22,6 +22,10 @@ jobs:
           environment-file: environment_win.yml
           activate-environment: wintest
 
+      - name: Clean Jupyter_book
+        shell: bash -l {0}
+        run: pyter-book clean --all mini_book/docs/
+
       - name: Install jupyter_book
         shell: bash -l {0}
         run:  pip install jupyter-book --pre 
