@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-(machine-learning-replication-protein-domains)=
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leilaicruz/jupyter-book/d8702db318b3fc7a85331898d8bcb76c9bdc96f4)
 
 # Machine learning algorithm based on protein domains
 
