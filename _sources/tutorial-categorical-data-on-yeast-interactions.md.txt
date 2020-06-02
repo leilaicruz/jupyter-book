@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-(tutorial-categorical-data-on-yeast-interactions)=
+
 
 # Tutorial on how to handle categorical data from [here](https://www.datacamp.com/community/tutorials/categorical-data)
 
