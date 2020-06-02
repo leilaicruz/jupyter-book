@@ -21,10 +21,18 @@ import matplotlib.pyplot as plt
 from collections import defaultdict 
 import seaborn as sns
 ```
+```{code-cell} python3
+import os
+script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in
+rel_path = "datasets/data-BioGrid-Yeast.xlsx"
+abs_file_path_SL = os.path.join(script_dir, rel_path)
 
+os.chdir('mini_book/docs/')
+
+```
 
 ```{code-cell} python3
-data=pd.read_excel(r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\data_BioGrid\data-BioGrid-Yeast.xlsx',header=0)
+data=pd.read_excel(abs_file_path_SL,header=0)
 
 ```
 
