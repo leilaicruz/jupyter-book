@@ -50,7 +50,7 @@ abs_file_path_nSL = os.path.join(script_dir, rel_path_nSL)
 abs_file_path_domains = os.path.join(script_dir, rel_path_domains)
 
 
-os.chdir('mini_book/docs/')
+os.chdir('mini_book/docs/') #<-- for binder os.chdir('../')
 ```
 ```{code-cell} python3
 ## Datasets 
