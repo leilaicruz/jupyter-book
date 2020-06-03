@@ -398,8 +398,8 @@ We are going to analyze 4000 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 264 out of 4000 domains
-The empty domain in the nSL were: 263 out of 4000 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 256 out of 4000 domains
+The empty domain in the nSL were: 274 out of 4000 domains
 </pre></div>
 </div>
 </div>
@@ -475,10 +475,10 @@ The empty domain in the nSL were: 263 out of 4000 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.4948944378572565e-05
-fraction of ones in the SL array is 0.0008988266940379068
-fraction of twos in the PI array is 4.891889680368528e-05
-fraction of ones in the PI array is 0.0008098598557644462
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.333050787596242e-05
+fraction of ones in the SL array is 0.0008977890796072614
+fraction of twos in the PI array is 4.737759678471141e-05
+fraction of ones in the PI array is 0.0007979664896660945
 </pre></div>
 </div>
 </div>
@@ -506,7 +506,7 @@ fraction of ones in the PI array is 0.0008098598557644462
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 7473
+The number of samples are: 7470
 </pre></div>
 </div>
 </div>
@@ -588,13 +588,13 @@ The number of samples are: 7473
   <tbody>
     <tr>
       <th>corr with lethality</th>
-      <td>4.203053e-01</td>
-      <td>3.761857e-01</td>
+      <td>0.436066</td>
+      <td>3.941387e-01</td>
     </tr>
     <tr>
       <th>p-value</th>
-      <td>9.870384e-318</td>
-      <td>7.027113e-250</td>
+      <td>0.000000</td>
+      <td>3.885947e-276</td>
     </tr>
   </tbody>
 </table>
@@ -608,7 +608,7 @@ The number of samples are: 7473
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f5754cbcdd0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa3dd5f6710&gt;
 </pre></div>
 </div>
 <img alt="_images/machine-learning-replication-protein-domains_27_1.png" src="_images/machine-learning-replication-protein-domains_27_1.png" />
@@ -636,8 +636,8 @@ The number of samples are: 7473
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (5231, 3025) (5231,)
-Test set: (2242, 3025) (2242,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (5229, 3025) (5229,)
+Test set: (2241, 3025) (2241,)
 </pre></div>
 </div>
 </div>
@@ -670,7 +670,7 @@ Test set: (2242, 3025) (2242,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7867975022301517
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.8000892458723784
 </pre></div>
 </div>
 </div>
@@ -696,11 +696,11 @@ Test set: (2242, 3025) (2242,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.21320249776984834
-Test set Accuracy:  0.7867975022301517
-The Jaccard index is = 0.6500732064421669
-The log-loss is = 7.363836138880959
-The f1-score is = 0.7879325643300797
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.1999107541276216
+Test set Accuracy:  0.8000892458723784
+The Jaccard index is = 0.6732312180889861
+The log-loss is = 6.904756327853034
+The f1-score is = 0.8047079337401918
 </pre></div>
 </div>
 </div>
@@ -720,12 +720,12 @@ The f1-score is = 0.7879325643300797
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.78      0.79      0.79      1108
-          SL       0.79      0.78      0.79      1134
+       NonSl       0.80      0.79      0.80      1104
+          SL       0.80      0.81      0.80      1137
 
-    accuracy                           0.79      2242
-   macro avg       0.79      0.79      0.79      2242
-weighted avg       0.79      0.79      0.79      2242
+    accuracy                           0.80      2241
+   macro avg       0.80      0.80      0.80      2241
+weighted avg       0.80      0.80      0.80      2241
 
 </pre></div>
 </div>
@@ -750,7 +750,7 @@ weighted avg       0.79      0.79      0.79      2242
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5752dd6550&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa3db70bc50&gt;
 </pre></div>
 </div>
 <img alt="_images/machine-learning-replication-protein-domains_37_1.png" src="_images/machine-learning-replication-protein-domains_37_1.png" />
@@ -804,7 +804,7 @@ weighted avg       0.79      0.79      0.79      2242
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5747c6c2d0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa3d05c7450&gt;
 </pre></div>
 </div>
 <img alt="_images/machine-learning-replication-protein-domains_39_1.png" src="_images/machine-learning-replication-protein-domains_39_1.png" />
