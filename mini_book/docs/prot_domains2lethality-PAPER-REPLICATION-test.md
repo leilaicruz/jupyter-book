@@ -30,16 +30,39 @@ import random
 
 ### Importing datasets 
 
-#### Link to the github repo where the datasets to be downloaded:
-[DOWNLOAD THE DATASETS HERE](https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning)
+### Download datasets from this github repo 👇
+
+The link: https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning
+
 
 ```{code-cell} ipython3
-## Local datasets
-data_domains=pd.read_excel(r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\proteins-domains-from-Pfam.xlsx',header=0,index_col='Unnamed: 0')
-data_domains=data_domains.dropna()
-data_sl=pd.read_excel(r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-synthetic-lethals.xlsx',header=0)
-data_nonsl=pd.read_excel(r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-positive-genetic.xlsx',header=0)
+import os
+script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in
+rel_path_SL = "datasets/data-synthetic-lethals.xlsx"
+rel_path_nSL="datasets/data-positive-genetic.xlsx"
+rel_path_domains="datasets/proteins-domains-from-Pfam.xlsx"
 
+abs_file_path_SL = os.path.join(script_dir, rel_path_SL)
+abs_file_path_nSL = os.path.join(script_dir, rel_path_nSL)
+abs_file_path_domains = os.path.join(script_dir, rel_path_domains)
+
+
+os.chdir('mini_book/docs/') #<-- for binder os.chdir('../')
+```
+
+```{code-cell} ipython3
+## Datasets 
+
+my_path_sl= abs_file_path_SL
+my_path_non_sl=abs_file_path_nSL
+my_path_domains=abs_file_path_domains
+```
+
+```{code-cell} ipython3
+data_sl=pd.read_excel(my_path_sl,header=0)
+data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')
+data_domains=data_domains.dropna()
+data_nonsl=pd.read_excel(my_path_non_sl,header=0)
 ```
 
 ## Building the feature matrix
