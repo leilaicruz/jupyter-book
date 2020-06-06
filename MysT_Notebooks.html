@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Notebooks written entirely in markdown &#8212; My Jupyter Book</title>
+    <title>Notebooks written entirely in markdown &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -28,11 +28,13 @@
     <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="protein-domains-SL-and-PI-processing.html" />
-    <link rel="prev" title="Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION-test.html" />
+    <link rel="next" title="Tutorial on how to handle categorical data from here" href="tutorial-categorical-data-on-yeast-interactions.html" />
+    <link rel="prev" title="To reproduce an example of Jupyter book, and you are a Windows user:" href="README.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -51,8 +53,10 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
+  <img src="_static/qe-logo-large.png" class="logo" alt="logo">
   
-  <h1 class="site-logo" id="site-title">My Jupyter Book</h1>
+  
+  <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
   
 </a>
 </div>
@@ -65,8 +69,8 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="README.html">To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+  <li class="active">
+    <a href="">Notebooks written entirely in markdown</a>
   </li>
   <li class="">
     <a href="tutorial-categorical-data-on-yeast-interactions.html">Tutorial on how to handle categorical data from here</a>
@@ -74,11 +78,8 @@
   <li class="">
     <a href="prot_domains2lethality-PAPER-REPLICATION-test.html">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
-  <li class="active">
-    <a href="">Notebooks written entirely in markdown</a>
-  </li>
   <li class="">
-    <a href="protein-domains-SL-and-PI-processing.html">Features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="protein-domains-SL-and-PI-processing.html">Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
 </ul>
 </nav>
@@ -129,8 +130,8 @@
         <div class="dropdown-buttons-trigger">
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
             <div class="dropdown-buttons sourcebuttons">
-                <a class="repository-button" href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
-                <a class="issues-button" href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMysT_Notebooks.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                <a class="repository-button" href="https://github.com/leilaicruz/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
+                <a class="issues-button" href="https://github.com/leilaicruz/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMysT_Notebooks.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
                 
             </div>
         </div>
@@ -145,9 +146,10 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
             <div class="dropdown-buttons">
                 
-                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/MysT_Notebooks.md"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/MysT_Notebooks.md"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
                 
                 
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
                 
             </div>
         </div>
@@ -367,6 +369,24 @@ Content in another markdown cell
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "leilaicruz/jupyter-book",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "."
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -376,13 +396,15 @@ Content in another markdown cell
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="prot_domains2lethality-PAPER-REPLICATION-test.html" title="previous page">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
-    <a class='right-next' id="next-link" href="protein-domains-SL-and-PI-processing.html" title="next page">Features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a class='left-prev' id="prev-link" href="README.html" title="previous page">To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+    <a class='right-next' id="next-link" href="tutorial-categorical-data-on-yeast-interactions.html" title="next page">Tutorial on how to handle categorical data from here</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
+        
+          By Leila Inigo<br/>
         
             &copy; Copyright 2020.<br/>
       </p>

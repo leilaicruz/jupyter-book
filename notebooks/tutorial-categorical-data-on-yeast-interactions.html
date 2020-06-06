@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Tutorial on how to handle categorical data from here &#8212; My Jupyter Book</title>
+    <title>Tutorial on how to handle categorical data from here &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -28,6 +28,8 @@
     <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -49,8 +51,10 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="../index.html">
   
+  <img src="../_static/qe-logo-large.png" class="logo" alt="logo">
   
-  <h1 class="site-logo" id="site-title">My Jupyter Book</h1>
+  
+  <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
   
 </a>
 </div>
@@ -64,7 +68,7 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="../README.html">To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+    <a href="../MysT_Notebooks.html">Notebooks written entirely in markdown</a>
   </li>
   <li class="">
     <a href="../tutorial-categorical-data-on-yeast-interactions.html">Tutorial on how to handle categorical data from here</a>
@@ -73,10 +77,7 @@
     <a href="../prot_domains2lethality-PAPER-REPLICATION-test.html">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
   <li class="">
-    <a href="../MysT_Notebooks.html">Notebooks written entirely in markdown</a>
-  </li>
-  <li class="">
-    <a href="../protein-domains-SL-and-PI-processing.html">Features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="../protein-domains-SL-and-PI-processing.html">Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
 </ul>
 </nav>
@@ -127,8 +128,8 @@
         <div class="dropdown-buttons-trigger">
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
             <div class="dropdown-buttons sourcebuttons">
-                <a class="repository-button" href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
-                <a class="issues-button" href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/tutorial-categorical-data-on-yeast-interactions.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                <a class="repository-button" href="https://github.com/leilaicruz/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
+                <a class="issues-button" href="https://github.com/leilaicruz/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/tutorial-categorical-data-on-yeast-interactions.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
                 
             </div>
         </div>
@@ -143,9 +144,10 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
             <div class="dropdown-buttons">
                 
-                <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/notebooks/tutorial-categorical-data-on-yeast-interactions.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/notebooks/tutorial-categorical-data-on-yeast-interactions.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
                 
                 
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
                 
             </div>
         </div>
@@ -238,90 +240,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CDC73</td>
-      <td>CTR9</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>CTR9</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CDC73</td>
-      <td>LEO1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LEO1</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CDC73</td>
-      <td>PAF1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 365332 entries, 0 to 365331
-Data columns (total 4 columns):
- #   Column            Non-Null Count   Dtype 
----  ------            --------------   ----- 
- 0   gene-query-name   365332 non-null  object
- 1   gene-target-name  365332 non-null  object
- 2   interaction-type  365332 non-null  object
- 3   paper-source      365332 non-null  object
-dtypes: object(4)
-memory usage: 11.1+ MB
-None
 </pre></div>
 </div>
 </div>
@@ -340,70 +262,6 @@ None
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CDC73</td>
-      <td>CTR9</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>CTR9</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CDC73</td>
-      <td>LEO1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LEO1</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CDC73</td>
-      <td>PAF1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>One of the most common data pre-processing steps is to check for null values in the dataset. You can get <strong>the total number of missing values in the DataFrame</strong> by the following one liner code:</p>
 <div class="cell docutils container">
@@ -412,11 +270,6 @@ None
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hooray!! There are no NaN values in the dataframe&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Hooray!! There are no NaN values in the dataframe
 </pre></div>
 </div>
 </div>
@@ -431,52 +284,11 @@ None
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gene-query-name     0
-gene-target-name    0
-interaction-type    0
-paper-source        0
-dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <p>Another <strong>Exploratory Data Analysis (EDA)</strong> step that you might want to do on categorical features is the frequency distribution of categories within the feature, which can be done with the <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> method as described earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Negative Genetic                 116254
-Affinity Capture-MS               59193
-Positive Genetic                  43334
-Synthetic Growth Defect           25192
-Affinity Capture-Western          16661
-Synthetic Lethality               16243
-Two-hybrid                        15969
-Affinity Capture-RNA              12446
-Reconstituted Complex              7690
-Phenotypic Enhancement             7532
-Synthetic Rescue                   6834
-Phenotypic Suppression             6683
-PCA                                6587
-Biochemical Activity               6413
-Dosage Rescue                      5730
-Co-purification                    4344
-Dosage Growth Defect               1984
-Dosage Lethality                   1628
-Co-fractionation                    972
-Co-crystal Structure                879
-Protein-peptide                     841
-Co-localization                     677
-Protein-RNA                         573
-Synthetic Haploinsufficiency        307
-FRET                                220
-Far Western                         100
-Affinity Capture-Luminescence        46
-Name: interaction-type, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -487,32 +299,11 @@ Name: interaction-type, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2       2676
-PUF3       2119
-HSP82      2042
-SSB2       2018
-RPN11      1735
-           ... 
-YDL109C       1
-CBS1          1
-PAU13         1
-RPS10B        1
-FLO1          1
-Name: gene-query-name, Length: 5139, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <p>To know <strong>the count of distinct categories within the feature</strong> you can chain the previous code with the <code class="docutils literal notranslate"><span class="pre">.count()</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27 5139 6344
 </pre></div>
 </div>
 </div>
@@ -529,14 +320,6 @@ Name: gene-query-name, Length: 5139, dtype: int64
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
-        17, 18, 19, 20, 21, 22, 23, 24, 25, 26]),
- &lt;a list of 27 Text major ticklabel objects&gt;)
-</pre></div>
-</div>
-<img alt="../_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" src="../_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" />
 </div>
 </div>
 <div class="section" id="encoding-categorical-data">
@@ -566,11 +349,6 @@ Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;interaction-type&#39;: {&#39;Affinity Capture-Luminescence&#39;: 1, &#39;Affinity Capture-MS&#39;: 2, &#39;Affinity Capture-RNA&#39;: 3, &#39;Affinity Capture-Western&#39;: 4, &#39;Biochemical Activity&#39;: 5, &#39;Co-crystal Structure&#39;: 6, &#39;Co-fractionation&#39;: 7, &#39;Co-localization&#39;: 8, &#39;Co-purification&#39;: 9, &#39;Dosage Growth Defect&#39;: 10, &#39;Dosage Lethality&#39;: 11, &#39;Dosage Rescue&#39;: 12, &#39;FRET&#39;: 13, &#39;Far Western&#39;: 14, &#39;Negative Genetic&#39;: 15, &#39;PCA&#39;: 16, &#39;Phenotypic Enhancement&#39;: 17, &#39;Phenotypic Suppression&#39;: 18, &#39;Positive Genetic&#39;: 19, &#39;Protein-RNA&#39;: 20, &#39;Protein-peptide&#39;: 21, &#39;Reconstituted Complex&#39;: 22, &#39;Synthetic Growth Defect&#39;: 23, &#39;Synthetic Haploinsufficiency&#39;: 24, &#39;Synthetic Lethality&#39;: 25, &#39;Synthetic Rescue&#39;: 26, &#39;Two-hybrid&#39;: 27}}
-</pre></div>
-</div>
-</div>
 </div>
 <p>Throughout this tutorial, you will be making a copy of the dataset via the <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> method to practice each encoding technique to ensure that the original DataFrame stays intact and whatever changes you are doing happen only in the copied one.</p>
 <div class="cell docutils container">
@@ -585,16 +363,6 @@ Name: gene-query-name, Length: 5139, dtype: int64
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_replace</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">replace_map_comp</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">cat_data_replace</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>  gene-query-name gene-target-name  interaction-type      paper-source
-0           CDC73             CTR9                 2  Krogan NJ (2004)
-1            CTR9            CDC73                 2  Krogan NJ (2004)
-2           CDC73             LEO1                 2  Krogan NJ (2004)
-3            LEO1            CDC73                 2  Krogan NJ (2004)
-4           CDC73             PAF1                 2  Krogan NJ (2004)
 </pre></div>
 </div>
 </div>
@@ -626,70 +394,6 @@ Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CDC73</td>
-      <td>CTR9</td>
-      <td>1</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>CTR9</td>
-      <td>CDC73</td>
-      <td>1</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CDC73</td>
-      <td>LEO1</td>
-      <td>1</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LEO1</td>
-      <td>CDC73</td>
-      <td>1</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CDC73</td>
-      <td>PAF1</td>
-      <td>1</td>
-      <td>Krogan NJ (2004)</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Sometimes, <strong>you might just want to encode a bunch of categories within a feature to some numeric value and encode all the other categories to some other numeric value</strong>.</p>
 <p>You could do this by using numpy’s <code class="docutils literal notranslate"><span class="pre">where()</span></code> function like shown below.
@@ -703,76 +407,6 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-      <th>SL-code</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CDC73</td>
-      <td>CTR9</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>CTR9</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CDC73</td>
-      <td>LEO1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LEO1</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CDC73</td>
-      <td>PAF1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,76 +414,6 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-      <th>SL-code</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>275</th>
-      <td>BNI1</td>
-      <td>SWE1</td>
-      <td>Synthetic Lethality</td>
-      <td>Goehring AS (2003)</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>276</th>
-      <td>BUD6</td>
-      <td>SWE1</td>
-      <td>Synthetic Lethality</td>
-      <td>Goehring AS (2003)</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>277</th>
-      <td>CDC42</td>
-      <td>BEM1</td>
-      <td>Synthetic Lethality</td>
-      <td>Kozminski KG (2003)</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>278</th>
-      <td>CDC42</td>
-      <td>BEM4</td>
-      <td>Synthetic Lethality</td>
-      <td>Kozminski KG (2003)</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>279</th>
-      <td>CDC42</td>
-      <td>BNI1</td>
-      <td>Synthetic Lethality</td>
-      <td>Kozminski KG (2003)</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </div>
 <div class="section" id="you-can-achieve-the-same-label-encoding-using-scikit-learn-s-labelencoder">
@@ -867,76 +431,6 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-      <th>type_code</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>365327</th>
-      <td>YNL181W</td>
-      <td>DEP1</td>
-      <td>Positive Genetic</td>
-      <td>Costanzo M (2016)</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>365328</th>
-      <td>YNL181W</td>
-      <td>DEP1</td>
-      <td>Negative Genetic</td>
-      <td>Costanzo M (2016)</td>
-      <td>14</td>
-    </tr>
-    <tr>
-      <th>365329</th>
-      <td>YNL181W</td>
-      <td>FUN30</td>
-      <td>Positive Genetic</td>
-      <td>Costanzo M (2016)</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>365330</th>
-      <td>YNL181W</td>
-      <td>CLN3</td>
-      <td>Positive Genetic</td>
-      <td>Costanzo M (2016)</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>365331</th>
-      <td>YNL181W</td>
-      <td>CNE1</td>
-      <td>Positive Genetic</td>
-      <td>Costanzo M (2016)</td>
-      <td>18</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Label encoding is pretty much intuitive and straight-forward and may give you a good performance from your learning algorithm, but it has as disadvantage that the numerical values can be misinterpreted by the algorithm.</p>
 <p>To solve this issue there is another popular way to encode the categories via something called one-hot encoding.</p>
@@ -956,173 +450,6 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>paper-source</th>
-      <th>interaction-type_Affinity Capture-Luminescence</th>
-      <th>interaction-type_Affinity Capture-MS</th>
-      <th>interaction-type_Affinity Capture-RNA</th>
-      <th>interaction-type_Affinity Capture-Western</th>
-      <th>interaction-type_Biochemical Activity</th>
-      <th>interaction-type_Co-crystal Structure</th>
-      <th>interaction-type_Co-fractionation</th>
-      <th>...</th>
-      <th>interaction-type_Phenotypic Suppression</th>
-      <th>interaction-type_Positive Genetic</th>
-      <th>interaction-type_Protein-RNA</th>
-      <th>interaction-type_Protein-peptide</th>
-      <th>interaction-type_Reconstituted Complex</th>
-      <th>interaction-type_Synthetic Growth Defect</th>
-      <th>interaction-type_Synthetic Haploinsufficiency</th>
-      <th>interaction-type_Synthetic Lethality</th>
-      <th>interaction-type_Synthetic Rescue</th>
-      <th>interaction-type_Two-hybrid</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CDC73</td>
-      <td>CTR9</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>CTR9</td>
-      <td>CDC73</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CDC73</td>
-      <td>LEO1</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LEO1</td>
-      <td>CDC73</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CDC73</td>
-      <td>PAF1</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 30 columns</p>
-</div></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> also supports one hot encoding via <code class="docutils literal notranslate"><span class="pre">LabelBinarizer</span></code> and <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> in its preprocessing module (check out the details here). Just for the sake of practicing you will do the same encoding via <code class="docutils literal notranslate"><span class="pre">LabelBinarizer</span></code>:</p>
 <div class="cell docutils container">
@@ -1139,173 +466,6 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Affinity Capture-Luminescence</th>
-      <th>Affinity Capture-MS</th>
-      <th>Affinity Capture-RNA</th>
-      <th>Affinity Capture-Western</th>
-      <th>Biochemical Activity</th>
-      <th>Co-crystal Structure</th>
-      <th>Co-fractionation</th>
-      <th>Co-localization</th>
-      <th>Co-purification</th>
-      <th>Dosage Growth Defect</th>
-      <th>...</th>
-      <th>Phenotypic Suppression</th>
-      <th>Positive Genetic</th>
-      <th>Protein-RNA</th>
-      <th>Protein-peptide</th>
-      <th>Reconstituted Complex</th>
-      <th>Synthetic Growth Defect</th>
-      <th>Synthetic Haploinsufficiency</th>
-      <th>Synthetic Lethality</th>
-      <th>Synthetic Rescue</th>
-      <th>Two-hybrid</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 27 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1315,178 +475,29 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gene-query-name</th>
-      <th>gene-target-name</th>
-      <th>interaction-type</th>
-      <th>paper-source</th>
-      <th>Affinity Capture-Luminescence</th>
-      <th>Affinity Capture-MS</th>
-      <th>Affinity Capture-RNA</th>
-      <th>Affinity Capture-Western</th>
-      <th>Biochemical Activity</th>
-      <th>Co-crystal Structure</th>
-      <th>...</th>
-      <th>Phenotypic Suppression</th>
-      <th>Positive Genetic</th>
-      <th>Protein-RNA</th>
-      <th>Protein-peptide</th>
-      <th>Reconstituted Complex</th>
-      <th>Synthetic Growth Defect</th>
-      <th>Synthetic Haploinsufficiency</th>
-      <th>Synthetic Lethality</th>
-      <th>Synthetic Rescue</th>
-      <th>Two-hybrid</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CDC73</td>
-      <td>CTR9</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>CTR9</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CDC73</td>
-      <td>LEO1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LEO1</td>
-      <td>CDC73</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CDC73</td>
-      <td>PAF1</td>
-      <td>Affinity Capture-MS</td>
-      <td>Krogan NJ (2004)</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 31 columns</p>
-</div></div></div>
 </div>
 <p><strong>While one-hot encoding solves the problem of unequal weights given to categories within a feature</strong>, it is not very useful when there are many categories, as that will result in formation of as many new columns, which can result in the curse of dimensionality. The concept of the “curse of dimensionality” discusses that in high-dimensional spaces some things just stop working properly.</p>
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "leilaicruz/jupyter-book",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "notebooks"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -1501,6 +512,8 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
+        
+          By Leila Inigo<br/>
         
             &copy; Copyright 2020.<br/>
       </p>
