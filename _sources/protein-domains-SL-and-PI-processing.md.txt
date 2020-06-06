@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-## Features used in the paper: "Predicting yeast synthetic lethal genetic interactions using protein domains" 
+## Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: "Predicting yeast synthetic lethal genetic interactions using protein domains" 
 
 - Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA
 - e-mail: bol, luofeng@clemson.edu
