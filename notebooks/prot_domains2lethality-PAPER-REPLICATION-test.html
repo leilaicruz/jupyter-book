@@ -31,6 +31,7 @@
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script async="async" src="../_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/qe-logo-large.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 
@@ -68,16 +69,19 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="../MysT_Notebooks.html">Notebooks written entirely in markdown</a>
+    <a href="../README.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
   </li>
   <li class="">
-    <a href="../tutorial-categorical-data-on-yeast-interactions.html">Tutorial on how to handle categorical data from here</a>
+    <a href="../MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
   </li>
   <li class="">
-    <a href="../prot_domains2lethality-PAPER-REPLICATION-test.html">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="../tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
   </li>
   <li class="">
-    <a href="../protein-domains-SL-and-PI-processing.html">Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="../prot_domains2lethality-PAPER-REPLICATION-test.html">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+  </li>
+  <li class="">
+    <a href="../protein-domains-SL-and-PI-processing.html">5. Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
 </ul>
 </nav>
@@ -210,11 +214,24 @@
 <p><a class="reference external" href="https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning">DOWNLOAD THE DATASETS HERE</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Local datasets</span>
-<span class="n">data_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\proteins-domains-from-Pfam.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;__file__&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- absolute dir the script is in</span>
+<span class="n">rel_path_SL</span> <span class="o">=</span> <span class="s2">&quot;datasets/data-synthetic-lethals.xlsx&quot;</span>
+<span class="n">rel_path_nSL</span><span class="o">=</span><span class="s2">&quot;datasets/data-positive-genetic.xlsx&quot;</span>
+<span class="n">rel_path_domains</span><span class="o">=</span><span class="s2">&quot;datasets/proteins-domains-from-Pfam.xlsx&quot;</span>
+
+<span class="n">abs_file_path_SL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_SL</span><span class="p">)</span>
+<span class="n">abs_file_path_nSL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_nSL</span><span class="p">)</span>
+<span class="n">abs_file_path_domains</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_domains</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;mini_book/docs/&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- for binder os.chdir(&#39;../&#39;)</span>
+<span class="n">my_path_sl</span><span class="o">=</span> <span class="n">abs_file_path_SL</span>
+<span class="n">my_path_non_sl</span><span class="o">=</span><span class="n">abs_file_path_nSL</span>
+<span class="n">my_path_domains</span><span class="o">=</span><span class="n">abs_file_path_domains</span>
+
+<span class="n">data_sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">my_path_sl</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">my_path_domains</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
 <span class="n">data_domains</span><span class="o">=</span><span class="n">data_domains</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">data_sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-synthetic-lethals.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">data_nonsl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\machine-learning-for-yeast\datasets-for-learning\data-positive-genetic.xlsx&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data_nonsl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">my_path_non_sl</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 </pre></div>
 </div>
@@ -251,9 +268,9 @@
 
 <span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_sl</span><span class="p">))</span>
 
-<span class="c1"># For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair</span>
+<span class="c1"># For loop for 100 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair</span>
 
-<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="mi">10000</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="mi">100</span><span class="p">):</span>
     <span class="n">protein_a</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
     <span class="n">protein_b</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
     <span class="n">protein_a_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_a</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
@@ -271,6 +288,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_sl</span><span class="p">),</span><span class="s1">&#39;SL protein pairs&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list_non</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nonsl</span><span class="p">),</span><span class="s1">&#39;positive protein pairs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>We are going to analyze 100 protein pairs, out of 17871 SL protein pairs
+We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </pre></div>
 </div>
 </div>
@@ -310,6 +333,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 9 out of 100 domains
+The empty domain in the nSL were: 5 out of 100 domains
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
@@ -321,6 +350,11 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_indexes</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span> <span class="c1"># a function that give the index of whether a value appear in array or not</span>
 <span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">get_indexes</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2]
 </pre></div>
 </div>
 </div>
@@ -388,6 +422,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.085823267641449e-05
+fraction of ones in the SL array is 0.0009263463808918354
+fraction of twos in the PI array is 5.567638103523271e-05
+fraction of ones in the PI array is 0.0008177468464549804
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="bar-plot-to-visualize-these-numbers">
 <h3>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h3>
@@ -402,6 +444,12 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>([0, 1, 2, 3], &lt;a list of 4 Text major ticklabel objects&gt;)
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_18_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_18_1.png" />
 </div>
 </div>
 </div>
@@ -424,6 +472,12 @@
 <span class="n">feature_post</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non_new</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of features are:&#39;</span><span class="p">,</span><span class="n">feature_post</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of samples are:&#39;</span><span class="p">,</span><span class="n">feature_post</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
+The number of samples are: 186
 </pre></div>
 </div>
 </div>
@@ -457,6 +511,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;How the std varies with Lethality&#39;)
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_26_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_26_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -465,6 +525,12 @@
 <span class="c1">##plt.savefig(&#39;Pairplot-to-see-data-dependencies-with-Lethality.png&#39;,format=&#39;png&#39;,dpi=300,transparent=&#39;True&#39;, bbox_inches=&#39;tight&#39;)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.08, &#39;Pairplot to see data dependencies with Lethality&#39;)
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_27_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_27_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -492,6 +558,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc1ef159310&gt;
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_29_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_29_1.png" />
+</div>
 </div>
 </div>
 </div>
@@ -510,7 +582,13 @@
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span>  <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Train set:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>  <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Test set:&#39;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>  <span class="n">y_test</span><span class="o">.</span><span class="n">s</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Test set:&#39;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>  <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (130, 3025) (130,)
+Test set: (56, 3025) (56,)
 </pre></div>
 </div>
 </div>
@@ -527,11 +605,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting 5 folds for each of 6 candidates, totalling 30 fits
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Using backend LokyBackend with 2 concurrent workers.
+</pre>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.6s finished
+</pre>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
+             param_grid=[{&#39;C&#39;: [1, 10, 100], &#39;gamma&#39;: [&#39;auto&#39;, &#39;scale&#39;],
+                          &#39;kernel&#39;: [&#39;rbf&#39;]}],
+             verbose=1)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">best_parameters</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">best_parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
 </pre></div>
 </div>
 </div>
@@ -554,6 +656,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6428571428571429
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -563,6 +670,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
 <span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;../model_SVC_C_10_gamma_scale_kernel_rbf_10000x3072_matrix.joblib&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;../model_SVC_C_10_gamma_scale_kernel_rbf_10000x3072_matrix.joblib&#39;]
 </pre></div>
 </div>
 </div>
@@ -607,11 +719,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.35714285714285715
+Test set Accuracy:  0.6428571428571429
+The Jaccard index is = 0.42857142857142855
+The log-loss is = 12.335434347677603
+The f1-score is = 0.6
+Precision: 0.5769230769230769
+Recall: 0.625
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NonSl&#39;</span><span class="p">,</span><span class="s1">&#39;SL&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+       NonSl       0.70      0.66      0.68        32
+          SL       0.58      0.62      0.60        24
+
+    accuracy                           0.64        56
+   macro avg       0.64      0.64      0.64        56
+weighted avg       0.65      0.64      0.64        56
+
 </pre></div>
 </div>
 </div>
@@ -635,6 +771,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc1ef191ad0&gt;
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_46_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_46_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -653,6 +795,12 @@
 <span class="c1">#plt.savefig(&#39;Precision-Recall-curve.png&#39;,format=&#39;png&#39;,dpi=300,transparent=False)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc1ec323b10&gt;
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_47_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_47_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -681,6 +829,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 257.44, &#39;Predicted label&#39;)
+</pre></div>
+</div>
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_48_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_48_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting">
@@ -701,11 +855,33 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 8.942200000028322e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span>
+
+
+<span class="n">cv_results</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#saving the results </span>
 <span class="n">dump</span><span class="p">(</span><span class="n">cv_results</span><span class="p">,</span> <span class="s1">&#39;../cross_val_object_5_fold_clf_model.joblib&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;../cross_val_object_5_fold_clf_model.joblib&#39;]
 </pre></div>
 </div>
 </div>
@@ -734,6 +910,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;5-fold-crrosvalidation-result.png&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">transparent</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_55_0.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_55_0.png" />
 </div>
 </div>
 </div>
