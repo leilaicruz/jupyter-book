@@ -43,11 +43,24 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "## Local datasets\n",
-    "data_domains=pd.read_excel(r'C:\\Users\\linigodelacruz\\Documents\\PhD_2018\\Documentation\\Calculations\\machine-learning-for-yeast\\datasets-for-learning\\proteins-domains-from-Pfam.xlsx',header=0,index_col='Unnamed: 0')\n",
+    "import os\n",
+    "script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in\n",
+    "rel_path_SL = \"datasets/data-synthetic-lethals.xlsx\"\n",
+    "rel_path_nSL=\"datasets/data-positive-genetic.xlsx\"\n",
+    "rel_path_domains=\"datasets/proteins-domains-from-Pfam.xlsx\"\n",
+    "\n",
+    "abs_file_path_SL = os.path.join(script_dir, rel_path_SL)\n",
+    "abs_file_path_nSL = os.path.join(script_dir, rel_path_nSL)\n",
+    "abs_file_path_domains = os.path.join(script_dir, rel_path_domains)\n",
+    "os.chdir('mini_book/docs/') #<-- for binder os.chdir('../')\n",
+    "my_path_sl= abs_file_path_SL\n",
+    "my_path_non_sl=abs_file_path_nSL\n",
+    "my_path_domains=abs_file_path_domains\n",
+    "\n",
+    "data_sl=pd.read_excel(my_path_sl,header=0)\n",
+    "data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')\n",
     "data_domains=data_domains.dropna()\n",
-    "data_sl=pd.read_excel(r'C:\\Users\\linigodelacruz\\Documents\\PhD_2018\\Documentation\\Calculations\\machine-learning-for-yeast\\datasets-for-learning\\data-synthetic-lethals.xlsx',header=0)\n",
-    "data_nonsl=pd.read_excel(r'C:\\Users\\linigodelacruz\\Documents\\PhD_2018\\Documentation\\Calculations\\machine-learning-for-yeast\\datasets-for-learning\\data-positive-genetic.xlsx',header=0)\n",
+    "data_nonsl=pd.read_excel(my_path_non_sl,header=0)\n",
     "\n"
    ]
   },
@@ -86,9 +99,9 @@
     "\n",
     "population = np.arange(0,len(data_sl))\n",
     "\n",
-    "# For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair\n",
+    "# For loop for 100 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair\n",
     "\n",
-    "for m in random.sample(list(population), 10000):\n",
+    "for m in random.sample(list(population), 100):\n",
     "    protein_a=data_domains[data_domains['name']==query_gene[m]]\n",
     "    protein_b=data_domains[data_domains['name']==target_gene[m]]\n",
     "    protein_a_list.append(protein_a['domain-name'].tolist())\n",
@@ -418,7 +431,7 @@
     "X_train, X_test, y_train, y_test =  train_test_split(X,y,test_size = 0.3, random_state= 0)\n",
     "\n",
     "print ('Train set:', X_train.shape,  y_train.shape)\n",
-    "print ('Test set:', X_test.shape,  y_test.s"
+    "print ('Test set:', X_test.shape,  y_test.shape)"
    ]
   },
   {
@@ -658,6 +671,20 @@
     "cv=StratifiedKFold(n_splits=5)\n",
     "elapsed_time = time.process_time() - t\n",
     "print('The elapsed time was',elapsed_time)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import sklearn.metrics as metrics\n",
+    "from sklearn.model_selection import cross_val_predict\n",
+    "from sklearn.model_selection import cross_validate\n",
+    "\n",
+    "\n",
+    "cv_results = cross_validate(clf, X, y, cv=cv)"
    ]
   },
   {

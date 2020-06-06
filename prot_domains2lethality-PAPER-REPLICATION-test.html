@@ -31,6 +31,7 @@
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script async="async" src="_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/qe-logo-large.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="protein-domains-SL-and-PI-processing.html" />
@@ -70,16 +71,19 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="MysT_Notebooks.html">Notebooks written entirely in markdown</a>
+    <a href="README.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
   </li>
   <li class="">
-    <a href="tutorial-categorical-data-on-yeast-interactions.html">Tutorial on how to handle categorical data from here</a>
+    <a href="MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
+  </li>
+  <li class="">
+    <a href="tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
   </li>
   <li class="active">
-    <a href="">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
   <li class="">
-    <a href="protein-domains-SL-and-PI-processing.html">Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="protein-domains-SL-and-PI-processing.html">5. Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
 </ul>
 </nav>
@@ -302,6 +306,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>We are going to analyze 100 protein pairs, out of 17871 SL protein pairs
+We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain">
@@ -338,6 +348,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 7 out of 100 domains
+The empty domain in the nSL were: 6 out of 100 domains
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
@@ -349,6 +365,11 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_indexes</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span> <span class="c1"># a function that give the index of whether a value appear in array or not</span>
 <span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">get_indexes</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2]
 </pre></div>
 </div>
 </div>
@@ -416,6 +437,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.3319114902692615e-05
+fraction of ones in the SL array is 0.0007820136852394917
+fraction of twos in the PI array is 8.440302444170917e-05
+fraction of ones in the PI array is 0.0007736943907156673
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="bar-plot-to-visualize-these-numbers">
 <h3>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h3>
@@ -430,6 +459,12 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>([0, 1, 2, 3], &lt;a list of 4 Text major ticklabel objects&gt;)
+</pre></div>
+</div>
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_20_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_20_1.png" />
 </div>
 </div>
 </div>
@@ -452,6 +487,12 @@
 <span class="n">feature_post</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non_new</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of features are:&#39;</span><span class="p">,</span><span class="n">feature_post</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of samples are:&#39;</span><span class="p">,</span><span class="n">feature_post</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
+The number of samples are: 187
 </pre></div>
 </div>
 </div>
@@ -486,6 +527,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_28_0.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_28_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -494,6 +538,12 @@
 <span class="c1">##plt.savefig(&#39;Pairplot-to-see-data-dependencies-with-Lethality.png&#39;,format=&#39;png&#39;,dpi=300,transparent=&#39;True&#39;, bbox_inches=&#39;tight&#39;)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.08, &#39;Pairplot to see data dependencies with Lethality&#39;)
+</pre></div>
+</div>
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_29_11.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_29_11.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -521,6 +571,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff922aa08d0&gt;
+</pre></div>
+</div>
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_31_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_31_1.png" />
+</div>
 </div>
 </div>
 </div>
@@ -543,6 +599,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (130, 3025) (130,)
+Test set: (57, 3025) (57,)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="choosing-the-best-svm-model">
 <h2>Choosing the best SVM model<a class="headerlink" href="#choosing-the-best-svm-model" title="Permalink to this headline">¶</a></h2>
@@ -556,11 +618,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Fitting 5 folds for each of 6 candidates, totalling 30 fits
+</pre></div>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Using backend LokyBackend with 2 concurrent workers.
+</pre>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.5s finished
+</pre>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
+             param_grid=[{&#39;C&#39;: [1, 10, 100], &#39;gamma&#39;: [&#39;auto&#39;, &#39;scale&#39;],
+                          &#39;kernel&#39;: [&#39;rbf&#39;]}],
+             verbose=1)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">best_parameters</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">best_parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
 </pre></div>
 </div>
 </div>
@@ -583,6 +669,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6666666666666666
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -592,6 +683,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
 <span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">&#39;../model_SVC_C_10_gamma_scale_kernel_rbf_10000x3072_matrix.joblib&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;../model_SVC_C_10_gamma_scale_kernel_rbf_10000x3072_matrix.joblib&#39;]
 </pre></div>
 </div>
 </div>
@@ -636,11 +732,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.3333333333333333
+Test set Accuracy:  0.6666666666666666
+The Jaccard index is = 0.4411764705882353
+The log-loss is = 11.513037689170954
+The f1-score is = 0.6122448979591837
+Precision: 0.6521739130434783
+Recall: 0.5769230769230769
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NonSl&#39;</span><span class="p">,</span><span class="s1">&#39;SL&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+       NonSl       0.68      0.74      0.71        31
+          SL       0.65      0.58      0.61        26
+
+    accuracy                           0.67        57
+   macro avg       0.66      0.66      0.66        57
+weighted avg       0.67      0.67      0.66        57
+
 </pre></div>
 </div>
 </div>
@@ -664,6 +784,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff91f419f90&gt;
+</pre></div>
+</div>
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_48_11.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_48_11.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,6 +808,12 @@
 <span class="c1">#plt.savefig(&#39;Precision-Recall-curve.png&#39;,format=&#39;png&#39;,dpi=300,transparent=False)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff91f3a8a50&gt;
+</pre></div>
+</div>
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_49_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_49_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -710,6 +842,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 257.44, &#39;Predicted label&#39;)
+</pre></div>
+</div>
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting">
@@ -730,6 +868,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.0002091409999991356
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -747,6 +890,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#saving the results </span>
 <span class="n">dump</span><span class="p">(</span><span class="n">cv_results</span><span class="p">,</span> <span class="s1">&#39;../cross_val_object_5_fold_clf_model.joblib&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;../cross_val_object_5_fold_clf_model.joblib&#39;]
 </pre></div>
 </div>
 </div>
@@ -775,6 +923,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;5-fold-crrosvalidation-result.png&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">transparent</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_57_0.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_57_0.png" />
 </div>
 </div>
 </div>
