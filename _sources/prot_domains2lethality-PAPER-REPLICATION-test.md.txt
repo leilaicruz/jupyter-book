@@ -250,6 +250,7 @@ a.set_title('How the mean varies with Lethality')
 b=sns.violinplot(x="lethality", y="std", data=corr_keys,ax=axs[1],palette='colorblind')
 b.set_title('How the std varies with Lethality')
 ##plt.savefig('violinplot-mean-std-with-lethality.png', format='png',dpi=300,transparent='true')
+plt.show()
 ```
 
 ```{code-cell} ipython3
