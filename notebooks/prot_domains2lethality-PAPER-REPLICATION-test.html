@@ -335,7 +335,7 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 5 out of 100 domains
-The empty domain in the nSL were: 9 out of 100 domains
+The empty domain in the nSL were: 6 out of 100 domains
 </pre></div>
 </div>
 </div>
@@ -423,10 +423,10 @@ The empty domain in the nSL were: 9 out of 100 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 8.351457155284906e-05
-fraction of ones in the SL array is 0.00093605915615485
-fraction of twos in the PI array is 7.265461810916357e-05
-fraction of ones in the PI array is 0.0007483425665243847
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 6.26359286646368e-05
+fraction of ones in the SL array is 0.0008977816441931275
+fraction of twos in the PI array is 7.03358537014243e-05
+fraction of ones in the PI array is 0.0008264462809917355
 </pre></div>
 </div>
 </div>
@@ -477,7 +477,7 @@ fraction of ones in the PI array is 0.0007483425665243847
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 186
+The number of samples are: 189
 </pre></div>
 </div>
 </div>
@@ -559,7 +559,7 @@ The number of samples are: 186
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f0450ce2b90&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fef48675790&gt;
 </pre></div>
 </div>
 <img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_29_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_29_1.png" />
@@ -587,8 +587,8 @@ The number of samples are: 186
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (130, 3025) (130,)
-Test set: (56, 3025) (56,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (132, 3025) (132,)
+Test set: (57, 3025) (57,)
 </pre></div>
 </div>
 </div>
@@ -614,7 +614,7 @@ Test set: (56, 3025) (56,)
 </pre>
 </div>
 <div class="stderr docutils container">
-<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.0s finished
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.6s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -657,7 +657,7 @@ Test set: (56, 3025) (56,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6607142857142857
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.5614035087719298
 </pre></div>
 </div>
 </div>
@@ -720,13 +720,13 @@ Test set: (56, 3025) (56,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.3392857142857143
-Test set Accuracy:  0.6607142857142857
-The Jaccard index is = 0.4411764705882353
-The log-loss is = 11.718627647906152
-The f1-score is = 0.6122448979591837
-Precision: 0.6521739130434783
-Recall: 0.5769230769230769
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.43859649122807015
+Test set Accuracy:  0.5614035087719298
+The Jaccard index is = 0.45652173913043476
+The log-loss is = 15.148866698620544
+The f1-score is = 0.6268656716417911
+Precision: 0.5121951219512195
+Recall: 0.8076923076923077
 </pre></div>
 </div>
 </div>
@@ -741,12 +741,12 @@ Recall: 0.5769230769230769
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.67      0.73      0.70        30
-          SL       0.65      0.58      0.61        26
+       NonSl       0.69      0.35      0.47        31
+          SL       0.51      0.81      0.63        26
 
-    accuracy                           0.66        56
-   macro avg       0.66      0.66      0.66        56
-weighted avg       0.66      0.66      0.66        56
+    accuracy                           0.56        57
+   macro avg       0.60      0.58      0.55        57
+weighted avg       0.61      0.56      0.54        57
 
 </pre></div>
 </div>
@@ -772,7 +772,7 @@ weighted avg       0.66      0.66      0.66        56
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0450c442d0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fef45810c50&gt;
 </pre></div>
 </div>
 <img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_46_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_46_1.png" />
@@ -797,7 +797,7 @@ weighted avg       0.66      0.66      0.66        56
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f044dddd210&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fef45773ad0&gt;
 </pre></div>
 </div>
 <img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_47_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_47_1.png" />
@@ -856,7 +856,7 @@ weighted avg       0.66      0.66      0.66        56
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00016310100000005434
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00017209099999959676
 </pre></div>
 </div>
 </div>
