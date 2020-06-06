@@ -442,6 +442,14 @@ cv=StratifiedKFold(n_splits=5)
 elapsed_time = time.process_time() - t
 print('The elapsed time was',elapsed_time)
 ```
+```{code-cell} ipython3
+import sklearn.metrics as metrics
+from sklearn.model_selection import cross_val_predict
+from sklearn.model_selection import cross_validate
+
+
+cv_results = cross_validate(clf, X, y, cv=cv)
+```
 
 ```{code-cell} ipython3
 #saving the results 
