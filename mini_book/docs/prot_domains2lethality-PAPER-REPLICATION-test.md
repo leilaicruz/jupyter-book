@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-## Replication of results from paper: "Predicting yeast synthetic lethal genetic interactions using protein domains" 
+## 06062020-Replication of results from paper: "Predicting yeast synthetic lethal genetic interactions using protein domains" 
 
 - Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA
 - e-mail: bol, luofeng@clemson.edu
