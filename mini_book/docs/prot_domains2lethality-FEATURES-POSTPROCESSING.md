@@ -1,13 +1,14 @@
 ---
-jupytext:
+jjupytext:
   text_representation:
     extension: .md
     format_name: myst
     format_version: '0.8'
     jupytext_version: 1.4.2
 kernelspec:
-  display_name: 'Python 3.7.0 64-bit (''base'': conda)'
-  name: python37064bitbaseconda6c8618fc0f0945779f8ded01abbb1089
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # 06062020-Feature postprocessing of protein domains.
