@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>06062020-Feature postprocessing of protein domains. &#8212; Notebooks for data science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/butterfly.jpg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="protein-domains-SL-and-PI-processing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/butterfly.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="README.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+  </li>
+  <li class="">
+    <a href="MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
+  </li>
+  <li class="">
+    <a href="tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
+  </li>
+  <li class="">
+    <a href="prot_domains2lethality-PAPER-REPLICATION-test.html">4. 06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+  </li>
+  <li class="">
+    <a href="protein-domains-SL-and-PI-processing.html">5. Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+  </li>
+  <li class="active">
+    <a href="">6. 06062020-Feature postprocessing of protein domains.</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/prot_domains2lethality-FEATURES-POSTPROCESSING.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+            <div class="dropdown-buttons sourcebuttons">
+                <a class="repository-button" href="https://github.com/leilaicruz/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
+                <a class="issues-button" href="https://github.com/leilaicruz/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprot_domains2lethality-FEATURES-POSTPROCESSING.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                
+            </div>
+        </div>
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/prot_domains2lethality-FEATURES-POSTPROCESSING.md"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#importing-datasets" class="nav-link">Importing datasets</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" class="nav-link">Link to the github repo where the datasets to be downloaded:</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#building-the-feature-matrix" class="nav-link">Building the feature matrix</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" class="nav-link">Building the list of proteins domains id per protein pair separately :</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" class="nav-link">Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" class="nav-link">Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#define-function-get-indexes" class="nav-link">Define function get_indexes</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#how-many-ones-and-twos-are-in-each-dataset" class="nav-link">How many ones and twos are in each dataset</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#bar-plot-to-visualize-these-numbers" class="nav-link">Bar plot to visualize these numbers</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#adding-the-labels-response-variables-to-each-dataset" class="nav-link">Adding the labels(response variables) to each dataset</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#joining-both-datasets" class="nav-link">Joining both datasets</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" class="nav-link">Postprocessing and exploration of the feature matrix of both datasets</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#viz-of-the-stats" class="nav-link">Viz of the stats</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#let-see-to-features-that-get-repeated-after-finding-the-principal-components-to-describe-the-data" class="nav-link">Let see to features that get repeated after finding the Principal components  to describe the data</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="feature-postprocessing-of-protein-domains">
+<h1>06062020-Feature postprocessing of protein domains.<a class="headerlink" href="#feature-postprocessing-of-protein-domains" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Title:  “Predicting yeast synthetic lethal genetic interactions using protein domains”</p></li>
+<li><p>Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA</p></li>
+<li><p>e-mail: bol, luofeng&#64;clemson.edu</p></li>
+<li><p>year:2009</p></li>
+</ul>
+<div class="section" id="importing-datasets">
+<h2>Importing datasets<a class="headerlink" href="#importing-datasets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="link-to-the-github-repo-where-the-datasets-to-be-downloaded">
+<h3>Link to the github repo where the datasets to be downloaded:<a class="headerlink" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning">DOWNLOAD THE DATASETS HERE</a></p>
+</div>
+</div>
+<div class="section" id="building-the-feature-matrix">
+<h2>Building the feature matrix<a class="headerlink" href="#building-the-feature-matrix" title="Permalink to this headline">¶</a></h2>
+<p>One matrix for true SL where each row is one pair of SL. Every raw will be a vector of 0,1 or 2 depending on the comparison with the domain list. For row i the jth element = 0 if the jth element of the domain list is not in neither protein A and B, 1, if it is in one of them and 2 if it is in both of them .</p>
+<div class="section" id="building-the-list-of-proteins-domains-id-per-protein-pair-separately">
+<h3>Building the list of proteins domains id per protein pair separately :<a class="headerlink" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>List of protein A: Search for the Sl/nSL database the query gene name and look in the protein domain database which protein domains id has each of those queries.</p></li>
+<li><p>List of protein B: Search for the Sl/nSL database the target gene name of the previous query and look in the protein domain database which protein domains id has each of those target genes.</p></li>
+</ul>
+</div>
+<div class="section" id="postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain">
+<h3>Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain<a class="headerlink" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
+<h3>Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair<a class="headerlink" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="define-function-get-indexes">
+<h4>Define function <code class="docutils literal notranslate"><span class="pre">get_indexes</span></code><a class="headerlink" href="#define-function-get-indexes" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="how-many-ones-and-twos-are-in-each-dataset">
+<h3>How many ones and twos are in each dataset<a class="headerlink" href="#how-many-ones-and-twos-are-in-each-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="bar-plot-to-visualize-these-numbers">
+<h4>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="adding-the-labels-response-variables-to-each-dataset">
+<h4>Adding the labels(response variables) to each dataset<a class="headerlink" href="#adding-the-labels-response-variables-to-each-dataset" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="joining-both-datasets">
+<h4>Joining both datasets<a class="headerlink" href="#joining-both-datasets" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets">
+<h3>Postprocessing and exploration of the feature matrix of both datasets<a class="headerlink" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="viz-of-the-stats">
+<h3>Viz of the stats<a class="headerlink" href="#viz-of-the-stats" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="let-see-to-features-that-get-repeated-after-finding-the-principal-components-to-describe-the-data">
+<h2>Let see to features that get repeated after finding the Principal components  to describe the data<a class="headerlink" href="#let-see-to-features-that-get-repeated-after-finding-the-principal-components-to-describe-the-data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "leilaicruz/jupyter-book",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "."
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="protein-domains-SL-and-PI-processing.html" title="previous page">Processing of the comparison between synthetic lethals and positive interactors of the features used in the paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Leila Inigo<br/>
+        
+            &copy; Copyright GPL License 3.0.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
