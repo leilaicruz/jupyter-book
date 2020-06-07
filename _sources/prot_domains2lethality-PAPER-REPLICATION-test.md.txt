@@ -405,6 +405,8 @@ plt.legend()
 ```
 
 ```{code-cell} ipython3
+
+from myst_nb import glue
 class_names=[1,2,3]
 fig, ax = plt.subplots()
 from sklearn.metrics import confusion_matrix
@@ -426,6 +428,8 @@ plt.ylabel('Actual label')
 plt.xlabel('Predicted label')
 
 #plt.savefig('confusion-matrix-normalized.png',format='png',dpi=300,transparent=False)
+
+glue("confusion_matrix_fig", fig, display=False)
 ```
 
 ### Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting 
@@ -478,6 +482,7 @@ plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparen
 ```
 ```{admonition} What is limiting the accuracy?
 
-- Number of samples e.g from 10000 to 100 , the accuracy dropped ~25% (from 0.88 to 0.66) without PCA to the training dataset.
+- Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL. Yet, the prediction of non SL is more accurate. See figure; {glue:}`confusion_matrix_fig`
+
 - After dimensionality reduction (PCA) keeping 90% of the variance of the data represented by 10000 pairs and 3025 features, we kept with 1622 most representatives features.
 ```
