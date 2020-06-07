@@ -472,7 +472,12 @@ sorted(cv_results.keys())
 
 plt.scatter(['test-1','test-2','test-3','test-4','test-5'],cv_results['test_score'],s=60,alpha=0.7,color='blue')
 plt.title('5-fold crossvalidation result')
-plt.ylim(0.55,0.9)
+plt.ylim(0.45,0.9)
 plt.ylabel('Accuracy')
 plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparent='true',bbox_inches='tight')
+```
+```{admonition} What is limiting the accuracy?
+
+- Number of samples e.g from 10000 to 100 , the accuracy dropped ~25% (from 0.88 to 0.66) without PCA to the training dataset.
+- After dimensionality reduction (PCA) keeping 90% of the variance of the data represented by 10000 pairs and 3025 features, we kept with 1622 most representatives features.
 ```
