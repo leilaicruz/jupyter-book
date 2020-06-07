@@ -486,5 +486,5 @@ plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparen
 - In order to reach more than 70% accuracy , with already 500 pairs is enough. 
 - Dimensionality reduction with PCA of the training data helps to optimize the ML algorithm, and the accuracy is slightly higher in most of the cases.
 
-- To assess feature importance , PCA plays an important role. See [this notebook to know about it :)](prot_domains2lethality-FEATURES-POSTPROCESSING.md)
+- To assess feature importance , PCA plays an important role. See {this notebook to know about it :)}`prot_domains2lethality-FEATURES-POSTPROCESSING.md`
 ```
