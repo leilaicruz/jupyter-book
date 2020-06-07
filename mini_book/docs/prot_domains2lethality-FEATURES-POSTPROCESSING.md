@@ -44,7 +44,7 @@ abs_file_path_SL = os.path.join(script_dir, rel_path_SL)
 abs_file_path_nSL = os.path.join(script_dir, rel_path_nSL)
 abs_file_path_domains = os.path.join(script_dir, rel_path_domains)
 
-os.chdir('minibook/docs/') #<-- for binder os.chdir('../')
+os.chdir('mini_book/docs/') #<-- for binder os.chdir('../')
 my_path_sl= abs_file_path_SL
 my_path_non_sl=abs_file_path_nSL
 my_path_domains=abs_file_path_domains
