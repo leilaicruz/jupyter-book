@@ -93,7 +93,7 @@ population = np.arange(0,len(data_sl))
 
 # For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair
 
-for m in random.sample(list(population), 200):
+for m in random.sample(list(population), 500):
     protein_a=data_domains[data_domains['name']==query_gene[m]]
     protein_b=data_domains[data_domains['name']==target_gene[m]]
     protein_a_list.append(protein_a['domain-name'].tolist())
@@ -486,5 +486,5 @@ plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparen
 - In order to reach more than 70% accuracy , with already 500 pairs is enough. 
 - Dimensionality reduction with PCA of the training data helps to optimize the ML algorithm, and the accuracy is slightly higher in most of the cases.
 
-- To assess feature importance , PCA plays an important role. See [this notebook to know about it :)](prot_domains2lethality-FEATURES-POSTPROCESSING.md)
+- To assess feature importance , PCA plays an important role. See {this notebook to know about it :)}`prot_domains2lethality-FEATURES-POSTPROCESSING.md`
 ```
