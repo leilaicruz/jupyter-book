@@ -93,7 +93,7 @@ population = np.arange(0,len(data_sl))
 
 # For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair
 
-for m in random.sample(list(population), 200):
+for m in random.sample(list(population), 500):
     protein_a=data_domains[data_domains['name']==query_gene[m]]
     protein_b=data_domains[data_domains['name']==target_gene[m]]
     protein_a_list.append(protein_a['domain-name'].tolist())
