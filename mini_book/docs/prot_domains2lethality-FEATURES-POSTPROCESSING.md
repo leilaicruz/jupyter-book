@@ -248,8 +248,8 @@ scaler = StandardScaler()
 x_sl=protein_feat_true_pd.drop(columns=['lethality'])
 x_nsl=protein_feat_non_true_pd.drop(columns=['lethality'])
 
-X_sl_scaled = scaler.fit_transform(x_sl.T)
-X_nsl_scaled = scaler.fit_transform(x_nsl.T)
+X_sl_scaled = scaler.fit_transform(x_sl)
+X_nsl_scaled = scaler.fit_transform(x_nsl)
 ```
 
 ```{code-cell} ipython3
@@ -263,14 +263,9 @@ def PCA_component_contribution(scaled_matrix,original_data):
     total=sum(model.explained_variance_)
 
 
-    main_features=[]
-    max_contribution=np.max(model.explained_variance_/total)
-    for k in np.arange(0,model.components_.shape[0]):
-        if max_contribution/2<model.explained_variance_[k]/total < max_contribution:
-            main_features.append(k)
-
+   
     # number of components
-    n_pcs= model.components_.shape[0] # the amount of components of the PCA,main protein domains
+    n_pcs= model.components_.shape[0] # the amount of non redundant samples 
 
     # get the index of the most important feature on EACH component
     # LIST COMPREHENSION HERE
@@ -279,8 +274,7 @@ def PCA_component_contribution(scaled_matrix,original_data):
     initial_feature_names = original_data.columns
     # get the names
     most_important_names = [initial_feature_names[most_important[i]] for i in range(n_pcs)]
-    # names of maximum contributors 
-    max_contributors_names = data_domains['domain-name'][main_features] + data_domains['domain-descrip'][main_features]
+    
 
     # LIST COMPREHENSION HERE AGAIN
     dic = {'PC{}'.format(i): most_important_names[i] for i in range(n_pcs)}
@@ -288,12 +282,12 @@ def PCA_component_contribution(scaled_matrix,original_data):
     # build the dataframe
     df = pd.DataFrame(dic.items(),columns=['pca-component','domain-number'])
 
-    return df,main_features,model.components_
+    return df,model.components_
 ```
 
 ```{code-cell} ipython3
-df_sl,max_contributors_nsl,components_pca_nsl=PCA_component_contribution(X_nsl_scaled,x_nsl)
-df_nsl,max_contributors_sl,components_pca_sl=PCA_component_contribution(X_sl_scaled,x_sl)
+df_sl,components_pca_nsl=PCA_component_contribution(X_nsl_scaled,x_nsl)
+df_nsl,components_pca_sl=PCA_component_contribution(X_sl_scaled,x_sl)
 ```
 
 ```{code-cell} ipython3
