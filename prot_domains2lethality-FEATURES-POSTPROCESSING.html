@@ -325,7 +325,7 @@
 
 <span class="c1"># For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair</span>
 
-<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="mi">10000</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="mi">100</span><span class="p">):</span>
     <span class="n">protein_a</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
     <span class="n">protein_b</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
     <span class="n">protein_a_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_a</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
@@ -347,8 +347,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>We are going to analyze 10000 protein pairs, out of 17871 SL protein pairs
-We are going to analyze 10000 protein pairs, out of 43340 positive protein pairs
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>We are going to analyze 100 protein pairs, out of 17871 SL protein pairs
+We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </pre></div>
 </div>
 </div>
@@ -389,8 +389,8 @@ We are going to analyze 10000 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 648 out of 10000 domains
-The empty domain in the nSL were: 701 out of 10000 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 5 out of 100 domains
+The empty domain in the nSL were: 2 out of 100 domains
 </pre></div>
 </div>
 </div>
@@ -478,10 +478,10 @@ The empty domain in the nSL were: 701 out of 10000 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.652213872137661e-05
-fraction of ones in the SL array is 0.0009007486797361593
-fraction of twos in the PI array is 4.785016428497155e-05
-fraction of ones in the PI array is 0.0007946824460819123
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.9156154849934755e-05
+fraction of ones in the SL array is 0.0008212266202696825
+fraction of twos in the PI array is 3.7105751391465674e-05
+fraction of ones in the PI array is 0.0008230730308652387
 </pre></div>
 </div>
 </div>
@@ -532,7 +532,7 @@ fraction of ones in the PI array is 0.0007946824460819123
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 18651
+The number of samples are: 193
 </pre></div>
 </div>
 </div>
@@ -672,84 +672,48 @@ The number of samples are: 18651
   <tbody>
     <tr>
       <th>0</th>
-      <td>PC3</td>
-      <td>89</td>
-      <td>PC163</td>
-      <td>ANAPC8; Cdc23</td>
+      <td>PC6</td>
+      <td>618</td>
+      <td>PC47</td>
+      <td>DNA_pol_alpha_N; DNA polymerase alpha catalyti...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PC5</td>
-      <td>2233</td>
-      <td>PC5</td>
-      <td>Ribosomal_S27e; Ribosomal protein S27e</td>
+      <td>PC27</td>
+      <td>599</td>
+      <td>PC14</td>
+      <td>DLIC; Dynein family light intermediate chain</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>PC12</td>
-      <td>1520</td>
-      <td>PC17</td>
-      <td>Mto2_bdg; Mto2p-binding domain</td>
+      <td>PC34</td>
+      <td>2662</td>
+      <td>PC34</td>
+      <td>Thioredoxin; Thioredoxin domain</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PC16</td>
-      <td>2720</td>
-      <td>PC27</td>
-      <td>U1snRNP70_N; U1 small nuclear ribonucleoprotei...</td>
+      <td>PC46</td>
+      <td>590</td>
+      <td>PC63</td>
+      <td>DHquinase_I; 3-dehydroquinate dehydratase type I</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PC18</td>
-      <td>993</td>
-      <td>PC21</td>
-      <td>GNAT_acetyltr_2; GNAT domain</td>
+      <td>PC49</td>
+      <td>1025</td>
+      <td>PC31</td>
+      <td>Gal_mutarotas_2; Glycoside hydrolase family 31...</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>747</th>
-      <td>PC1217</td>
-      <td>1418</td>
-      <td>PC1168</td>
-      <td>Mak16; Mak16 protein</td>
-    </tr>
-    <tr>
-      <th>748</th>
-      <td>PC1223</td>
-      <td>331</td>
-      <td>PC836</td>
-      <td>CDC24; Cdc24/Scd1, N-terminal</td>
-    </tr>
-    <tr>
-      <th>749</th>
-      <td>PC1242</td>
-      <td>2388</td>
-      <td>PC546</td>
-      <td>SRP72; Signal recognition particle, SRP72 subu...</td>
-    </tr>
-    <tr>
-      <th>750</th>
-      <td>PC1249</td>
-      <td>1347</td>
-      <td>PC500</td>
-      <td>MAM33; Mitochondrial glycoprotein</td>
-    </tr>
-    <tr>
-      <th>751</th>
-      <td>PC1255</td>
-      <td>1967</td>
-      <td>PC1133</td>
-      <td>RA; Ras-associating (RA) domain</td>
+      <th>5</th>
+      <td>PC62</td>
+      <td>85</td>
+      <td>PC48</td>
+      <td>ANAPC3</td>
     </tr>
   </tbody>
 </table>
-<p>752 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -793,37 +757,37 @@ The number of samples are: 18651
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>1028</td>
+      <td>50</td>
       <td>NaN</td>
-      <td>GatB_Yqey; Asn/Gln amidotransferase</td>
+      <td>ACT_7; GATS-like  ACT domain</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PC1</td>
-      <td>135</td>
+      <td>242</td>
       <td>NaN</td>
-      <td>ATP-synt_ab_Xtn; ATPsynthase alpha/beta subuni...</td>
+      <td>Atg31; Autophagy-related protein 31</td>
     </tr>
     <tr>
       <th>2</th>
       <td>PC2</td>
-      <td>305</td>
+      <td>343</td>
       <td>NaN</td>
-      <td>Brr6_like_C_C; Brl1/Brr6 domain</td>
+      <td>CENP-C_C; Mif2/CENP-C cupin domain</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PC3</td>
+      <td>1055</td>
+      <td>NaN</td>
+      <td>Glyco_hydro_63N; Glycosyl hydrolase family 63,...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>PC4</td>
-      <td>2809</td>
+      <td>43</td>
       <td>NaN</td>
-      <td>VTC; VTC domain</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>PC6</td>
-      <td>154</td>
-      <td>NaN</td>
-      <td>AcetylCoA_hydro; Acetyl-CoA hydrolase/transferase</td>
+      <td>ABC_trans_N; ABC-transporter extracellular N-t...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -833,43 +797,43 @@ The number of samples are: 18651
       <td>...</td>
     </tr>
     <tr>
-      <th>1552</th>
-      <td>PC1250</td>
-      <td>1174</td>
+      <th>74</th>
+      <td>PC74</td>
+      <td>243</td>
       <td>NaN</td>
-      <td>His_biosynth; Histidine biosynthesis</td>
+      <td>Atg8; Autophagy protein Atg8 ubiquitin-like</td>
     </tr>
     <tr>
-      <th>1553</th>
-      <td>PC1251</td>
-      <td>1163</td>
+      <th>75</th>
+      <td>PC75</td>
+      <td>655</td>
       <td>NaN</td>
-      <td>Hexapep; Hexapeptide repeat</td>
+      <td>DUF1744; DNA polymerase epsilon, catalytic sub...</td>
     </tr>
     <tr>
-      <th>1554</th>
-      <td>PC1252</td>
-      <td>1092</td>
+      <th>76</th>
+      <td>PC76</td>
+      <td>1587</td>
       <td>NaN</td>
-      <td>HAD_2; HAD-like domain</td>
+      <td>NTF2; Nuclear transport factor 2</td>
     </tr>
     <tr>
-      <th>1555</th>
-      <td>PC1253</td>
-      <td>509</td>
+      <th>77</th>
+      <td>PC77</td>
+      <td>699</td>
       <td>NaN</td>
-      <td>Cornichon</td>
+      <td>DUF3449; Domain of unknown function DUF3449</td>
     </tr>
     <tr>
-      <th>1556</th>
-      <td>PC1254</td>
-      <td>2781</td>
+      <th>78</th>
+      <td>PC78</td>
+      <td>1241</td>
       <td>NaN</td>
-      <td>Uso1_p115_C; Uso1/p115-like vesicle tethering ...</td>
+      <td>Ion_trans_2; Potassium channel domain</td>
     </tr>
   </tbody>
 </table>
-<p>806 rows × 4 columns</p>
+<p>73 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -911,39 +875,39 @@ The number of samples are: 18651
   </thead>
   <tbody>
     <tr>
-      <th>752</th>
+      <th>6</th>
       <td>NaN</td>
-      <td>1750</td>
+      <td>308</td>
       <td>PC0</td>
-      <td>PH_12; Pleckstrin homology domain</td>
+      <td>Bul1_N; Bul1, N-terminal</td>
     </tr>
     <tr>
-      <th>753</th>
+      <th>7</th>
       <td>NaN</td>
-      <td>1812</td>
+      <td>293</td>
       <td>PC1</td>
-      <td>PRELI; PRELI/MSF1 domain</td>
+      <td>Beach; BEACH domain</td>
     </tr>
     <tr>
-      <th>754</th>
+      <th>8</th>
       <td>NaN</td>
-      <td>1373</td>
+      <td>222</td>
       <td>PC2</td>
-      <td>MIS13; Kinetochore-associated protein Dsn1/Mis13</td>
+      <td>Apt1; FMP27,  C-terminal</td>
     </tr>
     <tr>
-      <th>755</th>
+      <th>9</th>
       <td>NaN</td>
-      <td>1464</td>
+      <td>62</td>
       <td>PC3</td>
-      <td>Metallophos_2; Calcineurin-like phosphoesteras...</td>
+      <td>AHSA1; Activator of Hsp90 ATPase homologue 1-like</td>
     </tr>
     <tr>
-      <th>756</th>
+      <th>10</th>
       <td>NaN</td>
-      <td>540</td>
+      <td>88</td>
       <td>PC4</td>
-      <td>Cytochrome_B; Cytochrome b/b6, N-terminal</td>
+      <td>ANAPC5; Anaphase-promoting complex subunit 5</td>
     </tr>
     <tr>
       <th>...</th>
@@ -953,43 +917,43 @@ The number of samples are: 18651
       <td>...</td>
     </tr>
     <tr>
-      <th>1764</th>
+      <th>67</th>
       <td>NaN</td>
-      <td>2160</td>
-      <td>PC1420</td>
-      <td>Ribosomal_L14e; Ribosomal protein L14e domain</td>
+      <td>2979</td>
+      <td>PC67</td>
+      <td>zf-C6H2; MYND-like zinc finger, mRNA-binding</td>
     </tr>
     <tr>
-      <th>1765</th>
+      <th>68</th>
       <td>NaN</td>
-      <td>310</td>
-      <td>PC1422</td>
-      <td>C1_1; Protein kinase C-like, phorbol ester/dia...</td>
+      <td>2820</td>
+      <td>PC68</td>
+      <td>Vma12; ATPase, vacuolar ER assembly factor, Vma12</td>
     </tr>
     <tr>
-      <th>1766</th>
+      <th>69</th>
       <td>NaN</td>
-      <td>450</td>
-      <td>PC1423</td>
-      <td>Cation_efflux; Cation efflux protein</td>
+      <td>751</td>
+      <td>PC69</td>
+      <td>DcpS_C</td>
     </tr>
     <tr>
-      <th>1767</th>
+      <th>70</th>
       <td>NaN</td>
-      <td>2280</td>
-      <td>PC1425</td>
-      <td>S10_plectin; Plectin/S10, N-terminal</td>
+      <td>1598</td>
+      <td>PC70</td>
+      <td>Na_Ca_ex; Sodium/calcium exchanger membrane re...</td>
     </tr>
     <tr>
-      <th>1768</th>
+      <th>71</th>
       <td>NaN</td>
-      <td>35</td>
-      <td>PC1427</td>
-      <td>AA_permease; Amino acid permease/ SLC12A domain</td>
+      <td>2102</td>
+      <td>PC71</td>
+      <td>Ran_BP1; Ran binding domain</td>
     </tr>
   </tbody>
 </table>
-<p>1017 rows × 4 columns</p>
+<p>66 rows × 4 columns</p>
 </div></div></div>
 </div>
 </div>
@@ -1048,62 +1012,26 @@ The number of samples are: 18651
   <tbody>
     <tr>
       <th>0</th>
-      <td>PF00175</td>
-      <td>ANAPC10; APC10/DOC domain</td>
+      <td>PF00580</td>
+      <td>BRCT_2; BRCT domain</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PF03835</td>
-      <td>HlyIII; AdipoR/Haemolysin-III-related</td>
+      <td>PF00004</td>
+      <td>1-cysPrx_C; Peroxiredoxin, C-terminal</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>PF01061</td>
-      <td>Cid2; Caffeine-induced death protein 2</td>
+      <td>PF00022</td>
+      <td>40S_S4_C; 40S ribosomal protein S4, C-terminal...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PF09453</td>
-      <td>RhoGAP; Rho GTPase-activating protein domain</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PF13193</td>
-      <td>TIMELESS; Timeless protein</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>492</th>
-      <td>PF07064</td>
-      <td>PAP_central; Poly(A) polymerase, central domain</td>
-    </tr>
-    <tr>
-      <th>493</th>
-      <td>PF05839</td>
-      <td>NUP214</td>
-    </tr>
-    <tr>
-      <th>494</th>
-      <td>PF03587</td>
-      <td>HRXXH; Putative peptidase domain, HRXXH</td>
-    </tr>
-    <tr>
-      <th>495</th>
-      <td>PF08653</td>
-      <td>RNA_pol_Rpb1_2; RNA polymerase, alpha subunit</td>
-    </tr>
-    <tr>
-      <th>496</th>
-      <td>PF08653</td>
-      <td>RNA_pol_Rpb1_2; RNA polymerase, alpha subunit</td>
+      <td>PF09295</td>
+      <td>Rad52_Rad22; DNA repair protein Rad52/59/22</td>
     </tr>
   </tbody>
 </table>
-<p>497 rows × 2 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1141,73 +1069,60 @@ The number of samples are: 18651
   <tbody>
     <tr>
       <th>0</th>
-      <td>PF05188</td>
-      <td>Mpv17_PMP22; Mpv17/PMP22</td>
+      <td>PF00696</td>
+      <td>CENP-T_C</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PF10381</td>
-      <td>S-AdoMet_synt_C; S-adenosylmethionine syntheta...</td>
+      <td>PF00705</td>
+      <td>CH; Calponin homology domain</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>PF09511</td>
-      <td>Ribonuc_L-PSP; YjgF/YER057c/UK114 family</td>
+      <td>PF00735</td>
+      <td>CLP1_P; Polyribonucleotide 5&amp;apos;-hydroxyl-ki...</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PF02815</td>
-      <td>GDA1_CD39; Nucleoside phosphatase GDA1/CD39</td>
+      <td>PF00324</td>
+      <td>Acyl-CoA_ox_N; Acyl-coenzyme A oxidase, N-term...</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PF09268</td>
-      <td>Rad33</td>
+      <td>PF00069</td>
+      <td>AAA_7</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>574</th>
-      <td>PF09340</td>
-      <td>Raptor_N; Raptor, N-terminal CASPase-like domain</td>
+      <th>5</th>
+      <td>PF10273</td>
+      <td>Ribosomal_S19; Ribosomal protein S19/S15</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>575</th>
-      <td>PF09340</td>
-      <td>Raptor_N; Raptor, N-terminal CASPase-like domain</td>
+      <th>6</th>
+      <td>PF00459</td>
+      <td>ArAE_2; Brefeldin A sensitivity protein-relate...</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>577</th>
-      <td>PF03810</td>
-      <td>His_biosynth; Histidine biosynthesis</td>
+      <th>7</th>
+      <td>PF02238</td>
+      <td>F-box; F-box domain</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>578</th>
-      <td>PF03345</td>
-      <td>HAD_2; HAD-like domain</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>579</th>
-      <td>PF01150</td>
-      <td>Cornichon</td>
+      <th>8</th>
+      <td>PF08690</td>
+      <td>RNA_pol_Rpb2_7; RNA polymerase Rpb2, domain 7</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>431 rows × 3 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1244,74 +1159,31 @@ The number of samples are: 18651
   </thead>
   <tbody>
     <tr>
-      <th>149</th>
-      <td>PF00175</td>
+      <th>0</th>
+      <td>PF00580</td>
       <td>NaN</td>
-      <td>ANAPC10; APC10/DOC domain</td>
+      <td>BRCT_2; BRCT domain</td>
     </tr>
     <tr>
-      <th>150</th>
-      <td>PF03835</td>
+      <th>1</th>
+      <td>PF00004</td>
       <td>NaN</td>
-      <td>HlyIII; AdipoR/Haemolysin-III-related</td>
+      <td>1-cysPrx_C; Peroxiredoxin, C-terminal</td>
     </tr>
     <tr>
-      <th>151</th>
-      <td>PF01061</td>
+      <th>2</th>
+      <td>PF00022</td>
       <td>NaN</td>
-      <td>Cid2; Caffeine-induced death protein 2</td>
+      <td>40S_S4_C; 40S ribosomal protein S4, C-terminal...</td>
     </tr>
     <tr>
-      <th>152</th>
-      <td>PF09453</td>
+      <th>3</th>
+      <td>PF09295</td>
       <td>NaN</td>
-      <td>RhoGAP; Rho GTPase-activating protein domain</td>
-    </tr>
-    <tr>
-      <th>153</th>
-      <td>PF13193</td>
-      <td>NaN</td>
-      <td>TIMELESS; Timeless protein</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>557</th>
-      <td>PF08321</td>
-      <td>NaN</td>
-      <td>Peptidase_S10; Peptidase S10, serine carboxype...</td>
-    </tr>
-    <tr>
-      <th>558</th>
-      <td>PF00012</td>
-      <td>NaN</td>
-      <td>2OG-FeII_Oxy_4</td>
-    </tr>
-    <tr>
-      <th>559</th>
-      <td>PF09635</td>
-      <td>NaN</td>
-      <td>Ribonuclease_T2; Ribonuclease T2-like</td>
-    </tr>
-    <tr>
-      <th>560</th>
-      <td>PF10681</td>
-      <td>NaN</td>
-      <td>SLC12; SLC12A transporter, C-terminal</td>
-    </tr>
-    <tr>
-      <th>561</th>
-      <td>PF07064</td>
-      <td>NaN</td>
-      <td>PAP_central; Poly(A) polymerase, central domain</td>
+      <td>Rad52_Rad22; DNA repair protein Rad52/59/22</td>
     </tr>
   </tbody>
 </table>
-<p>413 rows × 3 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1346,75 +1218,8 @@ The number of samples are: 18651
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>0</th>
-      <td>PF13840</td>
-      <td>Torus; Torus domain</td>
-      <td>Torus; Torus domain</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PF08712</td>
-      <td>RNase_H2-Ydr279; Ribonuclease H2, subunit B</td>
-      <td>RNase_H2-Ydr279; Ribonuclease H2, subunit B</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PF08712</td>
-      <td>RNase_H2-Ydr279; Ribonuclease H2, subunit B</td>
-      <td>RNase_H2-Ydr279; Ribonuclease H2, subunit B</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PF08712</td>
-      <td>RNase_H2-Ydr279; Ribonuclease H2, subunit B</td>
-      <td>RNase_H2-Ydr279; Ribonuclease H2, subunit B</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PF03919</td>
-      <td>IDO; Indoleamine 2,3-dioxygenase</td>
-      <td>IDO; Indoleamine 2,3-dioxygenase</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>144</th>
-      <td>PF09445</td>
-      <td>ResIII; Helicase/UvrB, N-terminal</td>
-      <td>ResIII; Helicase/UvrB, N-terminal</td>
-    </tr>
-    <tr>
-      <th>145</th>
-      <td>PF09445</td>
-      <td>ResIII; Helicase/UvrB, N-terminal</td>
-      <td>ResIII; Helicase/UvrB, N-terminal</td>
-    </tr>
-    <tr>
-      <th>146</th>
-      <td>PF09445</td>
-      <td>ResIII; Helicase/UvrB, N-terminal</td>
-      <td>ResIII; Helicase/UvrB, N-terminal</td>
-    </tr>
-    <tr>
-      <th>147</th>
-      <td>PF02207</td>
-      <td>Enolase_N; Enolase, N-terminal</td>
-      <td>Enolase_N; Enolase, N-terminal</td>
-    </tr>
-    <tr>
-      <th>148</th>
-      <td>PF02207</td>
-      <td>Enolase_N; Enolase, N-terminal</td>
-      <td>Enolase_N; Enolase, N-terminal</td>
-    </tr>
   </tbody>
 </table>
-<p>149 rows × 3 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1425,7 +1230,7 @@ The number of samples are: 18651
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f46ef87c2d0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fed2688a290&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_40_1.png" src="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_40_1.png" />

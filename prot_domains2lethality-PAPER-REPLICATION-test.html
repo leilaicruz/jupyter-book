@@ -349,8 +349,8 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 5 out of 100 domains
-The empty domain in the nSL were: 2 out of 100 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 10 out of 100 domains
+The empty domain in the nSL were: 4 out of 100 domains
 </pre></div>
 </div>
 </div>
@@ -438,10 +438,10 @@ The empty domain in the nSL were: 2 out of 100 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 7.655502392344497e-05
-fraction of ones in the SL array is 0.0008421052631578948
-fraction of twos in the PI array is 4.047900151796256e-05
-fraction of ones in the PI array is 0.0008264462809917355
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 3.6730945821854914e-05
+fraction of ones in the SL array is 0.0009329660238751148
+fraction of twos in the PI array is 4.4765840220385674e-05
+fraction of ones in the PI array is 0.0007369146005509642
 </pre></div>
 </div>
 </div>
@@ -492,7 +492,7 @@ fraction of ones in the PI array is 0.0008264462809917355
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 193
+The number of samples are: 186
 </pre></div>
 </div>
 </div>
@@ -572,7 +572,7 @@ The number of samples are: 193
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f726c994810&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd0c2a29450&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_31_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_31_1.png" />
@@ -600,8 +600,8 @@ The number of samples are: 193
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (135, 3025) (135,)
-Test set: (58, 3025) (58,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (130, 3025) (130,)
+Test set: (56, 3025) (56,)
 </pre></div>
 </div>
 </div>
@@ -646,7 +646,7 @@ Test set: (58, 3025) (58,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=1)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
 </pre></div>
 </div>
 </div>
@@ -670,7 +670,7 @@ Test set: (58, 3025) (58,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6724137931034483
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6785714285714286
 </pre></div>
 </div>
 </div>
@@ -733,13 +733,13 @@ Test set: (58, 3025) (58,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.3275862068965517
-Test set Accuracy:  0.6724137931034483
-The Jaccard index is = 0.5128205128205128
-The log-loss is = 11.314592184008022
-The f1-score is = 0.6779661016949152
-Precision: 0.625
-Recall: 0.7407407407407407
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.32142857142857145
+Test set Accuracy:  0.6785714285714286
+The Jaccard index is = 0.4375
+The log-loss is = 11.10186378371132
+The f1-score is = 0.6086956521739131
+Precision: 0.6363636363636364
+Recall: 0.5833333333333334
 </pre></div>
 </div>
 </div>
@@ -754,12 +754,12 @@ Recall: 0.7407407407407407
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.73      0.61      0.67        31
-          SL       0.62      0.74      0.68        27
+       NonSl       0.71      0.75      0.73        32
+          SL       0.64      0.58      0.61        24
 
-    accuracy                           0.67        58
-   macro avg       0.68      0.68      0.67        58
-weighted avg       0.68      0.67      0.67        58
+    accuracy                           0.68        56
+   macro avg       0.67      0.67      0.67        56
+weighted avg       0.68      0.68      0.68        56
 
 </pre></div>
 </div>
@@ -785,7 +785,7 @@ weighted avg       0.68      0.67      0.67        58
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7268f22550&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd0c2a080d0&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_48_11.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_48_11.png" />
@@ -810,7 +810,7 @@ weighted avg       0.68      0.67      0.67        58
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7268ef4990&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd0bf39f050&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_49_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_49_1.png" />
@@ -818,7 +818,8 @@ weighted avg       0.68      0.67      0.67        58
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
 <span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
@@ -839,13 +840,12 @@ weighted avg       0.68      0.67      0.67        58
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
 
 <span class="c1">#plt.savefig(&#39;confusion-matrix-normalized.png&#39;,format=&#39;png&#39;,dpi=300,transparent=False)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;confusion_matrix_fig&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 257.44, &#39;Predicted label&#39;)
-</pre></div>
-</div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_1.png" />
 </div>
 </div>
@@ -869,7 +869,7 @@ weighted avg       0.68      0.67      0.67        58
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00015168200000026388
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00016379199999860816
 </pre></div>
 </div>
 </div>
@@ -931,7 +931,7 @@ weighted avg       0.68      0.67      0.67        58
 <div class="admonition-what-is-limiting-the-accuracy admonition">
 <p class="admonition-title">What is limiting the accuracy?</p>
 <ul class="simple">
-<li><p>Number of samples e.g from 10000 to 100 , the accuracy dropped ~25% (from 0.88 to 0.66) without PCA to the training dataset.</p></li>
+<li><p>Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL. Yet, the prediction of non SL is more accurate. See figure; <span class="pasted-inline"><img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_0.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_0.png" /></span></p></li>
 <li><p>After dimensionality reduction (PCA) keeping 90% of the variance of the data represented by 10000 pairs and 3025 features, we kept with 1622 most representatives features.</p></li>
 </ul>
 </div>
