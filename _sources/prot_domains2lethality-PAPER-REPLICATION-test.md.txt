@@ -482,7 +482,9 @@ plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparen
 ```
 ```{admonition} What is limiting the accuracy?
 
-- Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL. Yet, the prediction of non SL is more accurate. See figure; {glue:}`confusion_matrix_fig`
+- Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL.  See figure; {glue:}`confusion_matrix_fig`
+- In order to reach more than 70% accuracy , with already 500 pairs is enough. 
+- Dimensionality reduction with PCA of the training data helps to optimize the ML algorithm, and the accuracy is slightly higher in most of the cases.
 
-- After dimensionality reduction (PCA) keeping 90% of the variance of the data represented by 10000 pairs and 3025 features, we kept with 1622 most representatives features.
+- To assess feature importance , PCA plays an important role. See [this notebook to know about it :)](prot_domains2lethality-FEATURES-POSTPROCESSING.md)
 ```
