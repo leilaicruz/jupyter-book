@@ -349,8 +349,8 @@ We are going to analyze 200 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 13 out of 200 domains
-The empty domain in the nSL were: 12 out of 200 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 16 out of 200 domains
+The empty domain in the nSL were: 16 out of 200 domains
 </pre></div>
 </div>
 </div>
@@ -438,10 +438,10 @@ The empty domain in the nSL were: 12 out of 200 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 7.071198126132497e-05
-fraction of ones in the SL array is 0.0008379369779467009
-fraction of twos in the PI array is 5.4510286618603835e-05
-fraction of ones in the PI array is 0.0007912783541410233
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.749191519942508e-05
+fraction of ones in the SL array is 0.0008713618397412863
+fraction of twos in the PI array is 6.288178224937118e-05
+fraction of ones in the PI array is 0.0007599712540424003
 </pre></div>
 </div>
 </div>
@@ -492,7 +492,7 @@ fraction of ones in the PI array is 0.0007912783541410233
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 375
+The number of samples are: 368
 </pre></div>
 </div>
 </div>
@@ -572,7 +572,7 @@ The number of samples are: 375
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7faa8df57fd0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fe1a08ebd10&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_31_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_31_1.png" />
@@ -600,8 +600,8 @@ The number of samples are: 375
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (262, 3025) (262,)
-Test set: (113, 3025) (113,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (257, 3025) (257,)
+Test set: (111, 3025) (111,)
 </pre></div>
 </div>
 </div>
@@ -627,7 +627,7 @@ Test set: (113, 3025) (113,)
 </pre>
 </div>
 <div class="stderr docutils container">
-<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    5.7s finished
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    5.6s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -646,7 +646,7 @@ Test set: (113, 3025) (113,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=100)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
 </pre></div>
 </div>
 </div>
@@ -670,7 +670,7 @@ Test set: (113, 3025) (113,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6460176991150443
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7027027027027027
 </pre></div>
 </div>
 </div>
@@ -733,13 +733,13 @@ Test set: (113, 3025) (113,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.35398230088495575
-Test set Accuracy:  0.6460176991150443
-The Jaccard index is = 0.42857142857142855
-The log-loss is = 12.226207527106371
-The f1-score is = 0.6
-Precision: 0.6976744186046512
-Recall: 0.5263157894736842
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.2972972972972973
+Test set Accuracy:  0.7027027027027027
+The Jaccard index is = 0.5217391304347826
+The log-loss is = 10.268371317128063
+The f1-score is = 0.6857142857142857
+Precision: 0.75
+Recall: 0.631578947368421
 </pre></div>
 </div>
 </div>
@@ -754,12 +754,12 @@ Recall: 0.5263157894736842
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.61      0.77      0.68        56
-          SL       0.70      0.53      0.60        57
+       NonSl       0.67      0.78      0.72        54
+          SL       0.75      0.63      0.69        57
 
-    accuracy                           0.65       113
-   macro avg       0.66      0.65      0.64       113
-weighted avg       0.66      0.65      0.64       113
+    accuracy                           0.70       111
+   macro avg       0.71      0.70      0.70       111
+weighted avg       0.71      0.70      0.70       111
 
 </pre></div>
 </div>
@@ -785,7 +785,7 @@ weighted avg       0.66      0.65      0.64       113
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faa8de6f490&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe1a0aa3750&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_48_11.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_48_11.png" />
@@ -810,7 +810,7 @@ weighted avg       0.66      0.65      0.64       113
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faa92bd1850&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe1a28c2410&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_49_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_49_1.png" />
@@ -869,7 +869,7 @@ weighted avg       0.66      0.65      0.64       113
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00018050799999969058
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.0001667019999977981
 </pre></div>
 </div>
 </div>
@@ -931,8 +931,10 @@ weighted avg       0.66      0.65      0.64       113
 <div class="admonition-what-is-limiting-the-accuracy admonition">
 <p class="admonition-title">What is limiting the accuracy?</p>
 <ul class="simple">
-<li><p>Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL. Yet, the prediction of non SL is more accurate. See figure; <span class="pasted-inline"><img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_0.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_0.png" /></span></p></li>
-<li><p>After dimensionality reduction (PCA) keeping 90% of the variance of the data represented by 10000 pairs and 3025 features, we kept with 1622 most representatives features.</p></li>
+<li><p>Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL.  See figure; <span class="pasted-inline"><img alt="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_0.png" src="_images/prot_domains2lethality-PAPER-REPLICATION-test_50_0.png" /></span></p></li>
+<li><p>In order to reach more than 70% accuracy , with already 500 pairs is enough.</p></li>
+<li><p>Dimensionality reduction with PCA of the training data helps to optimize the ML algorithm, and the accuracy is slightly higher in most of the cases.</p></li>
+<li><p>To assess feature importance , PCA plays an important role. See <code class="xref any docutils literal notranslate"><span class="pre">this</span> <span class="pre">notebook</span> <span class="pre">to</span> <span class="pre">know</span> <span class="pre">about</span> <span class="pre">it</span> <span class="pre">:)</span></code></p></li>
 </ul>
 </div>
 </div>
