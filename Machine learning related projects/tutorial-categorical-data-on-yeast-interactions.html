@@ -34,6 +34,8 @@
     <link rel="shortcut icon" href="../_static/butterfly.jpg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION-test.html" />
+    <link rel="prev" title="Notebooks written entirely in markdown" href="../MysT_Notebooks.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -74,14 +76,14 @@
   <li class="">
     <a href="../MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
   </li>
-  <li class="">
-    <a href="../Machine learning related projects/tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
+  <li class="active">
+    <a href="">3. Tutorial on how to handle categorical data from here</a>
   </li>
   <li class="">
-    <a href="../Machine learning related projects/prot_domains2lethality-PAPER-REPLICATION-test.html">4. 06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="prot_domains2lethality-PAPER-REPLICATION-test.html">4. 06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
   <li class="">
-    <a href="../Machine learning related projects/prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. 06062020-Feature postprocessing of protein domains.</a>
+    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. 06062020-Feature postprocessing of protein domains.</a>
   </li>
 </ul>
 </nav>
@@ -120,7 +122,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/notebooks/tutorial-categorical-data-on-yeast-interactions.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <a class="dropdown-buttons" href="../_sources/Machine learning related projects/tutorial-categorical-data-on-yeast-interactions.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -133,7 +135,7 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
             <div class="dropdown-buttons sourcebuttons">
                 <a class="repository-button" href="https://github.com/leilaicruz/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
-                <a class="issues-button" href="https://github.com/leilaicruz/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/tutorial-categorical-data-on-yeast-interactions.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                <a class="issues-button" href="https://github.com/leilaicruz/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMachine learning related projects/tutorial-categorical-data-on-yeast-interactions.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
                 
             </div>
         </div>
@@ -148,7 +150,7 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
             <div class="dropdown-buttons">
                 
-                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/notebooks/tutorial-categorical-data-on-yeast-interactions.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/Machine learning related projects/tutorial-categorical-data-on-yeast-interactions.md"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
                 
                 
                 <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
@@ -198,8 +200,7 @@
         
               <div>
                 
-  <p>(tutorial-categorical-data-on-yeast-interactions)=</p>
-<div class="section" id="tutorial-on-how-to-handle-categorical-data-from-here">
+  <div class="section" id="tutorial-on-how-to-handle-categorical-data-from-here">
 <h1>Tutorial on how to handle categorical data from <a class="reference external" href="https://www.datacamp.com/community/tutorials/categorical-data">here</a><a class="headerlink" href="#tutorial-on-how-to-handle-categorical-data-from-here" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -500,11 +501,11 @@ HSP82        2042
 SSB2         2018
 RPN11        1735
              ... 
-tR(UCU)J2       1
-YFH7            1
-YKR015C         1
-YDL073W         1
-tR(UCU)D        1
+SCEI            1
+YCR090C         1
+TRM12           1
+INA22           1
+tR(UCU)G3       1
 Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>
@@ -542,7 +543,7 @@ Name: gene-query-name, Length: 5139, dtype: int64
  &lt;a list of 27 Text major ticklabel objects&gt;)
 </pre></div>
 </div>
-<img alt="../_images/tutorial-categorical-data-on-yeast-interactions_20_11.png" src="../_images/tutorial-categorical-data-on-yeast-interactions_20_11.png" />
+<img alt="../_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" src="../_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" />
 </div>
 </div>
 <div class="section" id="encoding-categorical-data">
@@ -1506,7 +1507,7 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "notebooks"
+            path: "Machine learning related projects"
         }
     }
     </script>
@@ -1520,6 +1521,8 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="../MysT_Notebooks.html" title="previous page">Notebooks written entirely in markdown</a>
+    <a class='right-next' id="next-link" href="prot_domains2lethality-PAPER-REPLICATION-test.html" title="next page">06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
