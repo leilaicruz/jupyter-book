@@ -1,11 +1,24 @@
-Hello there :) Welcome to this Jupyter Book instance to document mainly data analysis workflows in the context of Cell Biology. 
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: '0.8'
+    jupytext_version: 1.4.1+dev
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+Hello there 😄 Welcome to this Jupyter Book instance to document mainly data analysis workflows in the context of Cell Biology. 
 
 Bellow some guidelines to get started using this amazing tool for Open Science 👇
 
 ## To reproduce an example of  Jupyter book, and you are a Windows user:
 
-**Do this**: 
 
+```{toggle} First! Try to reproduce this! Click the buttom to reveal :) 
 
 The following workflow should succeed using a miniconda powershell terminal on Windows 10:
 
@@ -24,12 +37,87 @@ The following workflow should succeed using a miniconda powershell terminal on W
 After the build, view the html with (local deployment):
 
 `start docs\_build\html\index.html`
+```
+- For your own jupyter book just respect the same folder structure of the example, but with your own content! 
 
-In order to publish the Book online it is necessary to add to the build.yml:
+## How to deploy your book online? 
 
-- A public and private key just dedicated to the Jupyter Book repo 
+- Add a folder in the root of the repo called : `.github`
+  - Add a subfolder called : `workflows`
+  - Create a file called : `build.yml` where the instructions to GitHub to deploy your book are given. The following `build.yml` is generic as long as your **deploy Key** is called : `DEPLOY_KEY`. 
+
+```yaml
+name: Test Build
+on:
+  push:
+    branches-ignore:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Miniconda
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+          auto-activate-base: false
+          miniconda-version: 'latest'
+          python-version: 3.7
+          environment-file: environment_win.yml
+          activate-environment: wintest
+
+      - name: Install jupyter_book
+        shell: bash -l {0}
+        run:  pip install jupyter-book --pre 
+
+
+      - name: Build Jupyter Book
+        shell: bash -l {0}
+        run: jb build  mini_book/docs/
+
+      - name: Install SSH Client 🔑
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+        
+
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          SSH: true
+          BRANCH: gh-pages
+          FOLDER: mini_book/docs/_build/html/
+          
+```
+- Create a new branch called : 'gh-pages'
+- A public and private key just dedicated to this Jupyter Book repo 
 - The content of the private key should be copied to the `Secrets` tab in the Settings of the repo. 
-    - Create an SSH key with sufficient access privileges. For security reasons, don't use your personal SSH key but set up a dedicated one for use in GitHub Actions. See below for a few hints if you are unsure about this step.
+    - Create an SSH key with sufficient access privileges. For security reasons, don't use your personal SSH key but set up a dedicated one for use in GitHub Actions. Instructions 👇
+
+```{admonition}Generating a new SSH key
+      - Open Git Bash.
+      - `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+```
+
+Paste the text below, substituting in your GitHub Enterprise email address.
+
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+This creates a new ssh key, using the provided email as a label.
+
+> Generating public/private rsa key pair.
+When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+> Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
+At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
+> Enter same passphrase again: [Type passphrase again]
     - Make sure you don't have a passphrase set on the private key.
     - In your repository, go to the Settings > Secrets menu and create a new secret. In this example, we'll call it SSH_PRIVATE_KEY. Put the contents of the private SSH key file into the contents field.
     - This key should start with `-----BEGIN ... PRIVATE KEY-----`, consist of many lines and ends with `-----END ... PRIVATE KEY-----`.
