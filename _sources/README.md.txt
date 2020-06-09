@@ -1,7 +1,8 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leilaicruz/jupyter-book/d8702db318b3fc7a85331898d8bcb76c9bdc96f4)
+Hello there :) Welcome to this Jupyter Book instance to document mainly data analysis workflows in the context of Cell Biology. 
 
+Bellow some guidelines to get started using this amazing tool for Open Science 👇
 
-# To reproduce an example of  Jupyter book, and you are a Windows user:
+## To reproduce an example of  Jupyter book, and you are a Windows user:
 
 **Do this**: 
 
