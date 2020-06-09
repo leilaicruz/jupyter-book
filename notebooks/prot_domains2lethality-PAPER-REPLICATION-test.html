@@ -340,8 +340,8 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 6 out of 100 domains
-The empty domain in the nSL were: 6 out of 100 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 4 out of 100 domains
+The empty domain in the nSL were: 8 out of 100 domains
 </pre></div>
 </div>
 </div>
@@ -429,10 +429,10 @@ The empty domain in the nSL were: 6 out of 100 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 5.9785475646210655e-05
-fraction of ones in the SL array is 0.0009847019518199403
-fraction of twos in the PI array is 4.923509759099701e-05
-fraction of ones in the PI array is 0.000833479866361878
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 6.542699724517906e-05
+fraction of ones in the SL array is 0.0009090909090909091
+fraction of twos in the PI array is 5.749191519942508e-05
+fraction of ones in the PI array is 0.0007402084081925979
 </pre></div>
 </div>
 </div>
@@ -565,7 +565,7 @@ The number of samples are: 188
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f631904cfd0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f397bd56d90&gt;
 </pre></div>
 </div>
 <img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_29_11.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_29_11.png" />
@@ -620,7 +620,7 @@ Test set: (57, 3025) (57,)
 </pre>
 </div>
 <div class="stderr docutils container">
-<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.4s finished
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.6s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -663,7 +663,7 @@ Test set: (57, 3025) (57,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7017543859649122
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6491228070175439
 </pre></div>
 </div>
 </div>
@@ -726,13 +726,13 @@ Test set: (57, 3025) (57,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.2982456140350877
-Test set Accuracy:  0.7017543859649122
-The Jaccard index is = 0.5
-The log-loss is = 10.301136770096367
-The f1-score is = 0.6666666666666667
-Precision: 0.7083333333333334
-Recall: 0.6296296296296297
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.3508771929824561
+Test set Accuracy:  0.6491228070175439
+The Jaccard index is = 0.5238095238095238
+The log-loss is = 12.119065302846254
+The f1-score is = 0.6875000000000001
+Precision: 0.6111111111111112
+Recall: 0.7857142857142857
 </pre></div>
 </div>
 </div>
@@ -747,12 +747,12 @@ Recall: 0.6296296296296297
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.70      0.77      0.73        30
-          SL       0.71      0.63      0.67        27
+       NonSl       0.71      0.52      0.60        29
+          SL       0.61      0.79      0.69        28
 
-    accuracy                           0.70        57
-   macro avg       0.70      0.70      0.70        57
-weighted avg       0.70      0.70      0.70        57
+    accuracy                           0.65        57
+   macro avg       0.66      0.65      0.64        57
+weighted avg       0.66      0.65      0.64        57
 
 </pre></div>
 </div>
@@ -778,7 +778,7 @@ weighted avg       0.70      0.70      0.70        57
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f63159d6c50&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f39786f7790&gt;
 </pre></div>
 </div>
 <img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_46_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_46_1.png" />
@@ -803,7 +803,7 @@ weighted avg       0.70      0.70      0.70        57
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6315955b50&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3978675210&gt;
 </pre></div>
 </div>
 <img alt="../_images/prot_domains2lethality-PAPER-REPLICATION-test_47_1.png" src="../_images/prot_domains2lethality-PAPER-REPLICATION-test_47_1.png" />
@@ -862,7 +862,7 @@ weighted avg       0.70      0.70      0.70        57
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00016281099999915227
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.0004866569999997239
 </pre></div>
 </div>
 </div>
