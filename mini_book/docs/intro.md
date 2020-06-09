@@ -1,15 +1,4 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.4.1+dev
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+
 
 Hello there 😄 Welcome to this Jupyter Book instance to document mainly data analysis workflows in the context of Cell Biology. 
 
