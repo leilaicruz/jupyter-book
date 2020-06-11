@@ -6,19 +6,18 @@ jupytext:
     format_version: '0.8'
     jupytext_version: 1.4.2
 kernelspec:
-  display_name: Python 3
+  display_name: 'Python 3.7.0 64-bit (''base'': conda)'
   language: python
-  name: python3
+  name: python37064bitbaseconda6c8618fc0f0945779f8ded01abbb1089
 ---
 
-## 06062020-Replication of results from paper: "Predicting yeast synthetic lethal genetic interactions using protein domains" 
+## Replication of results from paper: "Predicting yeast synthetic lethal genetic interactions using protein domains" 
 
 - Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA
 - e-mail: bol, luofeng@clemson.edu
 - year:2009
 
 ```{code-cell} ipython3
-%matplotlib inline
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,10 +30,8 @@ import random
 
 ### Importing datasets 
 
-### Download datasets from this github repo 👇
-
-The link: https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning
-
+#### Link to the github repo where the datasets to be downloaded:
+[DOWNLOAD THE DATASETS HERE](https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning)
 
 ```{code-cell} ipython3
 import os
@@ -47,23 +44,16 @@ abs_file_path_SL = os.path.join(script_dir, rel_path_SL)
 abs_file_path_nSL = os.path.join(script_dir, rel_path_nSL)
 abs_file_path_domains = os.path.join(script_dir, rel_path_domains)
 
-
-os.chdir('mini_book/docs/') #<-- for binder os.chdir('../')
-```
-
-```{code-cell} ipython3
-## Datasets 
-
+os.chdir('../') #<-- for binder os.chdir('../')
 my_path_sl= abs_file_path_SL
 my_path_non_sl=abs_file_path_nSL
 my_path_domains=abs_file_path_domains
-```
 
-```{code-cell} ipython3
 data_sl=pd.read_excel(my_path_sl,header=0)
 data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')
 data_domains=data_domains.dropna()
 data_nonsl=pd.read_excel(my_path_non_sl,header=0)
+
 ```
 
 ## Building the feature matrix
@@ -93,7 +83,7 @@ population = np.arange(0,len(data_sl))
 
 # For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair
 
-for m in random.sample(list(population), 500):
+for m in random.sample(list(population), 100):
     protein_a=data_domains[data_domains['name']==query_gene[m]]
     protein_b=data_domains[data_domains['name']==target_gene[m]]
     protein_a_list.append(protein_a['domain-name'].tolist())
@@ -116,7 +106,7 @@ print('We are going to analyze',len((protein_a_list_non)) ,'protein pairs, out o
 def remove_empty_domains(protein_list_search,protein_list_pair):
     index=[]
     for i in np.arange(0,len(protein_list_search)):
-        if protein_list_search[i]==[]:
+        if protein_list_search[i]==[] or protein_list_pair[i]==[]:
             index.append(i) ## index of empty values for the protein_a_list meaning they dont have any annotated domain
 
     y=[x for x in np.arange(0,len(protein_list_search)) if x not in index] # a list with non empty values from protein_a list
@@ -131,6 +121,7 @@ def remove_empty_domains(protein_list_search,protein_list_pair):
 ## evaluating the function
 
 protein_a_list_new,protein_b_list_new=remove_empty_domains(protein_a_list,protein_b_list)
+
 protein_a_list_non_new,protein_b_list_non_new=remove_empty_domains(protein_a_list_non,protein_b_list_non)
 ```
 
@@ -154,23 +145,33 @@ get_indexes(2,a)
 ```{code-cell} ipython3
 def feature_building(protein_a_list_new,protein_b_list_new):
     x = np.unique(domain_id_list)
-    protein_feat_true=np.zeros(shape=(len(x),len(protein_a_list_new)))
-    pair_a_b_array=[]
+    ## To avoid taking repeated domains from one protein of the pairs , lets reduced the domains of each protein from the pairs to their unique members
+    protein_a_list_unique=[]
+    protein_b_list_unique=[]
     for i in np.arange(0,len(protein_a_list_new)):
+        protein_a_list_unique.append(np.unique(protein_a_list_new[i]))
+        protein_b_list_unique.append(np.unique(protein_b_list_new[i]))
+        
+    protein_feat_true=np.zeros(shape=(len(x),len(protein_a_list_unique)))
+    pair_a_b_array=[]
+    for i in np.arange(0,len(protein_a_list_unique)):
         index_a=[]
-        pair=[protein_a_list_new[i],protein_b_list_new[i]]
+        
+        pair=[protein_a_list_unique[i],protein_b_list_unique[i]]
         pair_a_b=np.concatenate(pair).ravel()
         pair_a_b_array.append(pair_a_b)
 
-    for i in np.arange(0,len(pair_a_b_array)):  
-        array,index,counts=np.unique(pair_a_b_array[i],return_index=True,return_counts=True)
+    j=0
+    for i in pair_a_b_array:  
+        array,index,counts=np.unique(i,return_index=True,return_counts=True)
+        
         for k,m in zip(counts,array):
             if k ==2:
-                protein_feat_true[get_indexes(m,x),i]=2
+                protein_feat_true[get_indexes(m,x),j]=2
                 
             if k==1:
-                protein_feat_true[get_indexes(m,x),i]=1
-            # print(index_a[m],i)
+                protein_feat_true[get_indexes(m,x),j]=1
+        j=j+1
     return protein_feat_true
 ```
 
@@ -251,7 +252,6 @@ a.set_title('How the mean varies with Lethality')
 b=sns.violinplot(x="lethality", y="std", data=corr_keys,ax=axs[1],palette='colorblind')
 b.set_title('How the std varies with Lethality')
 ##plt.savefig('violinplot-mean-std-with-lethality.png', format='png',dpi=300,transparent='true')
-plt.show()
 ```
 
 ```{code-cell} ipython3
@@ -276,6 +276,7 @@ p_value_corr_pd=pd.DataFrame(p_value_corr)
 
 ```{code-cell} ipython3
 corr = corr_keys.corr()
+import matplotlib.cm as cm
 sns.heatmap(corr, vmax=1,vmin=-1 ,square=True,cmap=cm.PRGn,cbar_kws={'label':'Pearson corr'})
 ##plt.savefig('Heatmap-Pearson-corr-mean-std-lethality.png', format='png',dpi=300,transparent='true',bbox_inches='tight')
 ```
@@ -405,8 +406,6 @@ plt.legend()
 ```
 
 ```{code-cell} ipython3
-
-from myst_nb import glue
 class_names=[1,2,3]
 fig, ax = plt.subplots()
 from sklearn.metrics import confusion_matrix
@@ -428,8 +427,6 @@ plt.ylabel('Actual label')
 plt.xlabel('Predicted label')
 
 #plt.savefig('confusion-matrix-normalized.png',format='png',dpi=300,transparent=False)
-
-glue("confusion_matrix_fig", fig, display=False)
 ```
 
 ### Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting 
@@ -448,13 +445,17 @@ cv=StratifiedKFold(n_splits=5)
 elapsed_time = time.process_time() - t
 print('The elapsed time was',elapsed_time)
 ```
+
 ```{code-cell} ipython3
 import sklearn.metrics as metrics
 from sklearn.model_selection import cross_val_predict
 from sklearn.model_selection import cross_validate
 
+t = time.process_time()
 
 cv_results = cross_validate(clf, X, y, cv=cv)
+elapsed_time = time.process_time() - t
+print('The elapsed time was',elapsed_time)
 ```
 
 ```{code-cell} ipython3
@@ -476,15 +477,122 @@ sorted(cv_results.keys())
 
 plt.scatter(['test-1','test-2','test-3','test-4','test-5'],cv_results['test_score'],s=60,alpha=0.7,color='blue')
 plt.title('5-fold crossvalidation result')
-plt.ylim(0.45,0.9)
+plt.ylim(0.55,0.9)
 plt.ylabel('Accuracy')
-plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparent='true',bbox_inches='tight')
+#plt.savefig('5-fold-crrosvalidation-result.png', format='png',dpi=300,transparent='true',bbox_inches='tight')
 ```
-```{admonition} What is limiting the accuracy?
 
-- Number of samples e.g from 10000 to 100 , the accuracy dropped ~30% (from 0.88 to ~0.6) without PCA to the training dataset. With only 100 samples is usually very bad in predicting SL.  See figure; {glue:}`confusion_matrix_fig`
-- In order to reach more than 70% accuracy , with already 500 pairs is enough. 
-- Dimensionality reduction with PCA of the training data helps to optimize the ML algorithm, and the accuracy is slightly higher in most of the cases.
 
-- To assess feature importance , PCA plays an important role. See {this notebook to know about it :)}`prot_domains2lethality-FEATURES-POSTPROCESSING.md`
+
++++
+
+ ## Using PCA to reduce the dimensionality of the problem 
+
+```{code-cell} ipython3
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+scaler = StandardScaler()
+
+
+model_scaler = scaler.fit(X_train)
+# Apply transform to both the training set and the test set.
+x_train_S = model_scaler.transform(X_train)
+
+x_test_S = model_scaler.transform(X_test)
+
+# Fit PCA on training set. Note: you are fitting PCA on the training set only.
+model = PCA(0.95).fit(x_train_S)
+
+x_train_output_pca = model.transform(x_train_S)
+x_test_output_pca = model.transform(x_test_S)
+```
+
+```{code-cell} ipython3
+# np.shape(x_train_output_pca)
+# np.shape(X_train.T)
+np.shape(x_train_S),np.shape(x_test_S),model.components_.shape,np.shape(x_train_output_pca)
+```
+
+```{code-cell} ipython3
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+parameters = [{'C': [1, 10, 100], 'kernel': ['rbf'], 'gamma': ['auto','scale']}]
+search = GridSearchCV(SVC(), parameters, n_jobs=-1, verbose=1)
+search.fit(x_train_output_pca, y_train)
+```
+
+```{code-cell} ipython3
+best_parameters = search.best_estimator_
+print(best_parameters)
+```
+
+```{code-cell} ipython3
+from sklearn import svm
+
+clf_after_pca = svm.SVC(C=10, break_ties=False, cache_size=200, class_weight=None, coef0=0.0,
+    decision_function_shape='ovr', degree=3, gamma='scale', kernel='rbf',
+    max_iter=-1, probability=False, random_state=None, shrinking=True,
+    tol=0.001, verbose=False).fit(x_train_output_pca, y_train)
+clf_after_pca.score(x_test_output_pca, y_test)
+```
+
+```{code-cell} ipython3
+from joblib import dump, load
+
+dump(clf_after_pca, '../model_SVC_C_10_gamma_scale_kernel_rbf_10000x1622_after_PCA_matrix.joblib') 
+```
+
+```{code-cell} ipython3
+from sklearn import metrics
+from sklearn.metrics import log_loss
+from sklearn.metrics import jaccard_score
+
+y_pred_after_pca = clf_after_pca.predict(x_test_output_pca)
+
+# print('Train set Accuracy: ', metrics.accuracy_score(y_train, clf.predict(X_train)))
+print('The mean squared error is =',metrics.mean_squared_error(y_test,y_pred_after_pca))
+print('Test set Accuracy: ', metrics.accuracy_score(y_test, y_pred_after_pca))
+print('The Jaccard index is =', jaccard_score(y_test, y_pred_after_pca))
+# Jaccard similarity coefficient, defined as the size of the intersection divided by the size of the union of two label sets. The closer to 1 the better the classifier 
+print('The log-loss is =',log_loss(y_test,y_pred_after_pca))
+# how far each prediction is from the actual label, it is like a distance measure from the predicted to the actual , the classifer with lower log loss have better accuracy
+print('The f1-score is =',metrics.f1_score(y_test,y_pred_after_pca))
+# The F1 score can be interpreted as a weighted average of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0. The relative contribution of precision and recall to the F1 score are equal.
+
+# Model Precision: what percentage of positive tuples are labeled as such?
+print("Precision:",metrics.precision_score(y_test, y_pred_after_pca))
+
+# Model Recall: what percentage of positive tuples are labelled as such?
+print("Recall:",metrics.recall_score(y_test, y_pred_after_pca))
+```
+
+```{code-cell} ipython3
+class_names=[1,2,3]
+fig, ax = plt.subplots()
+from sklearn.metrics import confusion_matrix
+import sklearn.metrics as metrics
+
+cm = confusion_matrix(y_test, y_pred_after_pca,normalize="true")
+
+class_names=['SL', 'nSL']
+
+tick_marks = np.arange(len(class_names))
+plt.xticks(tick_marks, class_names)
+plt.yticks(tick_marks, class_names)
+
+sns.heatmap(pd.DataFrame(cm), annot=True, cmap="Blues" ,fmt='g')
+ax.xaxis.set_label_position("top")
+plt.tight_layout()
+plt.title('Confusion matrix', y=1.1)
+plt.ylabel('Actual label')
+plt.xlabel('Predicted label')
+```
+
+```{code-cell} ipython3
+from sklearn.metrics import classification_report
+print(classification_report(y_test, y_pred_after_pca, target_names=['NonSl','SL']))
+```
+
+```{code-cell} ipython3
+
 ```
