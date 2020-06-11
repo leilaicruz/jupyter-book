@@ -8,7 +8,7 @@ jupytext:
 kernelspec:
   display_name: 'Python 3.7.0 64-bit (''base'': conda)'
   language: python
-  name: python37064bitbaseconda6c8618fc0f0945779f8ded01abbb1089
+  name: python3
 ---
 
 # Feature postprocessing from paper.
