@@ -6,12 +6,12 @@ jupytext:
     format_version: '0.8'
     jupytext_version: 1.4.2
 kernelspec:
-  display_name: Python 3
+  display_name: 'Python 3.7.0 64-bit (''base'': conda)'
   language: python
   name: python3
 ---
 
-# 06062020-Feature postprocessing of protein domains.
+# Feature postprocessing from paper.
 - Title:  "Predicting yeast synthetic lethal genetic interactions using protein domains"
 - Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA
 - e-mail: bol, luofeng@clemson.edu
@@ -27,6 +27,8 @@ import matplotlib.cm as cm
 import scipy as scipy
 import random
 ```
+
++++ {"jupyter": {"source_hidden": true}}
 
 ### Importing datasets 
 
@@ -82,7 +84,7 @@ population = np.arange(0,len(data_sl))
 
 # For loop for 10000 pairs sampled randomly from the SL/nSl pair list , and creating a big array of proteind domains id per protein pair
 
-for m in random.sample(list(population), 100):
+for m in random.sample(list(population), 500):
     protein_a=data_domains[data_domains['name']==query_gene[m]]
     protein_b=data_domains[data_domains['name']==target_gene[m]]
     protein_a_list.append(protein_a['domain-name'].tolist())
@@ -105,7 +107,7 @@ print('We are going to analyze',len((protein_a_list_non)) ,'protein pairs, out o
 def remove_empty_domains(protein_list_search,protein_list_pair):
     index=[]
     for i in np.arange(0,len(protein_list_search)):
-        if protein_list_search[i]==[]:
+        if protein_list_search[i]==[] or protein_list_pair[i]==[]:
             index.append(i) ## index of empty values for the protein_a_list meaning they dont have any annotated domain
 
     y=[x for x in np.arange(0,len(protein_list_search)) if x not in index] # a list with non empty values from protein_a list
@@ -120,6 +122,7 @@ def remove_empty_domains(protein_list_search,protein_list_pair):
 ## evaluating the function
 
 protein_a_list_new,protein_b_list_new=remove_empty_domains(protein_a_list,protein_b_list)
+
 protein_a_list_non_new,protein_b_list_non_new=remove_empty_domains(protein_a_list_non,protein_b_list_non)
 ```
 
@@ -143,23 +146,33 @@ get_indexes(2,a)
 ```{code-cell} ipython3
 def feature_building(protein_a_list_new,protein_b_list_new):
     x = np.unique(domain_id_list)
-    protein_feat_true=np.zeros(shape=(len(x),len(protein_a_list_new)))
-    pair_a_b_array=[]
+    ## To avoid taking repeated domains from one protein of the pairs , lets reduced the domains of each protein from the pairs to their unique members
+    protein_a_list_unique=[]
+    protein_b_list_unique=[]
     for i in np.arange(0,len(protein_a_list_new)):
+        protein_a_list_unique.append(np.unique(protein_a_list_new[i]))
+        protein_b_list_unique.append(np.unique(protein_b_list_new[i]))
+        
+    protein_feat_true=np.zeros(shape=(len(x),len(protein_a_list_unique)))
+    pair_a_b_array=[]
+    for i in np.arange(0,len(protein_a_list_unique)):
         index_a=[]
-        pair=[protein_a_list_new[i],protein_b_list_new[i]]
+        
+        pair=[protein_a_list_unique[i],protein_b_list_unique[i]]
         pair_a_b=np.concatenate(pair).ravel()
         pair_a_b_array.append(pair_a_b)
 
-    for i in np.arange(0,len(pair_a_b_array)):  
-        array,index,counts=np.unique(pair_a_b_array[i],return_index=True,return_counts=True)
+    j=0
+    for i in pair_a_b_array:  
+        array,index,counts=np.unique(i,return_index=True,return_counts=True)
+        
         for k,m in zip(counts,array):
             if k ==2:
-                protein_feat_true[get_indexes(m,x),i]=2
+                protein_feat_true[get_indexes(m,x),j]=2
                 
             if k==1:
-                protein_feat_true[get_indexes(m,x),i]=1
-            # print(index_a[m],i)
+                protein_feat_true[get_indexes(m,x),j]=1
+        j=j+1
     return protein_feat_true
 ```
 
@@ -253,6 +266,12 @@ X_nsl_scaled = scaler.fit_transform(x_nsl)
 ```
 
 ```{code-cell} ipython3
+np.shape(X_sl_scaled)
+```
+
+## How redundant are each of the protein domains? 
+
+```{code-cell} ipython3
 def PCA_component_contribution(scaled_matrix,original_data):
     from sklearn.decomposition import PCA
 
@@ -264,8 +283,8 @@ def PCA_component_contribution(scaled_matrix,original_data):
 
 
    
-    # number of components
-    n_pcs= model.components_.shape[0] # the amount of non redundant samples 
+    # number of components , that it will be the number of main axes times the number of original components 
+    n_pcs= model.components_.shape[0] # the amount of non redundant protein domains 
 
     # get the index of the most important feature on EACH component
     # LIST COMPREHENSION HERE
@@ -291,13 +310,27 @@ df_nsl,components_pca_sl=PCA_component_contribution(X_sl_scaled,x_sl)
 ```
 
 ```{code-cell} ipython3
+df_sl.head()
+```
+
+## which are the shared domains between nSL and SL pairs , in the PCA reduced samples
+
+```{code-cell} ipython3
 df_shared_domains=pd.merge(df_sl,df_nsl,how='inner',on='domain-number')
 domains_name=np.unique(data_domains['domain-name'])
 domains_description=np.unique(data_domains['domain-descrip'])
 
 df_shared_domains['domain-description']=domains_description[df_shared_domains['domain-number']]
+
+
 df_shared_domains
 ```
+
+```{code-cell} ipython3
+print('The number of shared domains between SL and nSL pairs,after PCA, is = ',len(df_shared_domains), 'out of', len(df_sl)+len(df_nsl), 'so the',100*len(df_shared_domains)/(len(df_sl)+len(df_nsl)),'%')
+```
+
+## Domains exclusive to SL 
 
 ```{code-cell} ipython3
 df_sl_exclusive=pd.merge(df_sl,df_nsl,how='left',on='domain-number')
@@ -310,6 +343,10 @@ df_sl_exclusive[pd.isnull(df_sl_exclusive['pca-component_y'])]
 ```
 
 ```{code-cell} ipython3
+print('The number of exclusive domains from SL pairs, after PCA, is = ',len(df_sl_exclusive), 'out of', len(df_sl)+len(df_nsl), 'so the',100*len(df_sl_exclusive)/(len(df_sl)+len(df_nsl)),'%')
+```
+
+```{code-cell} ipython3
 df_nsl_exclusive=pd.merge(df_sl,df_nsl,how='right',on='domain-number')
 
 domains_name=np.unique(data_domains['domain-name'])
@@ -319,7 +356,11 @@ df_nsl_exclusive['domain-description']=domains_description[df_nsl_exclusive['dom
 df_nsl_exclusive[pd.isnull(df_nsl_exclusive['pca-component_x'])]
 ```
 
-## Let see to features that get repeated after finding the Principal components  to describe the data 
+```{code-cell} ipython3
+print('The number of exclusive domains from non SL pairs, after PCA, is = ',len(df_nsl_exclusive), 'out of', len(df_sl)+len(df_nsl), 'so the',100*len(df_nsl_exclusive)/(len(df_sl)+len(df_nsl)),'%')
+```
+
+## Let see to the domains-number that get repeated after the PCA analysis , and selecting the most explanatory feature by its explained variance.
 
 ```{code-cell} ipython3
 duplicated_features_sl=df_sl[df_sl.iloc[:,1].duplicated()]
@@ -339,13 +380,10 @@ repeated_features_nsl['domain-description']=domains_description[duplicated_featu
 ```
 
 ```{code-cell} ipython3
-repeated_features_nsl
-```
-
-```{code-cell} ipython3
 only_sl_pd=pd.merge(repeated_features_sl,repeated_features_nsl,how='left',on=['domain-name'])
 data_only_sl = only_sl_pd[pd.isnull(only_sl_pd['domain-description_y'])]
-data_only_sl
+data_only_sl['domain-description']=data_only_sl['domain-description_x']
+data_only_sl.shape,df_sl_exclusive.shape
 ```
 
 ```{code-cell} ipython3
@@ -362,12 +400,34 @@ shared_domains_pd
 
 ```{code-cell} ipython3
 a_sl=x_sl.iloc[:,np.sort(df_sl.iloc[:,1])]
-a_sl.describe().loc['mean'].hist(bins=8)
+a_sl.describe().loc['mean'].hist(bins=8),
+a_sl.describe().loc['std'].hist(bins=8,alpha=0.4)
+plt.xlim([0,0.2])
 ```
 
 ```{code-cell} ipython3
 a_nsl=x_nsl.iloc[:,np.sort(df_nsl.iloc[:,1])]
-plt.hist(a_nsl.describe().loc['mean'],bins=8);
+a_nsl.describe().loc['mean'].hist(bins=8),
+a_nsl.describe().loc['std'].hist(bins=8,alpha=0.4)
+plt.xlim([0,0.2])
+```
+
+### Proof of concept with *BEM1*
+
+- Gather the domains of SL and nSL pairs from BEM1
+- Check if the domains for the SL and nSL pairs are inside the most important domains after PCA. 
+
+```{code-cell} ipython3
+domains_bem1=data_domains[data_domains['name']=='BEM1']['domain-descrip']
+sl_bem1=data_sl[data_sl['gene-query-name']=='BEM1']['gene-target-name']
+```
+
+```{code-cell} ipython3
+sl_bem1
+```
+
+```{code-cell} ipython3
+data_sl[data_sl['gene-query-name']=='BEM1']
 ```
 
 ```{code-cell} ipython3
