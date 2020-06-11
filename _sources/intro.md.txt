@@ -88,83 +88,25 @@ jobs:
 - A public and private key just dedicated to this Jupyter Book repo 
 - The content of the private key should be copied to the `Secrets` tab in the Settings of the repo. 
     - Create an SSH key with sufficient access privileges. For security reasons, don't use your personal SSH key but set up a dedicated one for use in GitHub Actions. Instructions 👇
-
-```{admonition}Generating a new SSH key
-      - Open Git Bash.
-      - `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
-```
-
-Paste the text below, substituting in your GitHub Enterprise email address.
-
-$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-This creates a new ssh key, using the provided email as a label.
-
-> Generating public/private rsa key pair.
-When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
-
-> Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
-At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
-
-> Enter passphrase (empty for no passphrase): [Type a passphrase]
-> Enter same passphrase again: [Type passphrase again]
+    - Steps:
+     1. Open Git Bash.
+     2. Insert in bash `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"` This creates a new ssh key, using the provided email as a label.
+     > Generating public/private rsa key pair.
+    When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+    > Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
+    At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+    > Enter passphrase (empty for no passphrase): [Press enter] 
     - Make sure you don't have a passphrase set on the private key.
-    - In your repository, go to the Settings > Secrets menu and create a new secret. In this example, we'll call it SSH_PRIVATE_KEY. Put the contents of the private SSH key file into the contents field.
-    - This key should start with `-----BEGIN ... PRIVATE KEY-----`, consist of many lines and ends with `-----END ... PRIVATE KEY-----`.
+    > Enter same passphrase again: [Press enter again]
+
+
+- In your repository, go to the Settings > Secrets menu and create a new secret. In this example, we'll call it SSH_PRIVATE_KEY. Put the contents of the private SSH key file into the contents field.
+- This key should start with `-----BEGIN ... PRIVATE KEY-----`, consist of many lines and ends with `-----END ... PRIVATE KEY-----`.
 - SSH private key format
     - If the private key is not in the PEM format, you will see an Error loading key `"(stdin)": invalid format message`.
 
     - Use `ssh-keygen -p -f path/to/your/key -m pem` to convert your key file to PEM, but be sure to make a backup of the file first 
 
-My build.yml file looks like:
-
-```yaml
-name: Test Build
-on:
-  push:
-    branches-ignore:
-      - master
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-
-      - name: Setup Miniconda
-        uses: goanpeca/setup-miniconda@v1
-        with:
-          auto-update-conda: true
-          auto-activate-base: false
-          miniconda-version: 'latest'
-          python-version: 3.7
-          environment-file: environment_win.yml
-          activate-environment: wintest
-
-      - name: Install jupyter_book
-        shell: bash -l {0}
-        run:  pip install jupyter-book --pre 
-
-
-      - name: Build Jupyter Book
-        shell: bash -l {0}
-        run: jb build  mini_book/docs/
-
-      - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.2.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-        
-
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          SSH: true
-          BRANCH: gh-pages
-          FOLDER: mini_book/docs/_build/html/
-          
-```
 - Add an empty file `.nojekyll` to the root of the repo to prevent github on deploying a jekyll website.
+
 
