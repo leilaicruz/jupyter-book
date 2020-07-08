@@ -13,11 +13,34 @@ The following workflow should succeed using a miniconda powershell terminal on W
 
 `Open Anaconda Power Shell Promt`
 
-0. `conda install -c eoas_ubc runjb`
 1. `conda install git`
 2. `git clone https://github.com/eoas-ubc/quantecon-mini-example.git`
 3. `cd quantecon-mini-example`
 4. `git checkout windows`
+
+
+Now, create the file : `environment_win.yml` with the following content
+
+```yaml
+name: wintest
+channels:
+  - default
+  - conda-forge
+  - eoas_ubc
+dependencies:
+  - python=3.7.*
+  - sphinx=2.4.4
+  - pip
+  - runjb
+  - git
+  - pandas
+  - matplotlib
+  - pip:
+    - quantecon
+    - jupyter-book>=0.7.0b
+```
+
+
 5. `conda env create -f environment_win.yml`
 6. `conda activate wintest`
 7. `cd mini_book`
@@ -26,6 +49,7 @@ The following workflow should succeed using a miniconda powershell terminal on W
 After the build, view the html with (local deployment):
 
 `start docs\_build\html\index.html`
+
 ```
 - For your own jupyter book just respect the same folder structure of the example, but with your own content! 
 
