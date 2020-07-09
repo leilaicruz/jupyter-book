@@ -35,10 +35,12 @@ import os
 script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in
 rel_path_domains="datasets/proteins-domains-from-Pfam.xlsx"
 
+
 abs_file_path_domains = os.path.join(script_dir, rel_path_domains)
 
 # os.chdir('../') #<-- for binder os.chdir('../')
-os.chdir('mini_book/docs/')
+# os.chdir('mini_book/docs/')
+
 my_path_domains=abs_file_path_domains
 data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')
 data_domains=data_domains.dropna()
