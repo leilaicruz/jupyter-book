@@ -1,0 +1,1544 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tutorial on how to handle categorical data from here &#8212; Notebooks for data science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="../_static/thebelab.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/butterfly.jpg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION.html" />
+    <link rel="prev" title="Notebooks written entirely in markdown" href="../MysT_Notebooks.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/butterfly.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../intro.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Get started</p>
+</li>
+  <li class="">
+    <a href="../MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine learning related projects</p>
+</li>
+  <li class="active">
+    <a href="">3. Tutorial on how to handle categorical data from here</a>
+  </li>
+  <li class="">
+    <a href="prot_domains2lethality-PAPER-REPLICATION.html">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+  </li>
+  <li class="">
+    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. Feature postprocessing from paper.</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/Machine-learning-related-projects/tutorial-categorical-data-on-yeast-interactions.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Source interaction buttons -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/Machine-learning-related-projects/tutorial-categorical-data-on-yeast-interactions.md"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
+                
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#encoding-categorical-data" class="nav-link">Encoding Categorical Data</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#replace-values" class="nav-link">Replace Values</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#label-encoding" class="nav-link">Label encoding</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#you-can-achieve-the-same-label-encoding-using-scikit-learn-s-labelencoder" class="nav-link">You can achieve the same label encoding using scikit-learn's, LabelEncoder</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#one-hot-encoding" class="nav-link">One-Hot encoding</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tutorial-on-how-to-handle-categorical-data-from-here">
+<h1>Tutorial on how to handle categorical data from <a class="reference external" href="https://www.datacamp.com/community/tutorials/categorical-data">here</a><a class="headerlink" href="#tutorial-on-how-to-handle-categorical-data-from-here" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> 
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;__file__&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- absolute dir the script is in</span>
+<span class="n">rel_path</span> <span class="o">=</span> <span class="s2">&quot;datasets/data-BioGrid-Yeast.xlsx&quot;</span>
+<span class="n">abs_file_path_SL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">)</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;mini_book/docs/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">abs_file_path_SL</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">,</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">,</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">,</span> <span class="s1">&#39;paper-source&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CDC73</td>
+      <td>CTR9</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CTR9</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CDC73</td>
+      <td>LEO1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LEO1</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CDC73</td>
+      <td>PAF1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 365332 entries, 0 to 365331
+Data columns (total 4 columns):
+ #   Column            Non-Null Count   Dtype 
+---  ------            --------------   ----- 
+ 0   gene-query-name   365332 non-null  object
+ 1   gene-target-name  365332 non-null  object
+ 2   interaction-type  365332 non-null  object
+ 3   paper-source      365332 non-null  object
+dtypes: object(4)
+memory usage: 11.1+ MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you will only be dealing with categorical features in this tutorial, it’s better to filter them out. You can create a separate DataFrame consisting of only these features by running the following command. The method <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> is used here so that any changes made in new DataFrame don’t get reflected in the original one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CDC73</td>
+      <td>CTR9</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CTR9</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CDC73</td>
+      <td>LEO1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LEO1</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CDC73</td>
+      <td>PAF1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>One of the most common data pre-processing steps is to check for null values in the dataset. You can get <strong>the total number of missing values in the DataFrame</strong> by the following one liner code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">cat_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hooray!! There are no NaN values in the dataframe&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Hooray!! There are no NaN values in the dataframe
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Hooray!! There are no NaN values in the dataframe
+</pre></div>
+</div>
+<p>Let’s also check the column-wise distribution of null values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>gene-query-name     0
+gene-target-name    0
+interaction-type    0
+paper-source        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another <strong>Exploratory Data Analysis (EDA)</strong> step that you might want to do on categorical features is the frequency distribution of categories within the feature, which can be done with the <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> method as described earlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Negative Genetic                 116254
+Affinity Capture-MS               59193
+Positive Genetic                  43334
+Synthetic Growth Defect           25192
+Affinity Capture-Western          16661
+Synthetic Lethality               16243
+Two-hybrid                        15969
+Affinity Capture-RNA              12446
+Reconstituted Complex              7690
+Phenotypic Enhancement             7532
+Synthetic Rescue                   6834
+Phenotypic Suppression             6683
+PCA                                6587
+Biochemical Activity               6413
+Dosage Rescue                      5730
+Co-purification                    4344
+Dosage Growth Defect               1984
+Dosage Lethality                   1628
+Co-fractionation                    972
+Co-crystal Structure                879
+Protein-peptide                     841
+Co-localization                     677
+Protein-RNA                         573
+Synthetic Haploinsufficiency        307
+FRET                                220
+Far Western                         100
+Affinity Capture-Luminescence        46
+Name: interaction-type, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2          2676
+PUF3          2119
+HSP82         2042
+SSB2          2018
+RPN11         1735
+              ... 
+HIS2             1
+MF(ALPHA)1       1
+IMO32            1
+tD(GUC)O         1
+INA22            1
+Name: gene-query-name, Length: 5139, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>To know <strong>the count of distinct categories within the feature</strong> you can chain the previous code with the <code class="docutils literal notranslate"><span class="pre">.count()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27 5139 6344
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below is a basic template to plot a barplot of the frequency distribution of a categorical feature using the seaborn package, which shows the frequency distribution of the carrier column. You can play with different arguments to change the look of the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">carrier_count</span> <span class="o">=</span> <span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">carrier_count</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">carrier_count</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Frequency Distribution of interaction types in BioGrid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Occurrences&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Interaction types&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19, 20, 21, 22, 23, 24, 25, 26]),
+ &lt;a list of 27 Text major ticklabel objects&gt;)
+</pre></div>
+</div>
+<img alt="../_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" src="../_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" />
+</div>
+</div>
+<div class="section" id="encoding-categorical-data">
+<h2>Encoding Categorical Data<a class="headerlink" href="#encoding-categorical-data" title="Permalink to this headline">¶</a></h2>
+<p>The techniques that you’ll cover are the following:</p>
+<ol class="simple">
+<li><p>Replacing values</p></li>
+<li><p>Encoding labels</p></li>
+<li><p>One-Hot encoding</p></li>
+<li><p>Binary encoding</p></li>
+</ol>
+<div class="section" id="replace-values">
+<h3>Replace Values<a class="headerlink" href="#replace-values" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start with the most basic method, which is just replacing the categories with the desired numbers. This can be achieved with the help of the <code class="docutils literal notranslate"><span class="pre">replace()</span></code> function in pandas. The idea is that you have the liberty to choose whatever numbers you want to assign to the categories according to the business use case.</p>
+<p>You will store the category names in a list called <code class="docutils literal notranslate"><span class="pre">labels</span></code> and then <code class="docutils literal notranslate"><span class="pre">zip</span></code> it to a sequence of numbers and iterate over it. The final dictionary will organize the labels in alphabetical order.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">replace_map_comp</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;interaction-type&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)))}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">replace_map_comp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;interaction-type&#39;: {&#39;Affinity Capture-Luminescence&#39;: 1, &#39;Affinity Capture-MS&#39;: 2, &#39;Affinity Capture-RNA&#39;: 3, &#39;Affinity Capture-Western&#39;: 4, &#39;Biochemical Activity&#39;: 5, &#39;Co-crystal Structure&#39;: 6, &#39;Co-fractionation&#39;: 7, &#39;Co-localization&#39;: 8, &#39;Co-purification&#39;: 9, &#39;Dosage Growth Defect&#39;: 10, &#39;Dosage Lethality&#39;: 11, &#39;Dosage Rescue&#39;: 12, &#39;FRET&#39;: 13, &#39;Far Western&#39;: 14, &#39;Negative Genetic&#39;: 15, &#39;PCA&#39;: 16, &#39;Phenotypic Enhancement&#39;: 17, &#39;Phenotypic Suppression&#39;: 18, &#39;Positive Genetic&#39;: 19, &#39;Protein-RNA&#39;: 20, &#39;Protein-peptide&#39;: 21, &#39;Reconstituted Complex&#39;: 22, &#39;Synthetic Growth Defect&#39;: 23, &#39;Synthetic Haploinsufficiency&#39;: 24, &#39;Synthetic Lethality&#39;: 25, &#39;Synthetic Rescue&#39;: 26, &#39;Two-hybrid&#39;: 27}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Throughout this tutorial, you will be making a copy of the dataset via the <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> method to practice each encoding technique to ensure that the original DataFrame stays intact and whatever changes you are doing happen only in the copied one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_replace</span> <span class="o">=</span> <span class="n">cat_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_replace</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">replace_map_comp</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cat_data_replace</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>  gene-query-name gene-target-name  interaction-type      paper-source
+0           CDC73             CTR9                 2  Krogan NJ (2004)
+1            CTR9            CDC73                 2  Krogan NJ (2004)
+2           CDC73             LEO1                 2  Krogan NJ (2004)
+3            LEO1            CDC73                 2  Krogan NJ (2004)
+4           CDC73             PAF1                 2  Krogan NJ (2004)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can observe, you have encoded the categories with the mapped numbers in your DataFrame.</p>
+</div>
+</div>
+<div class="section" id="label-encoding">
+<h2>Label encoding<a class="headerlink" href="#label-encoding" title="Permalink to this headline">¶</a></h2>
+<p>Another approach is to encode categorical values with a technique called “label encoding”, which allows you to convert each value in a column to a number. Numerical labels are always between 0 and n_categories-1</p>
+<p>You can do label encoding via attributes <code class="docutils literal notranslate"><span class="pre">.cat.codes</span></code> on your DataFrame’s column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_lc</span><span class="o">=</span><span class="n">cat_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span> <span class="c1"># In general converting to a  category variable is much faster and handy that leaves them as object</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_lc</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat_data_lc</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_lc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1">#alphabetically labeled from 0 to number of categories : 27</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CDC73</td>
+      <td>CTR9</td>
+      <td>1</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CTR9</td>
+      <td>CDC73</td>
+      <td>1</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CDC73</td>
+      <td>LEO1</td>
+      <td>1</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LEO1</td>
+      <td>CDC73</td>
+      <td>1</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CDC73</td>
+      <td>PAF1</td>
+      <td>1</td>
+      <td>Krogan NJ (2004)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Sometimes, <strong>you might just want to encode a bunch of categories within a feature to some numeric value and encode all the other categories to some other numeric value</strong>.</p>
+<p>You could do this by using numpy’s <code class="docutils literal notranslate"><span class="pre">where()</span></code> function like shown below.
+Example: You will encode all the synthetic lethals to value 1 and other types to value 0. This will create a new column in your DataFrame with the encodings. Later, if you want to drop the original column, you can do so by using the <code class="docutils literal notranslate"><span class="pre">drop()</span></code> function in pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_specific</span> <span class="o">=</span> <span class="n">cat_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cat_data_specific</span><span class="p">[</span><span class="s1">&#39;SL-code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cat_data_specific</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Lethality&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">cat_data_specific</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+      <th>SL-code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CDC73</td>
+      <td>CTR9</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CTR9</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CDC73</td>
+      <td>LEO1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LEO1</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CDC73</td>
+      <td>PAF1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_specific</span><span class="p">[</span><span class="n">cat_data_specific</span><span class="p">[</span><span class="s1">&#39;SL-code&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+      <th>SL-code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>275</th>
+      <td>BNI1</td>
+      <td>SWE1</td>
+      <td>Synthetic Lethality</td>
+      <td>Goehring AS (2003)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>276</th>
+      <td>BUD6</td>
+      <td>SWE1</td>
+      <td>Synthetic Lethality</td>
+      <td>Goehring AS (2003)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>277</th>
+      <td>CDC42</td>
+      <td>BEM1</td>
+      <td>Synthetic Lethality</td>
+      <td>Kozminski KG (2003)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>CDC42</td>
+      <td>BEM4</td>
+      <td>Synthetic Lethality</td>
+      <td>Kozminski KG (2003)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>279</th>
+      <td>CDC42</td>
+      <td>BNI1</td>
+      <td>Synthetic Lethality</td>
+      <td>Kozminski KG (2003)</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="you-can-achieve-the-same-label-encoding-using-scikit-learn-s-labelencoder">
+<h2>You can achieve the same label encoding using <code class="docutils literal notranslate"><span class="pre">scikit-learn's,</span> <span class="pre">LabelEncoder</span></code><a class="headerlink" href="#you-can-achieve-the-same-label-encoding-using-scikit-learn-s-labelencoder" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_sklearn</span> <span class="o">=</span> <span class="n">cat_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">lb_make</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">cat_data_sklearn</span><span class="p">[</span><span class="s1">&#39;type_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb_make</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cat_data</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">])</span>
+
+<span class="n">cat_data_sklearn</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span> <span class="c1">#Results in appending a new column to df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+      <th>type_code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>365327</th>
+      <td>YNL181W</td>
+      <td>DEP1</td>
+      <td>Positive Genetic</td>
+      <td>Costanzo M (2016)</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>365328</th>
+      <td>YNL181W</td>
+      <td>DEP1</td>
+      <td>Negative Genetic</td>
+      <td>Costanzo M (2016)</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>365329</th>
+      <td>YNL181W</td>
+      <td>FUN30</td>
+      <td>Positive Genetic</td>
+      <td>Costanzo M (2016)</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>365330</th>
+      <td>YNL181W</td>
+      <td>CLN3</td>
+      <td>Positive Genetic</td>
+      <td>Costanzo M (2016)</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>365331</th>
+      <td>YNL181W</td>
+      <td>CNE1</td>
+      <td>Positive Genetic</td>
+      <td>Costanzo M (2016)</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Label encoding is pretty much intuitive and straight-forward and may give you a good performance from your learning algorithm, but it has as disadvantage that the numerical values can be misinterpreted by the algorithm.</p>
+<p>To solve this issue there is another popular way to encode the categories via something called one-hot encoding.</p>
+</div>
+<div class="section" id="one-hot-encoding">
+<h2>One-Hot encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h2>
+<p>The basic strategy is to convert each category value into a new column and assign a 1 or 0 (True/False) value to the column. This has the benefit of not weighting a value improperly.</p>
+<p>There are many libraries out there that support one-hot encoding but the simplest one is using pandas’ <code class="docutils literal notranslate"><span class="pre">.get_dummies()</span></code> method.</p>
+<p>This function is named this way because it creates dummy/indicator variables (1 or 0). There are mainly three arguments important here, the first one is the DataFrame you want to encode on, second being the columns argument which lets you specify the columns you want to do encoding on, and third, the prefix argument which lets you specify the prefix for the new columns that will be created after encoding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_onehot</span> <span class="o">=</span> <span class="n">cat_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cat_data_onehot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">cat_data_onehot</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">])</span>
+
+
+<span class="n">cat_data_onehot</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>paper-source</th>
+      <th>interaction-type_Affinity Capture-Luminescence</th>
+      <th>interaction-type_Affinity Capture-MS</th>
+      <th>interaction-type_Affinity Capture-RNA</th>
+      <th>interaction-type_Affinity Capture-Western</th>
+      <th>interaction-type_Biochemical Activity</th>
+      <th>interaction-type_Co-crystal Structure</th>
+      <th>interaction-type_Co-fractionation</th>
+      <th>...</th>
+      <th>interaction-type_Phenotypic Suppression</th>
+      <th>interaction-type_Positive Genetic</th>
+      <th>interaction-type_Protein-RNA</th>
+      <th>interaction-type_Protein-peptide</th>
+      <th>interaction-type_Reconstituted Complex</th>
+      <th>interaction-type_Synthetic Growth Defect</th>
+      <th>interaction-type_Synthetic Haploinsufficiency</th>
+      <th>interaction-type_Synthetic Lethality</th>
+      <th>interaction-type_Synthetic Rescue</th>
+      <th>interaction-type_Two-hybrid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CDC73</td>
+      <td>CTR9</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CTR9</td>
+      <td>CDC73</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CDC73</td>
+      <td>LEO1</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LEO1</td>
+      <td>CDC73</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CDC73</td>
+      <td>PAF1</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 30 columns</p>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> also supports one hot encoding via <code class="docutils literal notranslate"><span class="pre">LabelBinarizer</span></code> and <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> in its preprocessing module (check out the details here). Just for the sake of practicing you will do the same encoding via <code class="docutils literal notranslate"><span class="pre">LabelBinarizer</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat_data_onehot_sklearn</span> <span class="o">=</span> <span class="n">cat_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelBinarizer</span>
+
+<span class="n">lb</span> <span class="o">=</span> <span class="n">LabelBinarizer</span><span class="p">()</span>
+<span class="n">lb_results</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cat_data_onehot_sklearn</span><span class="p">[</span><span class="s1">&#39;interaction-type&#39;</span><span class="p">])</span>
+<span class="n">lb_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lb_results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">lb</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">lb_results_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Affinity Capture-Luminescence</th>
+      <th>Affinity Capture-MS</th>
+      <th>Affinity Capture-RNA</th>
+      <th>Affinity Capture-Western</th>
+      <th>Biochemical Activity</th>
+      <th>Co-crystal Structure</th>
+      <th>Co-fractionation</th>
+      <th>Co-localization</th>
+      <th>Co-purification</th>
+      <th>Dosage Growth Defect</th>
+      <th>...</th>
+      <th>Phenotypic Suppression</th>
+      <th>Positive Genetic</th>
+      <th>Protein-RNA</th>
+      <th>Protein-peptide</th>
+      <th>Reconstituted Complex</th>
+      <th>Synthetic Growth Defect</th>
+      <th>Synthetic Haploinsufficiency</th>
+      <th>Synthetic Lethality</th>
+      <th>Synthetic Rescue</th>
+      <th>Two-hybrid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">cat_data_onehot_sklearn</span><span class="p">,</span> <span class="n">lb_results_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">result_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene-query-name</th>
+      <th>gene-target-name</th>
+      <th>interaction-type</th>
+      <th>paper-source</th>
+      <th>Affinity Capture-Luminescence</th>
+      <th>Affinity Capture-MS</th>
+      <th>Affinity Capture-RNA</th>
+      <th>Affinity Capture-Western</th>
+      <th>Biochemical Activity</th>
+      <th>Co-crystal Structure</th>
+      <th>...</th>
+      <th>Phenotypic Suppression</th>
+      <th>Positive Genetic</th>
+      <th>Protein-RNA</th>
+      <th>Protein-peptide</th>
+      <th>Reconstituted Complex</th>
+      <th>Synthetic Growth Defect</th>
+      <th>Synthetic Haploinsufficiency</th>
+      <th>Synthetic Lethality</th>
+      <th>Synthetic Rescue</th>
+      <th>Two-hybrid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CDC73</td>
+      <td>CTR9</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CTR9</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CDC73</td>
+      <td>LEO1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LEO1</td>
+      <td>CDC73</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CDC73</td>
+      <td>PAF1</td>
+      <td>Affinity Capture-MS</td>
+      <td>Krogan NJ (2004)</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div></div></div>
+</div>
+<p><strong>While one-hot encoding solves the problem of unequal weights given to categories within a feature</strong>, it is not very useful when there are many categories, as that will result in formation of as many new columns, which can result in the curse of dimensionality. The concept of the “curse of dimensionality” discusses that in high-dimensional spaces some things just stop working properly.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "leilaicruz/jupyter-book",
+            ref: "gh-pages",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "Machine-learning-related-projects"
+        }
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../MysT_Notebooks.html" title="previous page">Notebooks written entirely in markdown</a>
+    <a class='right-next' id="next-link" href="prot_domains2lethality-PAPER-REPLICATION.html" title="next page">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Leila Inigo<br/>
+        
+            &copy; Copyright GPL License 3.0.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
