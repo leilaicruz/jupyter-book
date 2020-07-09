@@ -14,40 +14,41 @@ kernelspec:
 # Tutorial on how to handle categorical data from [here](https://www.datacamp.com/community/tutorials/categorical-data)
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import defaultdict 
 import seaborn as sns
 ```
-```{code-cell} python3
+```{code-cell} ipython3
 import os
 script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in
 rel_path = "datasets/data-BioGrid-Yeast.xlsx"
 abs_file_path_SL = os.path.join(script_dir, rel_path)
 
-os.chdir('mini_book/docs/')
+# os.chdir('mini_book/docs/')
+os.chdir('../')
 
 ```
 
-```{code-cell} python3
+```{code-cell} ipython3
 data=pd.read_excel(abs_file_path_SL,header=0)
 
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 data = data[['gene-query-name','gene-target-name','interaction-type', 'paper-source']]
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 data.head()
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 print(data.info())
 ```
 
@@ -56,12 +57,12 @@ print(data.info())
 As you will only be dealing with categorical features in this tutorial, it's better to filter them out. You can create a separate DataFrame consisting of only these features by running the following command. The method ```.copy()``` is used here so that any changes made in new DataFrame don't get reflected in the original one.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data = data.select_dtypes(include=['object']).copy()
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data.head()
 ```
 
@@ -71,7 +72,7 @@ cat_data.head()
 One of the most common data pre-processing steps is to check for null values in the dataset. You can get **the total number of missing values in the DataFrame** by the following one liner code:
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 if cat_data.isnull().values.sum()==0:
     print('Hooray!! There are no NaN values in the dataframe')
 else:
@@ -84,21 +85,21 @@ else:
 Let's also check the column-wise distribution of null values:
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 print(cat_data.isnull().sum())
 ```
 
 Another **Exploratory Data Analysis (EDA)** step that you might want to do on categorical features is the frequency distribution of categories within the feature, which can be done with the ```.value_counts()``` method as described earlier.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 print(cat_data['interaction-type'].value_counts())
 ```
 
      
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 print(cat_data['gene-query-name'].value_counts())
 ```
 
@@ -107,7 +108,7 @@ print(cat_data['gene-query-name'].value_counts())
 To know **the count of distinct categories within the feature** you can chain the previous code with the ```.count()``` method:
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 print(cat_data['interaction-type'].value_counts().count(),cat_data['gene-query-name'].value_counts().count(),cat_data['gene-target-name'].value_counts().count())
 ```
 
@@ -116,7 +117,7 @@ print(cat_data['interaction-type'].value_counts().count(),cat_data['gene-query-n
 Below is a basic template to plot a barplot of the frequency distribution of a categorical feature using the seaborn package, which shows the frequency distribution of the carrier column. You can play with different arguments to change the look of the plot.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 carrier_count = cat_data['interaction-type'].value_counts()
 sns.set(style="darkgrid")
 sns.barplot(carrier_count.index, carrier_count.values, alpha=0.9)
@@ -145,13 +146,13 @@ Let's start with the most basic method, which is just replacing the categories w
 You will store the category names in a list called ```labels``` and then ```zip``` it to a sequence of numbers and iterate over it. The final dictionary will organize the labels in alphabetical order. 
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 labels = cat_data['interaction-type'].astype('category').cat.categories.tolist()
 replace_map_comp = {'interaction-type' : {k: v for k,v in zip(labels,list(range(1,len(labels)+1)))}}
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 print(replace_map_comp)
 ```
 
@@ -160,12 +161,12 @@ print(replace_map_comp)
 Throughout this tutorial, you will be making a copy of the dataset via the ```.copy()``` method to practice each encoding technique to ensure that the original DataFrame stays intact and whatever changes you are doing happen only in the copied one.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_replace = cat_data.copy()
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_replace.replace(replace_map_comp, inplace=True)
 
 print(cat_data_replace.head())
@@ -181,18 +182,18 @@ Another approach is to encode categorical values with a technique called "label 
 You can do label encoding via attributes ```.cat.codes``` on your DataFrame's column.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_lc=cat_data.copy().astype('category') # In general converting to a  category variable is much faster and handy that leaves them as object
 
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_lc['interaction-type'] = cat_data_lc['interaction-type'].cat.codes
 ```
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_lc.head() #alphabetically labeled from 0 to number of categories : 27
 ```
 
@@ -205,7 +206,7 @@ You could do this by using numpy's ```where()``` function like shown below.
 Example: You will encode all the synthetic lethals to value 1 and other types to value 0. This will create a new column in your DataFrame with the encodings. Later, if you want to drop the original column, you can do so by using the ```drop()``` function in pandas.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_specific = cat_data.copy()
 cat_data_specific['SL-code'] = np.where(cat_data_specific['interaction-type'].str.contains('Lethality'), 1, 0)
 
@@ -214,7 +215,7 @@ cat_data_specific.head()
 
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_specific[cat_data_specific['SL-code']==1].head()
 ```
 
@@ -225,7 +226,7 @@ cat_data_specific[cat_data_specific['SL-code']==1].head()
 
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_sklearn = cat_data.copy()
 
 from sklearn.preprocessing import LabelEncoder
@@ -253,7 +254,7 @@ There are many libraries out there that support one-hot encoding but the simples
 This function is named this way because it creates dummy/indicator variables (1 or 0). There are mainly three arguments important here, the first one is the DataFrame you want to encode on, second being the columns argument which lets you specify the columns you want to do encoding on, and third, the prefix argument which lets you specify the prefix for the new columns that will be created after encoding.
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_onehot = cat_data.copy()
 cat_data_onehot = pd.get_dummies(cat_data_onehot, columns=['interaction-type'])
 
@@ -266,7 +267,7 @@ cat_data_onehot.head()
 ```scikit-learn``` also supports one hot encoding via ```LabelBinarizer``` and ```OneHotEncoder``` in its preprocessing module (check out the details here). Just for the sake of practicing you will do the same encoding via ```LabelBinarizer```:
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 cat_data_onehot_sklearn = cat_data.copy()
 
 from sklearn.preprocessing import LabelBinarizer
@@ -284,7 +285,7 @@ lb_results_df.head()
 
 
 
-```{code-cell} python3
+```{code-cell} ipython3
 result_df = pd.concat([cat_data_onehot_sklearn, lb_results_df], axis=1)
 
 result_df.head()
