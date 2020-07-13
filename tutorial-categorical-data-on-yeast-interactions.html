@@ -93,7 +93,7 @@
 <p class="margin-caption">Bioinformatics examples</p>
 </li>
   <li class="">
-    <a href="shared_domains_per_module.html">6. What are the most shared domains among proteins that belong to a certain biological process module?</a>
+    <a href="evaluating-protein-domains-per-module.html">6. What is the protein domain profile of genes from the same module ?</a>
   </li>
 </ul>
 </nav>
@@ -321,10 +321,12 @@
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 365332 entries, 0 to 365331
 Data columns (total 4 columns):
-gene-query-name     365332 non-null object
-gene-target-name    365332 non-null object
-interaction-type    365332 non-null object
-paper-source        365332 non-null object
+ #   Column            Non-Null Count   Dtype 
+---  ------            --------------   ----- 
+ 0   gene-query-name   365332 non-null  object
+ 1   gene-target-name  365332 non-null  object
+ 2   interaction-type  365332 non-null  object
+ 3   paper-source      365332 non-null  object
 dtypes: object(4)
 memory usage: 11.1+ MB
 None
@@ -494,17 +496,17 @@ Name: interaction-type, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2          2676
-PUF3          2119
-HSP82         2042
-SSB2          2018
-RPN11         1735
-              ... 
-YIL082W-A        1
-RPS7B            1
-MF(ALPHA)1       1
-tD(GUC)L1        1
-ECM12            1
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2       2676
+PUF3       2119
+HSP82      2042
+SSB2       2018
+RPN11      1735
+           ... 
+GEP7          1
+YOR365C       1
+AST1          1
+YHL026C       1
+RRT14         1
 Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>
@@ -518,10 +520,7 @@ Name: gene-query-name, Length: 5139, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span> 5139 6344
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27 5139 6344
 </pre></div>
 </div>
 </div>
@@ -542,7 +541,7 @@ Name: gene-query-name, Length: 5139, dtype: int64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
         17, 18, 19, 20, 21, 22, 23, 24, 25, 26]),
- &lt;a list of 27 Text xticklabel objects&gt;)
+ &lt;a list of 27 Text major ticklabel objects&gt;)
 </pre></div>
 </div>
 <img alt="_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" src="_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" />
