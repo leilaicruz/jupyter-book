@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>What is the protein domain profile of genes from the same module ? &#8212; Notebooks for data science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/butterfly.jpg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/butterfly.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="intro.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Get started</p>
+</li>
+  <li class="">
+    <a href="MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine learning related projects</p>
+</li>
+  <li class="">
+    <a href="tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
+  </li>
+  <li class="">
+    <a href="prot_domains2lethality-PAPER-REPLICATION.html">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+  </li>
+  <li class="">
+    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. Feature postprocessing from paper.</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Bioinformatics examples</p>
+</li>
+  <li class="active">
+    <a href="">6. What is the protein domain profile of genes from the same module ?</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/evaluating-protein-domains-per-module.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/evaluating-protein-domains-per-module.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#" class="nav-link">What is the protein domain profile of genes from the same module ?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#selecting-the-modules-to-evaluate-the-protein-domains" class="nav-link">Selecting the modules to evaluate the protein domains</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#sorting-the-dataframe-by-the-ratio-of-sharing" class="nav-link">Sorting the dataframe by the ratio of sharing</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="what-is-the-protein-domain-profile-of-genes-from-the-same-module">
+<h1>What is the protein domain profile of genes from the same module ?<a class="headerlink" href="#what-is-the-protein-domain-profile-of-genes-from-the-same-module" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">intermine.webservice</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span><span class="p">,</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">interpolate</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> 
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">lognorm</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.mlab</span> <span class="k">as</span> <span class="nn">mlab</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">fnmatch</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="selecting-the-modules-to-evaluate-the-protein-domains">
+<h1>Selecting the modules to evaluate the protein domains<a class="headerlink" href="#selecting-the-modules-to-evaluate-the-protein-domains" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;__file__&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- absolute dir the script is in</span>
+<span class="n">rel_path_domains</span><span class="o">=</span><span class="s2">&quot;datasets/proteins-domains-from-Pfam.xlsx&quot;</span>
+
+<span class="n">abs_file_path_domains</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_domains</span><span class="p">)</span>
+
+<span class="c1"># os.chdir(&#39;../&#39;) #&lt;-- for binder os.chdir(&#39;../&#39;)</span>
+<span class="n">my_path_domains</span><span class="o">=</span><span class="n">abs_file_path_domains</span>
+<span class="n">data_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">my_path_domains</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
+<span class="n">data_domains</span><span class="o">=</span><span class="n">data_domains</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_domains</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>domain-name</th>
+      <th>domain-descrip</th>
+      <th>domain-start</th>
+      <th>domain-end</th>
+      <th>domain-method</th>
+      <th>domain-id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AAC1</td>
+      <td>PF00153</td>
+      <td>Mito_carr; Mitochondrial substrate/solute carrier</td>
+      <td>10</td>
+      <td>106</td>
+      <td>Pfam</td>
+      <td>2056375</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AAC1</td>
+      <td>PF00153</td>
+      <td>Mito_carr; Mitochondrial substrate/solute carrier</td>
+      <td>116</td>
+      <td>210</td>
+      <td>Pfam</td>
+      <td>2056376</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AAC1</td>
+      <td>PF00153</td>
+      <td>Mito_carr; Mitochondrial substrate/solute carrier</td>
+      <td>217</td>
+      <td>304</td>
+      <td>Pfam</td>
+      <td>2056377</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AAC3</td>
+      <td>PF00153</td>
+      <td>Mito_carr; Mitochondrial substrate/solute carrier</td>
+      <td>9</td>
+      <td>105</td>
+      <td>Pfam</td>
+      <td>2062638</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AAC3</td>
+      <td>PF00153</td>
+      <td>Mito_carr; Mitochondrial substrate/solute carrier</td>
+      <td>115</td>
+      <td>208</td>
+      <td>Pfam</td>
+      <td>2062639</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pathways</span><span class="o">=</span><span class="p">[</span> <span class="s1">&#39;galactose degradation&#39;</span><span class="p">,</span><span class="s1">&#39;phospholipid biosynthesis&#39;</span><span class="p">,</span> <span class="s2">&quot;ethanol degradation&quot;</span><span class="p">]</span>
+<span class="n">biological_processes_slim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cell budding&quot;</span><span class="p">,</span><span class="s2">&quot;lipid binding&quot;</span><span class="p">,</span><span class="s2">&quot;cytokinesis&quot;</span><span class="p">]</span>
+<span class="n">biological_processes_goterm</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cell morphogenesis involved in conjugation with cellular fusion&quot;</span><span class="p">,</span><span class="s2">&quot;budding cell apical bud growth&quot;</span><span class="p">,</span><span class="s2">&quot;establishment of cell polarity&quot;</span><span class="p">,</span><span class="s2">&quot;cytoskeleton organization&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">from_go_to_genes</span><span class="p">(</span><span class="n">go</span><span class="p">,</span><span class="n">label</span><span class="p">):</span>
+    <span class="c1">#label=[&quot;GOTerm&quot; or &quot;GOSlimTerm&quot;]</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="s1">&#39;https://yeastmine.yeastgenome.org/yeastmine/service&#39;</span><span class="p">,</span> <span class="n">token</span> <span class="o">=</span> <span class="s1">&#39;11d7t1Y007Fa97c82f27&#39;</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">new_query</span><span class="p">(</span><span class="s2">&quot;Gene&quot;</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="s2">&quot;goAnnotation.ontologyTerm.parents&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span>
+        <span class="s2">&quot;symbol&quot;</span><span class="p">,</span> <span class="s2">&quot;goAnnotation.evidence.code.annotType&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;goAnnotation.ontologyTerm.parents.name&quot;</span>
+    <span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="s2">&quot;goAnnotation.qualifier&quot;</span><span class="p">,</span> <span class="s2">&quot;!=&quot;</span><span class="p">,</span> <span class="s2">&quot;NOT&quot;</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="s2">&quot;goAnnotation.qualifier&quot;</span><span class="p">,</span> <span class="s2">&quot;IS NULL&quot;</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="s2">&quot;goAnnotation.evidence.code.annotType&quot;</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="s2">&quot;manually curated&quot;</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">add_constraint</span><span class="p">(</span><span class="s2">&quot;goAnnotation.ontologyTerm.parents.name&quot;</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">go</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span>
+    <span class="n">query</span><span class="o">.</span><span class="n">set_logic</span><span class="p">(</span><span class="s2">&quot;(C or D) and F and G&quot;</span><span class="p">)</span>
+
+    <span class="n">data_toy</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">counter</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">rows</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">rows</span><span class="p">()))):</span>
+
+        <span class="n">data_toy</span><span class="p">[</span><span class="s1">&#39;gene-name&#39;</span><span class="p">][</span><span class="n">counter</span><span class="p">]</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;symbol&quot;</span><span class="p">]</span>
+        <span class="n">data_toy</span><span class="p">[</span><span class="s1">&#39;evidence&#39;</span><span class="p">][</span><span class="n">counter</span><span class="p">]</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;goAnnotation.evidence.code.annotType&quot;</span><span class="p">]</span>
+        <span class="n">data_toy</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="n">counter</span><span class="p">]</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;goAnnotation.ontologyTerm.parents.name&quot;</span><span class="p">]</span>
+
+
+    <span class="n">data_toy_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_toy</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data_toy_pd</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+    <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">go</span><span class="o">=</span><span class="n">biological_processes_goterm</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">data</span><span class="o">=</span><span class="n">from_go_to_genes</span><span class="p">(</span><span class="n">go</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;GOTerm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">big_data</span><span class="o">=</span><span class="p">[]</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">biological_processes_goterm</span><span class="p">)):</span>
+    <span class="n">go</span><span class="o">=</span><span class="n">biological_processes_goterm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">from_go_to_genes</span><span class="p">(</span><span class="n">go</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;GOTerm&#39;</span><span class="p">)</span>
+    <span class="n">big_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gene-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flat_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">big_data</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flat_list</span> <span class="k">if</span> <span class="n">i</span><span class="p">]</span> 
+<span class="n">flat_list_unique</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting the meaningful columns in the respective dataset</span>
+<span class="n">domain_id_list</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span>
+<span class="c1">#query_gene=data[&#39;gene-name&#39;]</span>
+<span class="n">query_gene</span><span class="o">=</span><span class="n">flat_list_unique</span>
+
+<span class="c1"># Initialising the arrays</span>
+<span class="n">protein_a_list</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query_gene</span><span class="p">))</span>
+
+
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
+
+    <span class="n">protein_a</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_gene</span><span class="p">[</span><span class="n">m</span><span class="p">]]</span>
+    <span class="n">protein_a_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_a</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    
+
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_empty_domains</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">):</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">protein_list_search</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="p">[]:</span>
+            <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">## index of empty values for the protein_a_list meaning they dont have any annotated domain</span>
+
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">))</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">index</span><span class="p">]</span> <span class="c1"># a list with non empty values from protein_a list</span>
+
+    <span class="n">protein_list_search_new</span><span class="o">=</span><span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+        <span class="n">protein_list_search_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+    <span class="k">return</span> <span class="n">protein_list_search_new</span>
+
+<span class="c1">## evaluating the function</span>
+
+<span class="n">protein_a_list_new</span><span class="o">=</span><span class="n">remove_empty_domains</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The empty domain in the data were:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">),</span><span class="s1">&#39;domains&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the data were: 40 out of 291 domains
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">protein_module</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)):</span>
+    <span class="n">protein_module</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="c1"># just taking the unique domains per protein in the module </span>
+<span class="n">protein_module</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">protein_module</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span> <span class="p">)</span>
+<span class="n">unique_domains</span><span class="p">,</span><span class="n">index_domains</span><span class="p">,</span><span class="n">index_counts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">protein_module</span><span class="p">,</span><span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># counting how many proteins have the same domain per module </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stats_module</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;unique-domains&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">unique_domains</span>
+<span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;counts-each-domains&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">index_counts</span>
+<span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;index-for-original-domains-array&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">index_domains</span>
+<span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;ratio-of-sharing&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">index_counts</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_domains</span><span class="p">)</span>
+
+<span class="n">stats_module</span><span class="o">.</span><span class="n">set_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">stats_module</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sorting-the-dataframe-by-the-ratio-of-sharing">
+<h1>Sorting the dataframe by the ratio of sharing<a class="headerlink" href="#sorting-the-dataframe-by-the-ratio-of-sharing" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">unique_domains</span><span class="p">)</span>
+<span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;protein-name&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">unique_domains</span><span class="p">)</span>
+<span class="c1">#stats_module[&#39;module-name&#39;]=np.zeros_like(unique_domains)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_domains</span><span class="p">)):</span>
+    <span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">unique_domains</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">names</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">unique_domains</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">inter</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">query_gene</span><span class="p">)</span>
+    <span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;protein-name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">inter</span><span class="p">)</span> <span class="c1"># print the intresection of all proteins with those domains with the protein from the module </span>
+    <span class="c1">#stats_module[&#39;module-name&#39;][i]=go</span>
+<span class="n">stats_module_sorted</span><span class="o">=</span><span class="n">stats_module</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ratio-of-sharing&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">stats_module_sorted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/usr/share/miniconda3/envs/wintest/lib/python3.7/site-packages/ipykernel_launcher.py:5: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  &quot;&quot;&quot;
+/usr/share/miniconda3/envs/wintest/lib/python3.7/site-packages/ipykernel_launcher.py:8: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  
+</pre>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unique-domains</th>
+      <th>counts-each-domains</th>
+      <th>index-for-original-domains-array</th>
+      <th>ratio-of-sharing</th>
+      <th>domain-descrip</th>
+      <th>protein-name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>PF00069</td>
+      <td>20</td>
+      <td>18</td>
+      <td>0.074510</td>
+      <td>Pkinase; Protein kinase domain</td>
+      <td>[CDC28, KCC4, KIC1, MPS1, ARK1, CDC5, CDC15, P...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PF00018</td>
+      <td>16</td>
+      <td>0</td>
+      <td>0.058824</td>
+      <td>SH3_1; SH3 domain</td>
+      <td>[PIN3, BOI1, FUS1, RVS167, BBC1, ABP1, LSB1, B...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>PF00169</td>
+      <td>8</td>
+      <td>39</td>
+      <td>0.027451</td>
+      <td>PH; Pleckstrin homology domain</td>
+      <td>[BOI1, BEM3, BEM2, CLA4, BUD4, SLM1, BOI2, SLM2]</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>PF00071</td>
+      <td>7</td>
+      <td>91</td>
+      <td>0.023529</td>
+      <td>Ras; Small GTPase superfamily</td>
+      <td>[RSR1, TEM1, RHO3, RHO4, CDC42, RHO1, RHO2]</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>PF00134</td>
+      <td>7</td>
+      <td>116</td>
+      <td>0.023529</td>
+      <td>Cyclin_N; Cyclin, N-terminal</td>
+      <td>[CLB1, CLB3, CLB5, CLB2, PCL1, PCL2, CLB4]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stats_module_sorted_diff_zero</span><span class="o">=</span><span class="n">stats_module_sorted</span><span class="p">[</span><span class="n">stats_module_sorted</span><span class="p">[</span><span class="s1">&#39;ratio-of-sharing&#39;</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">stats_module_sorted_diff_zero</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">],</span><span class="n">height</span><span class="o">=</span><span class="n">stats_module_sorted_diff_zero</span><span class="p">[</span><span class="s1">&#39;ratio-of-sharing&#39;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ratio of sharing of domains&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Module:&#39;</span> <span class="o">+</span> <span class="n">go</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Module:cytoskeleton organization&#39;)
+</pre></div>
+</div>
+<img alt="_images/evaluating-protein-domains-per-module_17_1.png" src="_images/evaluating-protein-domains-per-module_17_1.png" />
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="previous page">Feature postprocessing from paper.</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Leila Iñigo<br/>
+        
+            &copy; Copyright GPL License 3.0.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
