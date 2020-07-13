@@ -484,4 +484,3 @@ plt.xlabel('Predicted label')
 
 from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred_after_pca, target_names=['NonSl','SL']))
-
