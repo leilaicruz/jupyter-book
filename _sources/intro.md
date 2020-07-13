@@ -51,6 +51,7 @@ After the build, view the html with (local deployment):
 `start docs\_build\html\index.html`
 
 ```
+
 - For your own jupyter book just respect the same folder structure of the example, but with your own content! 
 
 ## How to deploy your book online? 
