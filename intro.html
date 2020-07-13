@@ -25,11 +25,9 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script async="async" src="_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="shortcut icon" href="_static/butterfly.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -82,13 +80,19 @@
 <p class="margin-caption">Machine learning related projects</p>
 </li>
   <li class="">
-    <a href="Machine-learning-related-projects/tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
+    <a href="tutorial-categorical-data-on-yeast-interactions.html">3. Tutorial on how to handle categorical data from here</a>
   </li>
   <li class="">
-    <a href="Machine-learning-related-projects/prot_domains2lethality-PAPER-REPLICATION.html">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="prot_domains2lethality-PAPER-REPLICATION.html">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
   <li class="">
-    <a href="Machine-learning-related-projects/prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. Feature postprocessing from paper.</a>
+    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. Feature postprocessing from paper.</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Bioinformatics examples</p>
+</li>
+  <li class="">
+    <a href="shared_domains_per_module.html">6. What are the most shared domains among proteins that belong to a certain biological process module?</a>
   </li>
 </ul>
 </nav>
@@ -113,35 +117,43 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/intro.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Source interaction buttons -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 
@@ -167,11 +179,32 @@
 <p>The following workflow should succeed using a miniconda powershell terminal on Windows 10:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Anaconda</span> <span class="pre">Power</span> <span class="pre">Shell</span> <span class="pre">Promt</span></code></p>
 <ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">eoas_ubc</span> <span class="pre">runjb</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">git</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/eoas-ubc/quantecon-mini-example.git</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">quantecon-mini-example</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">windows</span></code></p></li>
+</ol>
+<p>Now, create the file : <code class="docutils literal notranslate"><span class="pre">environment_win.yml</span></code> with the following content</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wintest</span>
+<span class="nt">channels</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">eoas_ubc</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python=3.7.*</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sphinx=2.4.4</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">runjb</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">git</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pandas</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">matplotlib</span>
+  <span class="p p-Indicator">-</span> <span class="nt">pip</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">quantecon</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jupyter-book&gt;=0.7.0b</span>
+</pre></div>
+</div>
+</div>
+<ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment_win.yml</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">wintest</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mini_book</span></code></p></li>
@@ -179,67 +212,61 @@
 </ol>
 <p>After the build, view the html with (local deployment):</p>
 <p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">docs\_build\html\index.html</span></code></p>
-</div>
-<ul class="simple">
-<li><p>For your own jupyter book just respect the same folder structure of the example, but with your own content!</p></li>
-</ul>
-</div>
-<div class="section" id="how-to-deploy-your-book-online">
-<h1>How to deploy your book online?<a class="headerlink" href="#how-to-deploy-your-book-online" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>Add a folder in the root of the repo called : <code class="docutils literal notranslate"><span class="pre">.github</span></code></p>
-<ul>
-<li><p>Add a subfolder called : <code class="docutils literal notranslate"><span class="pre">workflows</span></code></p></li>
-<li><p>Create a file called : <code class="docutils literal notranslate"><span class="pre">build.yml</span></code> where the instructions to GitHub to deploy your book are given. The following <code class="docutils literal notranslate"><span class="pre">build.yml</span></code> is generic as long as your <strong>deploy Key</strong> is called : <code class="docutils literal notranslate"><span class="pre">DEPLOY_KEY</span></code>.</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Test Build</span>
-<span class="nt">on</span><span class="p">:</span>
-  <span class="nt">push</span><span class="p">:</span>
-    <span class="nt">branches-ignore</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
-<span class="nt">jobs</span><span class="p">:</span>
-  <span class="nt">build</span><span class="p">:</span>
-    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-    <span class="nt">steps</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Checkout 🛎️</span>
-        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
-        <span class="nt">with</span><span class="p">:</span>
-          <span class="nt">persist-credentials</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- For your own jupyter book just respect the same folder structure of the example, but with your own content! 
 
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup Miniconda</span>
-        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">goanpeca/setup-miniconda@v1</span>
-        <span class="nt">with</span><span class="p">:</span>
-          <span class="nt">auto-update-conda</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-          <span class="nt">auto-activate-base</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-          <span class="nt">miniconda-version</span><span class="p">:</span> <span class="s">&#39;latest&#39;</span>
-          <span class="nt">python-version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.7</span>
-          <span class="nt">environment-file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_win.yml</span>
-          <span class="nt">activate-environment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wintest</span>
+## How to deploy your book online? 
 
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install jupyter_book</span>
-        <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash -l {0}</span>
-        <span class="nt">run</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">pip install jupyter-book --pre</span> 
+- Add a folder in the root of the repo called : `.github`
+  - Add a subfolder called : `workflows`
+  - Create a file called : `build.yml` where the instructions to GitHub to deploy your book are given. The following `build.yml` is generic as long as your **deploy Key** is called : `DEPLOY_KEY`. 
+
+```yaml
+name: Test Build
+on:
+  push:
+    branches-ignore:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Miniconda
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+          auto-activate-base: false
+          miniconda-version: &#39;latest&#39;
+          python-version: 3.7
+          environment-file: environment_win.yml
+          activate-environment: wintest
+
+      - name: Install jupyter_book
+        shell: bash -l {0}
+        run:  pip install jupyter-book --pre 
 
 
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build Jupyter Book</span>
-        <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash -l {0}</span>
-        <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jb build  mini_book/docs/</span>
+      - name: Build Jupyter Book
+        shell: bash -l {0}
+        run: jb build  mini_book/docs/
 
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install SSH Client 🔑</span>
-        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">webfactory/ssh-agent@v0.2.0</span>
-        <span class="nt">with</span><span class="p">:</span>
-          <span class="nt">ssh-private-key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.DEPLOY_KEY }}</span>
+      - name: Install SSH Client 🔑
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
         
 
 
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy 🚀</span>
-        <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@releases/v3</span>
-        <span class="nt">with</span><span class="p">:</span>
-          <span class="nt">SSH</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-          <span class="nt">BRANCH</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gh-pages</span>
-          <span class="nt">FOLDER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mini_book/docs/_build/html/</span>
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          SSH: true
+          BRANCH: gh-pages
+          FOLDER: mini_book/docs/_build/html/
           
 </pre></div>
 </div>
@@ -283,26 +310,10 @@ Enter passphrase (empty for no passphrase): [Press enter]</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "leilaicruz/jupyter-book",
-            ref: "gh-pages",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "."
-        }
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -319,7 +330,7 @@ Enter passphrase (empty for no passphrase): [Press enter]</p>
     <div class="container">
       <p>
         
-          By Leila Inigo<br/>
+          By Leila Iñigo<br/>
         
             &copy; Copyright GPL License 3.0.<br/>
       </p>
