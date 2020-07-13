@@ -28,7 +28,7 @@ rel_path = "datasets/data-BioGrid-Yeast.xlsx"
 abs_file_path_SL = os.path.join(script_dir, rel_path)
 
 # os.chdir('mini_book/docs/')
-os.chdir('../')
+# os.chdir('../')
 
 ```
 
