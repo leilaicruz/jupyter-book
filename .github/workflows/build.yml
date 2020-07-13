@@ -28,7 +28,8 @@ jobs:
 
       - name: Install jupyter_book
         shell: bash -l {0}
-        run:  pip install jupyter-book --pre 
+        run:  pip install -U jupyter-book
+        # pip install jupyter-book --pre 
 
 
       - name: Build Jupyter Book
