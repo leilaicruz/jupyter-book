@@ -25,16 +25,14 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script async="async" src="_static/thebelab.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="shortcut icon" href="_static/butterfly.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION-test.html" />
+    <link rel="next" title="Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION.html" />
     <link rel="prev" title="Notebooks written entirely in markdown" href="MysT_Notebooks.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,19 +69,31 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="README.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
+    <a href="intro.html">1. To reproduce an example of  Jupyter book, and you are a Windows user:</a>
   </li>
+<li class="navbar-special">
+<p class="margin-caption">Get started</p>
+</li>
   <li class="">
     <a href="MysT_Notebooks.html">2. Notebooks written entirely in markdown</a>
   </li>
+<li class="navbar-special">
+<p class="margin-caption">Machine learning related projects</p>
+</li>
   <li class="active">
     <a href="">3. Tutorial on how to handle categorical data from here</a>
   </li>
   <li class="">
-    <a href="prot_domains2lethality-PAPER-REPLICATION-test.html">4. 06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a href="prot_domains2lethality-PAPER-REPLICATION.html">4. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
   </li>
   <li class="">
-    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. 06062020-Feature postprocessing of protein domains.</a>
+    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">5. Feature postprocessing from paper.</a>
+  </li>
+<li class="navbar-special">
+<p class="margin-caption">Bioinformatics examples</p>
+</li>
+  <li class="">
+    <a href="shared_domains_per_module.html">6. What are the most shared domains among proteins that belong to a certain biological process module?</a>
   </li>
 </ul>
 </nav>
@@ -108,56 +118,46 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/tutorial-categorical-data-on-yeast-interactions.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/tutorial-categorical-data-on-yeast-interactions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/tutorial-categorical-data-on-yeast-interactions.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
         <!-- Source interaction buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-            <div class="dropdown-buttons sourcebuttons">
-                <a class="repository-button" href="https://github.com/leilaicruz/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Source repository"><i class="fab fa-github"></i>repository</button></a>
-                <a class="issues-button" href="https://github.com/leilaicruz/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftutorial-categorical-data-on-yeast-interactions.html&body=Your%20issue%20content%20here."><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left" title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-                
-            </div>
-        </div>
-        
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/gh-pages?urlpath=tree/mini_book/docs/_build/html/tutorial-categorical-data-on-yeast-interactions.md"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                <button type="button" class="btn btn-secondary topbarbtn thebelab-launch-button" onclick="initThebelab()" title="Launch Thebelab" data-toggle="tooltip" data-placement="left"><i class="fas fa-rocket"></i><span style="margin-left: .4em;">ThebeLab</span></button>
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -220,7 +220,8 @@
 <span class="n">rel_path</span> <span class="o">=</span> <span class="s2">&quot;datasets/data-BioGrid-Yeast.xlsx&quot;</span>
 <span class="n">abs_file_path_SL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">)</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;mini_book/docs/&#39;</span><span class="p">)</span>
+<span class="c1"># os.chdir(&#39;mini_book/docs/&#39;)</span>
+<span class="c1"># os.chdir(&#39;../&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -320,12 +321,10 @@
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 365332 entries, 0 to 365331
 Data columns (total 4 columns):
- #   Column            Non-Null Count   Dtype 
----  ------            --------------   ----- 
- 0   gene-query-name   365332 non-null  object
- 1   gene-target-name  365332 non-null  object
- 2   interaction-type  365332 non-null  object
- 3   paper-source      365332 non-null  object
+gene-query-name     365332 non-null object
+gene-target-name    365332 non-null object
+interaction-type    365332 non-null object
+paper-source        365332 non-null object
 dtypes: object(4)
 memory usage: 11.1+ MB
 None
@@ -495,17 +494,17 @@ Name: interaction-type, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2        2676
-PUF3        2119
-HSP82       2042
-SSB2        2018
-RPN11       1735
-            ... 
-MRPL17         1
-tL(UAA)Q       1
-YER156C        1
-YNL134C        1
-IRC8           1
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2          2676
+PUF3          2119
+HSP82         2042
+SSB2          2018
+RPN11         1735
+              ... 
+YIL082W-A        1
+RPS7B            1
+MF(ALPHA)1       1
+tD(GUC)L1        1
+ECM12            1
 Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>
@@ -519,7 +518,10 @@ Name: gene-query-name, Length: 5139, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27 5139 6344
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>27
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span> 5139 6344
 </pre></div>
 </div>
 </div>
@@ -540,10 +542,10 @@ Name: gene-query-name, Length: 5139, dtype: int64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
         17, 18, 19, 20, 21, 22, 23, 24, 25, 26]),
- &lt;a list of 27 Text major ticklabel objects&gt;)
+ &lt;a list of 27 Text xticklabel objects&gt;)
 </pre></div>
 </div>
-<img alt="_images/tutorial-categorical-data-on-yeast-interactions_20_11.png" src="_images/tutorial-categorical-data-on-yeast-interactions_20_11.png" />
+<img alt="_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" src="_images/tutorial-categorical-data-on-yeast-interactions_20_1.png" />
 </div>
 </div>
 <div class="section" id="encoding-categorical-data">
@@ -1494,24 +1496,6 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
 </div>
 </div>
 
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "leilaicruz/jupyter-book",
-            ref: "gh-pages",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "."
-        }
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -1522,14 +1506,14 @@ Example: You will encode all the synthetic lethals to value 1 and other types to
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="MysT_Notebooks.html" title="previous page">Notebooks written entirely in markdown</a>
-    <a class='right-next' id="next-link" href="prot_domains2lethality-PAPER-REPLICATION-test.html" title="next page">06062020-Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a class='right-next' id="next-link" href="prot_domains2lethality-PAPER-REPLICATION.html" title="next page">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
-          By Leila Inigo<br/>
+          By Leila Iñigo<br/>
         
             &copy; Copyright GPL License 3.0.<br/>
       </p>
