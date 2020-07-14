@@ -28,8 +28,9 @@ jobs:
 
       - name: Install jupyter_book
         shell: bash -l {0}
-        run:  pip install  git+https://github.com/phaustin/jupyter-book@posix_path  --upgrade  --no-deps
+        run: pip install jupyter-book --pre 
         # pip install jupyter-book --pre 
+        # pip install  git+https://github.com/phaustin/jupyter-book@posix_path  --upgrade  --no-deps
 
 
       - name: Build Jupyter Book
