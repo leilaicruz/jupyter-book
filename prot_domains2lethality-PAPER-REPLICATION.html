@@ -51,7 +51,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/butterfly.png" class="logo" alt="logo">
+  <img src="_static/butterfly.jpg" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
@@ -65,36 +65,83 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
-  <ul class="nav sidenav_l1">
-<li class="navbar-special">
-<p class="margin-caption">Get started</p>
-</li>
-  <li class="">
-    <a href="test-folder/MysT_Notebooks.html">Notebooks written entirely in markdown</a>
-  </li>
-  <li class="">
-    <a href="test-folder/python_by_example.html">An Introductory Example</a>
-  </li>
-<li class="navbar-special">
-<p class="margin-caption">Machine learning related projects</p>
-</li>
-  <li class="">
-    <a href="tutorial-categorical-data-on-yeast-interactions.html">Tutorial on how to handle categorical data from here</a>
-  </li>
-  <li class="active">
-    <a href="">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
-  </li>
-  <li class="">
-    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">Feature postprocessing from paper.</a>
-  </li>
-<li class="navbar-special">
-<p class="margin-caption">Bioinformatics examples</p>
-</li>
-  <li class="">
-    <a href="evaluating-protein-domains-per-module.html">What is the protein domain profile of genes from the same module ?</a>
-  </li>
+  <p class="caption">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-folder/MysT_Notebooks.html">
+   Notebooks written entirely in markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-folder/python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
 </ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning related projects
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="tutorial-categorical-data-on-yeast-interactions.html">
+   Tutorial on how to handle categorical data from here
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#building-the-feature-matrix">
+   Building the feature matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow">
+   Separate features from labels to set up the data from the ML workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#using-pca-to-reduce-the-dimensionality-of-the-problem">
+   Using PCA to reduce the dimensionality of the problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
+   Feature postprocessing from paper.
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bioinformatics examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluating-protein-domains-per-module.html">
+   What is the protein domain profile of genes from the same module ?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluating-protein-domains-per-module.html#selecting-the-modules-to-evaluate-the-protein-domains">
+   Selecting the modules to evaluate the protein domains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluating-protein-domains-per-module.html#sorting-the-dataframe-by-the-ratio-of-sharing">
+   Sorting the dataframe by the ratio of sharing
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -190,128 +237,29 @@
 </div>
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-datasets">
+   Importing datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded">
+     Link to the github repo where the datasets to be downloaded:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#" class="nav-link">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#importing-datasets" class="nav-link">Importing datasets</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" class="nav-link">Link to the github repo where the datasets to be downloaded:</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#building-the-feature-matrix" class="nav-link">Building the feature matrix</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" class="nav-link">Building the list of proteins domains id per protein pair separately :</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" class="nav-link">Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" class="nav-link">Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#define-function-get-indexes" class="nav-link">Define function get_indexes</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#how-many-ones-and-twos-are-in-each-dataset" class="nav-link">How many ones and twos are in each dataset</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#bar-plot-to-visualize-these-numbers" class="nav-link">Bar plot to visualize these numbers</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#adding-the-labels-response-variables-to-each-dataset" class="nav-link">Adding the labels(response variables) to each dataset</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#joining-both-datasets" class="nav-link">Joining both datasets</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" class="nav-link">Postprocessing and exploration of the feature matrix of both datasets</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#viz-of-the-stats" class="nav-link">Viz of the stats</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow" class="nav-link">Separate features from labels to set up the data from the ML workflow</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#choosing-the-best-svm-model" class="nav-link">Choosing the best SVM model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#training-with-the-best-model" class="nav-link">Training with the best model</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#note-this-learning-is-without-applying-reduction-of-dimensionality-with-pca-this-make-the-svm-not-optimized-at-all" class="nav-link">Note : This learning is without applying reduction of dimensionality with PCA . This make the SVM not optimized at all.</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#saving-the-model" class="nav-link">Saving the model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#loading-the-model" class="nav-link">Loading the model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#making-predictions" class="nav-link">Making predictions</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting" class="nav-link">Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#viz-of-the-variation-of-the-test-error-per-fold-if-the-variation-is-high-the-classifier-may-be-proned-to-overfitting" class="nav-link">Viz of the variation of the test error per fold . If the variation is high , the classifier may be proned to overfitting.</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#using-pca-to-reduce-the-dimensionality-of-the-problem" class="nav-link">Using PCA to reduce the dimensionality of the problem</a>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -469,8 +417,8 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 16 out of 100 domains
-The empty domain in the nSL were: 18 out of 100 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 17 out of 100 domains
+The empty domain in the nSL were: 19 out of 100 domains
 </pre></div>
 </div>
 </div>
@@ -568,10 +516,10 @@ The empty domain in the nSL were: 18 out of 100 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.5741833923652105e-05
-fraction of ones in the SL array is 0.0010153482880755607
-fraction of twos in the PI array is 1.2094335819391251e-05
-fraction of ones in the PI array is 0.0009433581939125176
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.1948620930000996e-05
+fraction of ones in the SL array is 0.001071393010056756
+fraction of twos in the PI array is 8.162432404856647e-06
+fraction of ones in the PI array is 0.0009060299969390879
 </pre></div>
 </div>
 </div>
@@ -622,7 +570,7 @@ fraction of ones in the PI array is 0.0009433581939125176
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 166
+The number of samples are: 164
 </pre></div>
 </div>
 </div>
@@ -705,7 +653,7 @@ The number of samples are: 166
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f42b36cf050&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa5bd26f910&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_29_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_29_1.png" />
@@ -733,7 +681,7 @@ The number of samples are: 166
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (116, 3025) (116,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (114, 3025) (114,)
 Test set: (50, 3025) (50,)
 </pre></div>
 </div>
@@ -760,7 +708,7 @@ Test set: (50, 3025) (50,)
 </pre>
 </div>
 <div class="stderr docutils container">
-<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.5s finished
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.2s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -803,7 +751,7 @@ Test set: (50, 3025) (50,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.62
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.58
 </pre></div>
 </div>
 </div>
@@ -866,13 +814,15 @@ Test set: (50, 3025) (50,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.38
-Test set Accuracy:  0.62
-The Jaccard index is = 0.4411764705882353
-The log-loss is = 13.124926933449307
-The f1-score is = 0.6122448979591836
-Precision: 0.5555555555555556
-Recall: 0.6818181818181818
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.42
+Test set Accuracy:  0.58
+The Jaccard index is = 0.38235294117647056
+The log-loss is = 14.506477989245735
+The f1-score is = 0.5531914893617023
+Precision: 0.52
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Recall: 0.5909090909090909
 </pre></div>
 </div>
 </div>
@@ -887,12 +837,12 @@ Recall: 0.6818181818181818
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.70      0.57      0.63        28
-          SL       0.56      0.68      0.61        22
+       NonSl       0.64      0.57      0.60        28
+          SL       0.52      0.59      0.55        22
 
-    accuracy                           0.62        50
-   macro avg       0.63      0.63      0.62        50
-weighted avg       0.63      0.62      0.62        50
+    accuracy                           0.58        50
+   macro avg       0.58      0.58      0.58        50
+weighted avg       0.59      0.58      0.58        50
 
 </pre></div>
 </div>
@@ -918,7 +868,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f42b4bfb690&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa5bea0f790&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_46_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_46_1.png" />
@@ -943,7 +893,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f42b4af3ad0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa5be9ffb10&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_47_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_47_1.png" />
@@ -1002,7 +952,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.0002697390000001576
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.00023020599999945546
 </pre></div>
 </div>
 </div>
@@ -1022,7 +972,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.9130049810000003
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.7351617319999999
 </pre></div>
 </div>
 </div>
@@ -1107,7 +1057,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((116, 3025), (50, 3025), (93, 3025), (116, 93))
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((114, 3025), (50, 3025), (90, 3025), (114, 90))
 </pre></div>
 </div>
 </div>
@@ -1147,7 +1097,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=1)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=1, gamma=&#39;auto&#39;)
 </pre></div>
 </div>
 </div>
@@ -1165,7 +1115,7 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.48
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.58
 </pre></div>
 </div>
 </div>
@@ -1211,13 +1161,13 @@ weighted avg       0.63      0.62      0.62        50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.52
-Test set Accuracy:  0.48
-The Jaccard index is = 0.4222222222222222
-The log-loss is = 17.960531540171445
-The f1-score is = 0.59375
-Precision: 0.4523809523809524
-Recall: 0.8636363636363636
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.42
+Test set Accuracy:  0.58
+The Jaccard index is = 0.2222222222222222
+The log-loss is = 14.506366045605505
+The f1-score is = 0.3636363636363636
+Precision: 0.5454545454545454
+Recall: 0.2727272727272727
 </pre></div>
 </div>
 </div>
@@ -1263,12 +1213,12 @@ Recall: 0.8636363636363636
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.62      0.18      0.28        28
-          SL       0.45      0.86      0.59        22
+       NonSl       0.59      0.82      0.69        28
+          SL       0.55      0.27      0.36        22
 
-    accuracy                           0.48        50
-   macro avg       0.54      0.52      0.44        50
-weighted avg       0.55      0.48      0.42        50
+    accuracy                           0.58        50
+   macro avg       0.57      0.55      0.53        50
+weighted avg       0.57      0.58      0.54        50
 
 </pre></div>
 </div>

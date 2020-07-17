@@ -51,7 +51,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/butterfly.png" class="logo" alt="logo">
+  <img src="_static/butterfly.jpg" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
@@ -65,36 +65,83 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
-  <ul class="nav sidenav_l1">
-<li class="navbar-special">
-<p class="margin-caption">Get started</p>
-</li>
-  <li class="">
-    <a href="test-folder/MysT_Notebooks.html">Notebooks written entirely in markdown</a>
-  </li>
-  <li class="">
-    <a href="test-folder/python_by_example.html">An Introductory Example</a>
-  </li>
-<li class="navbar-special">
-<p class="margin-caption">Machine learning related projects</p>
-</li>
-  <li class="active">
-    <a href="">Tutorial on how to handle categorical data from here</a>
-  </li>
-  <li class="">
-    <a href="prot_domains2lethality-PAPER-REPLICATION.html">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
-  </li>
-  <li class="">
-    <a href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">Feature postprocessing from paper.</a>
-  </li>
-<li class="navbar-special">
-<p class="margin-caption">Bioinformatics examples</p>
-</li>
-  <li class="">
-    <a href="evaluating-protein-domains-per-module.html">What is the protein domain profile of genes from the same module ?</a>
-  </li>
+  <p class="caption">
+ <span class="caption-text">
+  Get started
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-folder/MysT_Notebooks.html">
+   Notebooks written entirely in markdown
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="test-folder/python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
 </ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning related projects
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tutorial on how to handle categorical data from here
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html">
+   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#building-the-feature-matrix">
+   Building the feature matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow">
+   Separate features from labels to set up the data from the ML workflow
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#using-pca-to-reduce-the-dimensionality-of-the-problem">
+   Using PCA to reduce the dimensionality of the problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
+   Feature postprocessing from paper.
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bioinformatics examples
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluating-protein-domains-per-module.html">
+   What is the protein domain profile of genes from the same module ?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluating-protein-domains-per-module.html#selecting-the-modules-to-evaluate-the-protein-domains">
+   Selecting the modules to evaluate the protein domains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="evaluating-protein-domains-per-module.html#sorting-the-dataframe-by-the-ratio-of-sharing">
+   Sorting the dataframe by the ratio of sharing
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -190,40 +237,52 @@
 </div>
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encoding-categorical-data">
+   Encoding Categorical Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replace-values">
+     Replace Values
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#label-encoding">
+   Label encoding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#you-can-achieve-the-same-label-encoding-using-scikit-learn-s-labelencoder">
+   You can achieve the same label encoding using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     scikit-learn's,
+    </span>
+    <span class="pre">
+     LabelEncoder
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-hot-encoding">
+   One-Hot encoding
+  </a>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#encoding-categorical-data" class="nav-link">Encoding Categorical Data</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#replace-values" class="nav-link">Replace Values</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#label-encoding" class="nav-link">Label encoding</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#you-can-achieve-the-same-label-encoding-using-scikit-learn-s-labelencoder" class="nav-link">You can achieve the same label encoding using scikit-learn's, LabelEncoder</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#one-hot-encoding" class="nav-link">One-Hot encoding</a>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -527,17 +586,17 @@ Name: interaction-type, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2         2676
-PUF3         2119
-HSP82        2042
-SSB2         2018
-RPN11        1735
-             ... 
-YMR074C         1
-BOP3            1
-YOL159C-A       1
-RPL12B          1
-FMP33           1
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2        2676
+PUF3        2119
+HSP82       2042
+SSB2        2018
+RPN11       1735
+            ... 
+HIS7           1
+tR(UCU)B       1
+LSO1           1
+SWS2           1
+MFA1           1
 Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>
