@@ -12,7 +12,7 @@ kernelspec:
 ---
 
 ```{code-cell} ipython3
-from intermine.webservice import Service
+
 import numpy as np
 import scipy.io
 import seaborn as sns
@@ -31,11 +31,10 @@ import os, fnmatch
 ```{code-cell} ipython3
 import os
 script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in
-rel_path_domains="datasets/data-synthetic-lethals.xlsx'"
+rel_path_SL = "datasets/data-synthetic-lethals.xlsx"
 
-abs_file_path_domains = os.path.join(script_dir, rel_path_domains)
+abs_file_path_domains = os.path.join(script_dir, rel_path_SL)
 
-# os.chdir('../') #<-- for binder os.chdir('../')
 my_path_domains=abs_file_path_domains
 data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')
 data_sl=data_domains.dropna()
