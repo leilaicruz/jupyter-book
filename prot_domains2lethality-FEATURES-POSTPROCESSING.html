@@ -513,8 +513,8 @@ We are going to analyze 500 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 75 out of 500 domains
-The empty domain in the nSL were: 83 out of 500 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 79 out of 500 domains
+The empty domain in the nSL were: 89 out of 500 domains
 </pre></div>
 </div>
 </div>
@@ -612,10 +612,10 @@ The empty domain in the nSL were: 83 out of 500 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 2.2557122022362664e-05
-fraction of ones in the SL array is 0.001020515313563442
-fraction of twos in the PI array is 1.268406762193551e-05
-fraction of ones in the PI array is 0.000906910834968389
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 2.983844054887026e-05
+fraction of ones in the SL array is 0.0009705345399579906
+fraction of twos in the PI array is 4.021636403852727e-06
+fraction of ones in the PI array is 0.0009418672457823088
 </pre></div>
 </div>
 </div>
@@ -666,7 +666,7 @@ fraction of ones in the PI array is 0.000906910834968389
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 842
+The number of samples are: 832
 </pre></div>
 </div>
 </div>
@@ -730,7 +730,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(425, 3025)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(421, 3025)
 </pre></div>
 </div>
 </div>
@@ -816,27 +816,27 @@ The number of samples are: 842
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>1671</td>
+      <td>142</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PC1</td>
-      <td>135</td>
+      <td>540</td>
     </tr>
     <tr>
       <th>2</th>
       <td>PC2</td>
-      <td>2771</td>
+      <td>300</td>
     </tr>
     <tr>
       <th>3</th>
       <td>PC3</td>
-      <td>142</td>
+      <td>1671</td>
     </tr>
     <tr>
       <th>4</th>
       <td>PC4</td>
-      <td>305</td>
+      <td>269</td>
     </tr>
   </tbody>
 </table>
@@ -887,83 +887,418 @@ The number of samples are: 842
     <tr>
       <th>0</th>
       <td>PC4</td>
-      <td>305</td>
-      <td>PC1</td>
-      <td>Brr6_like_C_C; Brl1/Brr6 domain</td>
+      <td>269</td>
+      <td>PC8</td>
+      <td>BING4CT; BING4, C-terminal domain</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PC14</td>
-      <td>861</td>
-      <td>PC145</td>
-      <td>FAD-oxidase_C; FAD-linked oxidase, C-terminal</td>
+      <td>274</td>
+      <td>PC11</td>
+      <td>BOP1NT; BOP1, N-terminal domain</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>PC14</td>
-      <td>861</td>
-      <td>PC146</td>
-      <td>FAD-oxidase_C; FAD-linked oxidase, C-terminal</td>
+      <td>PC16</td>
+      <td>687</td>
+      <td>PC12</td>
+      <td>DUF2838; Protein of unknown function DUF2838</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PC20</td>
-      <td>937</td>
-      <td>PC15</td>
-      <td>Frag1; Frag1/DRAM/Sfk1</td>
+      <td>PC24</td>
+      <td>1253</td>
+      <td>PC121</td>
+      <td>KA1; Kinase associated domain 1 (KA1)</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PC22</td>
-      <td>2610</td>
-      <td>PC8</td>
-      <td>TPK_B1_binding; Thiamin pyrophosphokinase, vit...</td>
+      <td>PC25</td>
+      <td>926</td>
+      <td>PC14</td>
+      <td>Flp_C; Recombinase Flp protein</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+      <th>5</th>
+      <td>PC35</td>
+      <td>99</td>
+      <td>PC43</td>
+      <td>APS_kinase</td>
     </tr>
     <tr>
-      <th>66</th>
-      <td>PC264</td>
-      <td>9</td>
-      <td>PC148</td>
-      <td>40S_S4_C; 40S ribosomal protein S4, C-terminal...</td>
+      <th>6</th>
+      <td>PC45</td>
+      <td>1226</td>
+      <td>PC16</td>
+      <td>IU_nuc_hydro; Inosine/uridine-preferring nucle...</td>
     </tr>
     <tr>
-      <th>67</th>
-      <td>PC265</td>
-      <td>881</td>
-      <td>PC193</td>
-      <td>FHA; Forkhead-associated (FHA) domain</td>
+      <th>7</th>
+      <td>PC45</td>
+      <td>1226</td>
+      <td>PC17</td>
+      <td>IU_nuc_hydro; Inosine/uridine-preferring nucle...</td>
     </tr>
     <tr>
-      <th>68</th>
-      <td>PC266</td>
-      <td>61</td>
+      <th>8</th>
+      <td>PC54</td>
+      <td>1429</td>
+      <td>PC130</td>
+      <td>Mcl1_mid; Minichromosome loss protein Mcl1, mi...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>PC60</td>
+      <td>1903</td>
+      <td>PC61</td>
+      <td>Pex2_Pex12; Pex, N-terminal</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PC73</td>
+      <td>510</td>
+      <td>PC105</td>
+      <td>Cpn10; GroES chaperonin family</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>PC73</td>
+      <td>510</td>
+      <td>PC111</td>
+      <td>Cpn10; GroES chaperonin family</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PC76</td>
+      <td>13</td>
+      <td>PC37</td>
+      <td>6PF2K; 6-phosphofructo-2-kinase</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>PC92</td>
+      <td>1887</td>
+      <td>PC92</td>
+      <td>Peptidase_S24; Peptidase S24/S26A/S26B/S26C</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>PC98</td>
+      <td>440</td>
+      <td>PC137</td>
+      <td>Candida_ALS_N; Agglutinin-like protein, N-term...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>PC99</td>
+      <td>1347</td>
+      <td>PC78</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>PC99</td>
+      <td>1347</td>
+      <td>PC79</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>PC165</td>
+      <td>1347</td>
+      <td>PC78</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>PC165</td>
+      <td>1347</td>
+      <td>PC79</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>PC111</td>
+      <td>2917</td>
       <td>PC128</td>
+      <td>hDGE_amylase; Glycogen debranching enzyme, glu...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>PC113</td>
+      <td>2648</td>
+      <td>PC215</td>
+      <td>Tcp11; T-complex 11</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>PC113</td>
+      <td>2648</td>
+      <td>PC222</td>
+      <td>Tcp11; T-complex 11</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>PC119</td>
+      <td>30</td>
+      <td>PC272</td>
+      <td>AAR2; A1 cistron-splicing factor, AAR2</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>PC121</td>
+      <td>1458</td>
+      <td>PC144</td>
+      <td>Mem_trans; Membrane transport protein</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>PC126</td>
+      <td>1969</td>
+      <td>PC196</td>
+      <td>RAI1; RAI1-like</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>PC126</td>
+      <td>1969</td>
+      <td>PC198</td>
+      <td>RAI1; RAI1-like</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>PC129</td>
+      <td>1701</td>
+      <td>PC124</td>
+      <td>PAP_central; Poly(A) polymerase, central domain</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>PC140</td>
+      <td>1236</td>
+      <td>PC255</td>
+      <td>Inositol_P; Inositol monophosphatase-like</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>PC140</td>
+      <td>1236</td>
+      <td>PC261</td>
+      <td>Inositol_P; Inositol monophosphatase-like</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>PC142</td>
+      <td>2916</td>
+      <td>PC149</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>PC142</td>
+      <td>2916</td>
+      <td>PC150</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>PC147</td>
+      <td>2916</td>
+      <td>PC149</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>PC147</td>
+      <td>2916</td>
+      <td>PC150</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>PC149</td>
+      <td>27</td>
+      <td>PC153</td>
+      <td>AAA_8; Dynein heavy chain, P-loop containing D...</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>PC152</td>
+      <td>61</td>
+      <td>PC86</td>
       <td>AGA2</td>
     </tr>
     <tr>
-      <th>69</th>
-      <td>PC268</td>
-      <td>529</td>
-      <td>PC86</td>
-      <td>CybS</td>
+      <th>35</th>
+      <td>PC167</td>
+      <td>554</td>
+      <td>PC44</td>
+      <td>DASH_Dad2; DASH complex subunit Dad2</td>
     </tr>
     <tr>
-      <th>70</th>
-      <td>PC268</td>
-      <td>529</td>
-      <td>PC87</td>
-      <td>CybS</td>
+      <th>36</th>
+      <td>PC171</td>
+      <td>65</td>
+      <td>PC52</td>
+      <td>AIM3; Altered inheritance of mitochondria prot...</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>PC178</td>
+      <td>2388</td>
+      <td>PC165</td>
+      <td>SRP72; Signal recognition particle, SRP72 subu...</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>PC178</td>
+      <td>2388</td>
+      <td>PC166</td>
+      <td>SRP72; Signal recognition particle, SRP72 subu...</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>PC181</td>
+      <td>363</td>
+      <td>PC197</td>
+      <td>CLP1_P; Polyribonucleotide 5&amp;apos;-hydroxyl-ki...</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>PC182</td>
+      <td>363</td>
+      <td>PC197</td>
+      <td>CLP1_P; Polyribonucleotide 5&amp;apos;-hydroxyl-ki...</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>PC209</td>
+      <td>1340</td>
+      <td>PC94</td>
+      <td>Lysine_decarbox; LOG family</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>PC222</td>
+      <td>1352</td>
+      <td>PC267</td>
+      <td>MATalpha_HMGbox; Mating-type protein MAT alpha...</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>PC228</td>
+      <td>2107</td>
+      <td>PC142</td>
+      <td>RasGAP; Ras GTPase-activating protein</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>PC235</td>
+      <td>1286</td>
+      <td>PC248</td>
+      <td>LAGLIDADG_1; Homing endonuclease, LAGLIDADG</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>PC249</td>
+      <td>1286</td>
+      <td>PC248</td>
+      <td>LAGLIDADG_1; Homing endonuclease, LAGLIDADG</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>PC236</td>
+      <td>2483</td>
+      <td>PC136</td>
+      <td>Sirohm_synth_M; Siroheme synthase, central domain</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>PC242</td>
+      <td>2483</td>
+      <td>PC136</td>
+      <td>Sirohm_synth_M; Siroheme synthase, central domain</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>PC241</td>
+      <td>2125</td>
+      <td>PC182</td>
+      <td>Rer1; Retrieval of early ER protein Rer1</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>PC241</td>
+      <td>2125</td>
+      <td>PC186</td>
+      <td>Rer1; Retrieval of early ER protein Rer1</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>PC246</td>
+      <td>228</td>
+      <td>PC168</td>
+      <td>Arg_tRNA_synt_N; Arginyl tRNA synthetase N-ter...</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>PC246</td>
+      <td>228</td>
+      <td>PC169</td>
+      <td>Arg_tRNA_synt_N; Arginyl tRNA synthetase N-ter...</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>PC246</td>
+      <td>228</td>
+      <td>PC170</td>
+      <td>Arg_tRNA_synt_N; Arginyl tRNA synthetase N-ter...</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>PC257</td>
+      <td>107</td>
+      <td>PC154</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>PC257</td>
+      <td>107</td>
+      <td>PC158</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>PC266</td>
+      <td>107</td>
+      <td>PC154</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>PC266</td>
+      <td>107</td>
+      <td>PC158</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>PC272</td>
+      <td>684</td>
+      <td>PC23</td>
+      <td>DUF2611; Protein of unknown function DUF2611</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>PC275</td>
+      <td>980</td>
+      <td>PC225</td>
+      <td>GFD1</td>
     </tr>
   </tbody>
 </table>
-<p>71 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -973,7 +1308,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of shared domains between SL and nSL pairs,after PCA, is =  71 out of 551 so the 12.885662431941924 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of shared domains between SL and nSL pairs,after PCA, is =  59 out of 563 so the 10.479573712255773 %
 </pre></div>
 </div>
 </div>
@@ -1022,37 +1357,37 @@ The number of samples are: 842
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>1671</td>
-      <td>NaN</td>
-      <td>Ofd1_CTDD; Oxoglutarate/iron-dependent oxygena...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PC1</td>
-      <td>135</td>
-      <td>NaN</td>
-      <td>ATP-synt_ab_Xtn; ATPsynthase alpha/beta subuni...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PC2</td>
-      <td>2771</td>
-      <td>NaN</td>
-      <td>Ubiq-assoc; Ubiquitin-associated domain, SWA2-...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PC3</td>
       <td>142</td>
       <td>NaN</td>
       <td>ATP_synt_H; ATPase, V0 complex, subunit e1/e2</td>
     </tr>
     <tr>
+      <th>1</th>
+      <td>PC1</td>
+      <td>540</td>
+      <td>NaN</td>
+      <td>Cytochrome_B; Cytochrome b/b6, N-terminal</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PC2</td>
+      <td>300</td>
+      <td>NaN</td>
+      <td>BolA; BolA protein</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PC3</td>
+      <td>1671</td>
+      <td>NaN</td>
+      <td>Ofd1_CTDD; Oxoglutarate/iron-dependent oxygena...</td>
+    </tr>
+    <tr>
       <th>5</th>
       <td>PC5</td>
-      <td>55</td>
+      <td>134</td>
       <td>NaN</td>
-      <td>ADK</td>
+      <td>ATP-synt_ab_N; ATPase, F1/V1/A1 complex, alpha...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1062,43 +1397,43 @@ The number of samples are: 842
       <td>...</td>
     </tr>
     <tr>
-      <th>278</th>
-      <td>PC267</td>
-      <td>2982</td>
+      <th>297</th>
+      <td>PC282</td>
+      <td>1838</td>
       <td>NaN</td>
-      <td>zf-CCHC; Zinc finger, CCHC-type</td>
+      <td>PTS_2-RNA; Phosphotransferase KptA/Tpt1</td>
     </tr>
     <tr>
-      <th>281</th>
-      <td>PC269</td>
-      <td>1458</td>
+      <th>298</th>
+      <td>PC283</td>
+      <td>1025</td>
       <td>NaN</td>
-      <td>Mem_trans; Membrane transport protein</td>
+      <td>Gal_mutarotas_2; Glycoside hydrolase family 31...</td>
     </tr>
     <tr>
-      <th>282</th>
-      <td>PC270</td>
-      <td>1458</td>
+      <th>299</th>
+      <td>PC284</td>
+      <td>1838</td>
       <td>NaN</td>
-      <td>Mem_trans; Membrane transport protein</td>
+      <td>PTS_2-RNA; Phosphotransferase KptA/Tpt1</td>
     </tr>
     <tr>
-      <th>283</th>
-      <td>PC271</td>
-      <td>2475</td>
+      <th>300</th>
+      <td>PC285</td>
+      <td>282</td>
       <td>NaN</td>
-      <td>Shikimate_dh_N; Shikimate dehydrogenase substr...</td>
+      <td>BRE1; E3 ubiquitin ligase, BRE1</td>
     </tr>
     <tr>
-      <th>284</th>
-      <td>PC272</td>
-      <td>494</td>
+      <th>301</th>
+      <td>PC286</td>
+      <td>1030</td>
       <td>NaN</td>
-      <td>CoaE; Dephospho-CoA kinase</td>
+      <td>Gcn1_N; Gcn1, N-terminal</td>
     </tr>
   </tbody>
 </table>
-<p>214 rows × 4 columns</p>
+<p>243 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1108,7 +1443,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from SL pairs, after PCA, is =  285 out of 551 so the 51.724137931034484 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from SL pairs, after PCA, is =  302 out of 563 so the 53.64120781527531 %
 </pre></div>
 </div>
 </div>
@@ -1152,39 +1487,39 @@ The number of samples are: 842
   </thead>
   <tbody>
     <tr>
-      <th>71</th>
+      <th>59</th>
       <td>NaN</td>
-      <td>1028</td>
+      <td>305</td>
       <td>PC0</td>
-      <td>GatB_Yqey; Asn/Gln amidotransferase</td>
+      <td>Brr6_like_C_C; Brl1/Brr6 domain</td>
     </tr>
     <tr>
-      <th>72</th>
+      <th>60</th>
       <td>NaN</td>
-      <td>242</td>
-      <td>PC3</td>
-      <td>Atg31; Autophagy-related protein 31</td>
+      <td>989</td>
+      <td>PC1</td>
+      <td>GLE1; GLE1-like</td>
     </tr>
     <tr>
-      <th>73</th>
-      <td>NaN</td>
-      <td>337</td>
-      <td>PC4</td>
-      <td>CDC48_N; CDC48, N-terminal subdomain</td>
-    </tr>
-    <tr>
-      <th>74</th>
+      <th>61</th>
       <td>NaN</td>
       <td>308</td>
-      <td>PC5</td>
+      <td>PC2</td>
       <td>Bul1_N; Bul1, N-terminal</td>
     </tr>
     <tr>
-      <th>75</th>
+      <th>62</th>
       <td>NaN</td>
-      <td>2113</td>
-      <td>PC6</td>
-      <td>Rav1p_C; RAVE complex protein Rav1 C-terminal</td>
+      <td>1043</td>
+      <td>PC3</td>
+      <td>Glyco_hydro_15; Glycoside hydrolase family 15/...</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>NaN</td>
+      <td>133</td>
+      <td>PC4</td>
+      <td>ATP-synt_ab_C; ATP synthase, alpha subunit, C-...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1194,43 +1529,43 @@ The number of samples are: 842
       <td>...</td>
     </tr>
     <tr>
-      <th>278</th>
-      <td>NaN</td>
-      <td>1410</td>
-      <td>PC271</td>
-      <td>MTHFR; Methylenetetrahydrofolate reductase</td>
-    </tr>
-    <tr>
-      <th>279</th>
-      <td>NaN</td>
-      <td>2133</td>
-      <td>PC274</td>
-      <td>Rho_GDI; Rho protein GDP-dissociation inhibitor</td>
-    </tr>
-    <tr>
       <th>280</th>
       <td>NaN</td>
-      <td>2478</td>
-      <td>PC275</td>
-      <td>Sin3_corepress; Histone deacetylase interactin...</td>
+      <td>618</td>
+      <td>PC270</td>
+      <td>DNA_pol_alpha_N; DNA polymerase alpha catalyti...</td>
     </tr>
     <tr>
       <th>281</th>
       <td>NaN</td>
-      <td>2478</td>
-      <td>PC276</td>
-      <td>Sin3_corepress; Histone deacetylase interactin...</td>
+      <td>2897</td>
+      <td>PC271</td>
+      <td>dCMP_cyt_deam_1; Cytidine and deoxycytidylate ...</td>
     </tr>
     <tr>
       <th>282</th>
       <td>NaN</td>
-      <td>1178</td>
-      <td>PC277</td>
-      <td>Histone_H2A_C; Histone H2A, C-terminal domain</td>
+      <td>1772</td>
+      <td>PC273</td>
+      <td>PINIT; PINIT domain</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>NaN</td>
+      <td>515</td>
+      <td>PC274</td>
+      <td>Csm1; Monopolin complex, subunit Csm1/Pcs1</td>
+    </tr>
+    <tr>
+      <th>284</th>
+      <td>NaN</td>
+      <td>1589</td>
+      <td>PC275</td>
+      <td>NTP_transferase; Nucleotidyl transferase domain</td>
     </tr>
   </tbody>
 </table>
-<p>212 rows × 4 columns</p>
+<p>226 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1240,7 +1575,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from non SL pairs, after PCA, is =  283 out of 551 so the 51.36116152450091 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from non SL pairs, after PCA, is =  285 out of 563 so the 50.62166962699823 %
 </pre></div>
 </div>
 </div>
@@ -1278,7 +1613,16 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((42, 4), (285, 4))
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/usr/share/miniconda3/envs/wintest/lib/python3.7/site-packages/ipykernel_launcher.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  This is separate from the ipykernel package so we can avoid doing imports until
+</pre>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((43, 4), (302, 4))
 </pre></div>
 </div>
 </div>
@@ -1317,334 +1661,286 @@ The number of samples are: 842
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>PF07569</td>
-      <td>NaN</td>
-      <td>PFU; PLAA family ubiquitin binding, PFU</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PF00856</td>
-      <td>NaN</td>
-      <td>CRAL_TRIO; CRAL-TRIO lipid binding domain</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PF00493</td>
-      <td>NaN</td>
-      <td>Autophagy_C; Autophagy-related protein 3, C-te...</td>
-    </tr>
-    <tr>
       <th>3</th>
-      <td>PF12157</td>
+      <td>PF03983</td>
       <td>NaN</td>
-      <td>Sec7; Sec7 domain</td>
+      <td>IU_nuc_hydro; Inosine/uridine-preferring nucle...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PF07574</td>
+      <td>PF00514</td>
       <td>NaN</td>
-      <td>PGI; Phosphoglucose isomerase (PGI)</td>
+      <td>BAF1_ABF1</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>PF01853</td>
+      <td>PF09402</td>
       <td>NaN</td>
-      <td>Dopey_N; Dopey, N-terminal</td>
+      <td>Rbsn; Rabenosyn, Rab binding domain</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>PF00454</td>
+      <td>PF02037</td>
       <td>NaN</td>
-      <td>Apq12; Nuclear pore assembly and biogenesis pr...</td>
+      <td>ELFV_dehydrog; Glutamate/phenylalanine/leucine...</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>PF04096</td>
+      <td>PF00397</td>
       <td>NaN</td>
-      <td>Kin17_mid; DNA/RNA-binding protein Kin17, cons...</td>
+      <td>Alpha-amylase_C; Alpha-amylase/branching enzym...</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>PF09280</td>
+      <td>PF02359</td>
       <td>NaN</td>
-      <td>Rad50_zn_hook; RAD50, zinc hook</td>
+      <td>FDF; FDF domain</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>PF04494</td>
+      <td>PF01369</td>
       <td>NaN</td>
-      <td>MFA1_2</td>
+      <td>DNA_gyraseB; DNA topoisomerase, type IIA, subu...</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>PF00569</td>
+      <td>PF08587</td>
       <td>NaN</td>
-      <td>BLM10_mid; Proteasome activator Blm10, mid region</td>
+      <td>QRPTase_C; Quinolinate phosphoribosyl transfer...</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>PF14821</td>
+      <td>PF01680</td>
       <td>NaN</td>
-      <td>V-SNARE_C</td>
+      <td>DUF3605; Protein of unknown function DUF3605</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>PF01398</td>
+      <td>PF05251</td>
       <td>NaN</td>
-      <td>DNA_pol_A_exo1; 3&amp;apos;-5&amp;apos; exonuclease do...</td>
+      <td>Myb_DNA-bind_6</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>PF01189</td>
+      <td>PF01151</td>
       <td>NaN</td>
-      <td>CybS</td>
+      <td>Cpn10; GroES chaperonin family</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>PF02364</td>
+      <td>PF00012</td>
       <td>NaN</td>
-      <td>FDX-ACB; Ferrodoxin-fold anticodon-binding domain</td>
+      <td>2OG-FeII_Oxy_4</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>PF00170</td>
+      <td>PF00012</td>
       <td>NaN</td>
-      <td>AMP-binding_C; AMP-binding enzyme, C-terminal ...</td>
+      <td>2OG-FeII_Oxy_4</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>PF08118</td>
+      <td>PF04098</td>
       <td>NaN</td>
-      <td>PRKCSH_1; Mannose-6-phosphate receptor binding...</td>
+      <td>Kinetocho_Slk19; Central kinetochore-associated</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>PF05839</td>
+      <td>PF08312</td>
       <td>NaN</td>
-      <td>NUP214</td>
+      <td>Peptidase_M24_C; Peptidase M24, C-terminal domain</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>PF03907</td>
+      <td>PF12460</td>
       <td>NaN</td>
-      <td>IATP; Mitochondrial ATPase inhibitor</td>
+      <td>Snf7; Snf7 family</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>PF01302</td>
+      <td>PF08690</td>
       <td>NaN</td>
-      <td>DJ-1_PfpI; DJ-1/PfpI</td>
+      <td>RNA_pol_Rpb2_7; RNA polymerase Rpb2, domain 7</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>PF04488</td>
+      <td>PF13639</td>
       <td>NaN</td>
-      <td>MDM31_MDM32; Mitochondrial distribution and mo...</td>
+      <td>ThrE; Putative threonine/serine exporter</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>PF00658</td>
+      <td>PF02984</td>
       <td>NaN</td>
-      <td>CBM_48; Glycoside hydrolase, family 13, N-term...</td>
+      <td>Gal4_dimer; Gal4 dimerisation domain</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>PF05764</td>
+      <td>PF11635</td>
       <td>NaN</td>
-      <td>NPR3; Nitrogen permease regulator 3</td>
+      <td>SRP72; Signal recognition particle, SRP72 subu...</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>PF02269</td>
+      <td>PF00466</td>
       <td>NaN</td>
-      <td>FAD-oxidase_C; FAD-linked oxidase, C-terminal</td>
+      <td>Arg_tRNA_synt_N; Arginyl tRNA synthetase N-ter...</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>PF16846</td>
+      <td>PF00466</td>
       <td>NaN</td>
-      <td>muHD; Muniscin C-terminal</td>
+      <td>Arg_tRNA_synt_N; Arginyl tRNA synthetase N-ter...</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>PF04061</td>
+      <td>PF09462</td>
       <td>NaN</td>
-      <td>KH_1; K Homology domain, type 1</td>
+      <td>Rho_GDI; Rho protein GDP-dissociation inhibitor</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>PF08613</td>
+      <td>PF09462</td>
       <td>NaN</td>
-      <td>RFX_DNA_binding; DNA-binding RFX-type winged-h...</td>
+      <td>Rho_GDI; Rho protein GDP-dissociation inhibitor</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>PF01599</td>
+      <td>PF04139</td>
       <td>NaN</td>
-      <td>DUF2439; Domain of unknown function DUF2439</td>
+      <td>LRR_8; Leucine-rich repeat</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>PF01599</td>
+      <td>PF09444</td>
       <td>NaN</td>
-      <td>DUF2439; Domain of unknown function DUF2439</td>
+      <td>Rer1; Retrieval of early ER protein Rer1</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>PF05186</td>
+      <td>PF04729</td>
       <td>NaN</td>
-      <td>Motile_Sperm; Major sperm protein (MSP) domain</td>
+      <td>MTHFR; Methylenetetrahydrofolate reductase</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>PF05186</td>
+      <td>PF08598</td>
       <td>NaN</td>
-      <td>Motile_Sperm; Major sperm protein (MSP) domain</td>
+      <td>RAI1; RAI1-like</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>PF00831</td>
+      <td>PF04478</td>
       <td>NaN</td>
-      <td>COX7a</td>
+      <td>MCM_OB; MCM OB domain</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>PF06017</td>
+      <td>PF00410</td>
       <td>NaN</td>
-      <td>Noc2; Nucleolar complex protein 2</td>
+      <td>Aminotran_3; Aminotransferase class-III</td>
     </tr>
     <tr>
       <th>33</th>
-      <td>PF04821</td>
+      <td>PF13513</td>
       <td>NaN</td>
-      <td>Mcl1_mid; Minichromosome loss protein Mcl1, mi...</td>
+      <td>Tcp11; T-complex 11</td>
     </tr>
     <tr>
       <th>34</th>
-      <td>PF00238</td>
+      <td>PF13041</td>
       <td>NaN</td>
-      <td>ATG7_N; Ubiquitin-like modifier-activating enz...</td>
+      <td>THF_DHG_CYH_C; Tetrahydrofolate dehydrogenase/...</td>
     </tr>
     <tr>
       <th>35</th>
-      <td>PF00238</td>
+      <td>PF09497</td>
       <td>NaN</td>
-      <td>ATG7_N; Ubiquitin-like modifier-activating enz...</td>
+      <td>Ribo_biogen_C; Ribosome biogenesis protein, C-...</td>
     </tr>
     <tr>
       <th>36</th>
-      <td>PF07960</td>
+      <td>PF09497</td>
       <td>NaN</td>
-      <td>PMI_typeI; Mannose-6-phosphate isomerase, type I</td>
+      <td>Ribo_biogen_C; Ribosome biogenesis protein, C-...</td>
     </tr>
     <tr>
       <th>37</th>
-      <td>PF11051</td>
+      <td>PF03915</td>
       <td>NaN</td>
-      <td>SNARE_assoc; SNARE associated Golgi protein</td>
+      <td>ICL; Isocitrate lyase</td>
     </tr>
     <tr>
       <th>38</th>
-      <td>PF11051</td>
+      <td>PF12718</td>
       <td>NaN</td>
-      <td>SNARE_assoc; SNARE associated Golgi protein</td>
+      <td>Ste50p-SAM; Ste50, sterile alpha motif</td>
     </tr>
     <tr>
       <th>39</th>
-      <td>PF00462</td>
+      <td>PF00399</td>
       <td>NaN</td>
-      <td>Arb2; Arb2 domain</td>
+      <td>Alpha_adaptinC2; Clathrin adaptor, alpha/beta/...</td>
     </tr>
     <tr>
       <th>40</th>
-      <td>PF08528</td>
+      <td>PF00677</td>
       <td>NaN</td>
-      <td>Pox_MCEL; mRNA (guanine-N(7))-methyltransferas...</td>
+      <td>CDC4_D; Cell division control protein 4, dimer...</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>PF01280</td>
+      <td>PF12597</td>
       <td>NaN</td>
-      <td>DHHA2; DHHA2 domain</td>
+      <td>Spc29; Spindle pole component 29</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>PF08149</td>
+      <td>PF05875</td>
       <td>NaN</td>
-      <td>PRP38; Pre-mRNA-splicing factor 38</td>
+      <td>NatB_MDM20; N-acetyltransferase B complex, non...</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>PF05970</td>
+      <td>PF00164</td>
       <td>NaN</td>
-      <td>NifU; NIF system FeS cluster assembly, NifU, C...</td>
+      <td>ALIX_LYPXL_bnd; ALIX V-shaped domain</td>
     </tr>
     <tr>
       <th>44</th>
-      <td>PF02229</td>
+      <td>PF04193</td>
       <td>NaN</td>
-      <td>Exo_endo_phos; Endonuclease/exonuclease/phosph...</td>
+      <td>Ligase_CoA; ATP-citrate lyase/succinyl-CoA ligase</td>
     </tr>
     <tr>
       <th>45</th>
-      <td>PF01775</td>
+      <td>PF04004</td>
       <td>NaN</td>
-      <td>DUF747; Tapt1 family</td>
+      <td>Inositol_P; Inositol monophosphatase-like</td>
     </tr>
     <tr>
       <th>46</th>
-      <td>PF02466</td>
+      <td>PF03366</td>
       <td>NaN</td>
-      <td>FTHFS; Formate-tetrahydrofolate ligase, FTHFS</td>
+      <td>HATPase_c_3</td>
     </tr>
     <tr>
       <th>47</th>
-      <td>PF07106</td>
+      <td>PF08689</td>
       <td>NaN</td>
-      <td>PAXNEB; Elongator complex protein 4</td>
+      <td>RNA_pol_Rpb2_6; DNA-directed RNA polymerase, s...</td>
     </tr>
     <tr>
       <th>48</th>
-      <td>PF00083</td>
+      <td>PF01929</td>
       <td>NaN</td>
-      <td>AA_permease; Amino acid permease/ SLC12A domain</td>
+      <td>EAP30</td>
     </tr>
     <tr>
       <th>49</th>
-      <td>PF01459</td>
+      <td>PF11708</td>
       <td>NaN</td>
-      <td>DUF1077; Protein of unknown function DUF1077, ...</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>PF05238</td>
-      <td>NaN</td>
-      <td>Myb_Cef; Pre-mRNA splicing factor component Cd...</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td>PF09598</td>
-      <td>NaN</td>
-      <td>Ribonucleas_3_3; Ribonuclease III domain</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td>PF07064</td>
-      <td>NaN</td>
-      <td>PAP_central; Poly(A) polymerase, central domain</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td>PF01423</td>
-      <td>NaN</td>
-      <td>DNA_topoisoIV; DNA topoisomerase, type IIA, su...</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>PF12330</td>
-      <td>NaN</td>
-      <td>Sin3_corepress; Histone deacetylase interactin...</td>
+      <td>STAS; STAS domain</td>
     </tr>
   </tbody>
 </table>
@@ -1682,6 +1978,24 @@ The number of samples are: 842
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>PF16796</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>PF04420</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PF00225</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
+    </tr>
   </tbody>
 </table>
 </div></div></div>
