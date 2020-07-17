@@ -36,7 +36,7 @@ rel_path_SL = "datasets/data-synthetic-lethals.xlsx"
 abs_file_path_domains = os.path.join(script_dir, rel_path_SL)
 
 my_path_domains=abs_file_path_domains
-data_domains=pd.read_excel(my_path_domains,header=0,index_col='Unnamed: 0')
+data_domains=pd.read_excel(my_path_domains,header=0)
 data_sl=data_domains.dropna()
 
 rel_path_query="datasets/paralogs_sL_from_query-genes.xlsx"
