@@ -136,7 +136,7 @@ set(a)==set(b)
 ```
 
 ```{code-cell} ipython3
-pairs_sL=np.load('../pairs-sL-that-share-domains.npy')
+pairs_sL=np.load('pairs-sL-that-share-domains.npy')
 ```
 
 ```{code-cell} ipython3
@@ -166,6 +166,3 @@ print('The contribution of paralogs to the total number of SL pairs is  =', 100*
 print('The number of SL that share domains out of the total number of SL pairs is =',100*len(pairs_sL)/17871,'%')
 ```
 
-```{code-cell} ipython3
-
-```
