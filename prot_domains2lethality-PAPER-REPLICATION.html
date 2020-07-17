@@ -417,8 +417,8 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 14 out of 100 domains
-The empty domain in the nSL were: 19 out of 100 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 21 out of 100 domains
+The empty domain in the nSL were: 22 out of 100 domains
 </pre></div>
 </div>
 </div>
@@ -516,10 +516,10 @@ The empty domain in the nSL were: 19 out of 100 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.1531808571977706e-05
-fraction of ones in the SL array is 0.001095521814337882
-fraction of twos in the PI array is 1.2243648607284971e-05
-fraction of ones in the PI array is 0.0008652178349148047
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.2553614394811172e-05
+fraction of ones in the SL array is 0.0010545036091641384
+fraction of twos in the PI array is 4.238186056367875e-06
+fraction of ones in the PI array is 0.000945115490570036
 </pre></div>
 </div>
 </div>
@@ -570,7 +570,7 @@ fraction of ones in the PI array is 0.0008652178349148047
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 167
+The number of samples are: 157
 </pre></div>
 </div>
 </div>
@@ -653,7 +653,7 @@ The number of samples are: 167
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fb6284ad450&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f1014e89990&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_29_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_29_1.png" />
@@ -681,8 +681,8 @@ The number of samples are: 167
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (116, 3025) (116,)
-Test set: (51, 3025) (51,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (109, 3025) (109,)
+Test set: (48, 3025) (48,)
 </pre></div>
 </div>
 </div>
@@ -708,7 +708,7 @@ Test set: (51, 3025) (51,)
 </pre>
 </div>
 <div class="stderr docutils container">
-<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.3s finished
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.1s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -727,7 +727,7 @@ Test set: (51, 3025) (51,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=1)
 </pre></div>
 </div>
 </div>
@@ -751,7 +751,7 @@ Test set: (51, 3025) (51,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7058823529411765
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6041666666666666
 </pre></div>
 </div>
 </div>
@@ -814,13 +814,13 @@ Test set: (51, 3025) (51,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.29411764705882354
-Test set Accuracy:  0.7058823529411765
-The Jaccard index is = 0.5833333333333334
-The log-loss is = 10.158651786133776
-The f1-score is = 0.7368421052631579
-Precision: 0.6363636363636364
-Recall: 0.875
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.3958333333333333
+Test set Accuracy:  0.6041666666666666
+The Jaccard index is = 0.4411764705882353
+The log-loss is = 13.671748914170307
+The f1-score is = 0.6122448979591836
+Precision: 0.625
+Recall: 0.6
 </pre></div>
 </div>
 </div>
@@ -835,12 +835,12 @@ Recall: 0.875
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.83      0.56      0.67        27
-          SL       0.64      0.88      0.74        24
+       NonSl       0.58      0.61      0.60        23
+          SL       0.62      0.60      0.61        25
 
-    accuracy                           0.71        51
-   macro avg       0.73      0.72      0.70        51
-weighted avg       0.74      0.71      0.70        51
+    accuracy                           0.60        48
+   macro avg       0.60      0.60      0.60        48
+weighted avg       0.61      0.60      0.60        48
 
 </pre></div>
 </div>
@@ -866,7 +866,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb6284058d0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1014e6a1d0&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_46_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_46_1.png" />
@@ -891,7 +891,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb629e5acd0&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f10165127d0&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_47_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_47_1.png" />
@@ -950,7 +950,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.0002197270000010576
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.000219200000000086
 </pre></div>
 </div>
 </div>
@@ -970,7 +970,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.7391860930000007
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.6529622740000001
 </pre></div>
 </div>
 </div>
@@ -1055,7 +1055,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((116, 3025), (51, 3025), (94, 3025), (116, 94))
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((109, 3025), (48, 3025), (90, 3025), (109, 90))
 </pre></div>
 </div>
 </div>
@@ -1095,7 +1095,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=1)
 </pre></div>
 </div>
 </div>
@@ -1113,7 +1113,7 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7647058823529411
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.5625
 </pre></div>
 </div>
 </div>
@@ -1159,13 +1159,13 @@ weighted avg       0.74      0.71      0.70        51
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.23529411764705882
-Test set Accuracy:  0.7647058823529411
-The Jaccard index is = 0.52
-The log-loss is = 8.126786594830556
-The f1-score is = 0.6842105263157894
-Precision: 0.9285714285714286
-Recall: 0.5416666666666666
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.4375
+Test set Accuracy:  0.5625
+The Jaccard index is = 0.5227272727272727
+The log-loss is = 15.111031180089542
+The f1-score is = 0.6865671641791046
+Precision: 0.5476190476190477
+Recall: 0.92
 </pre></div>
 </div>
 </div>
@@ -1211,12 +1211,12 @@ Recall: 0.5416666666666666
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.70      0.96      0.81        27
-          SL       0.93      0.54      0.68        24
+       NonSl       0.67      0.17      0.28        23
+          SL       0.55      0.92      0.69        25
 
-    accuracy                           0.76        51
-   macro avg       0.82      0.75      0.75        51
-weighted avg       0.81      0.76      0.75        51
+    accuracy                           0.56        48
+   macro avg       0.61      0.55      0.48        48
+weighted avg       0.60      0.56      0.49        48
 
 </pre></div>
 </div>
