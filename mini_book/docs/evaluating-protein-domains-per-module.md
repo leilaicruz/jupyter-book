@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-## What is the protein domain profile of genes from the same module ? 
+# What is the protein domain profile of genes from the same module ? 
 
 ```{code-cell} ipython3
 from intermine.webservice import Service
