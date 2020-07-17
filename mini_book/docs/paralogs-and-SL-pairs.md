@@ -45,8 +45,8 @@ abs_file_path_query = os.path.join(script_dir, rel_path_query)
 rel_path_target="datasets/paralogs_sL_from_target-genes.xlsx"
 abs_file_path_target= os.path.join(script_dir, rel_path_target)
 
-query_paralogs_pd=pd.read_excel(abs_file_path_query)
-target_paralogs_pd=pd.read_excel(abs_file_path_target)
+query_paralogs=pd.read_excel(abs_file_path_query)
+target_paralogs=pd.read_excel(abs_file_path_target)
 ```
 
 ###  Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database. 
