@@ -31,6 +31,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Build a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database." href="paralogs-and-SL-pairs.html" />
     <link rel="prev" title="Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -137,6 +138,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="#sorting-the-dataframe-by-the-ratio-of-sharing">
    Sorting the dataframe by the ratio of sharing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paralogs-and-SL-pairs.html">
+   Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paralogs-and-SL-pairs.html#putting-1-s-if-the-paralog-pair-is-also-sl">
+   Putting 1’s if the paralog pair is also SL
   </a>
  </li>
 </ul>
@@ -609,7 +620,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>18</td>
       <td>0.074510</td>
       <td>Pkinase; Protein kinase domain</td>
-      <td>[PRK1, ARK1, PKC1, STE20, CDC28, SWE1, GIN4, K...</td>
+      <td>[BCK1, KCC4, MPS1, SSK2, KIC1, STE20, CDC15, P...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -618,7 +629,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>0</td>
       <td>0.058824</td>
       <td>SH3_1; SH3 domain</td>
-      <td>[BZZ1, SLA1, BBC1, FUS1, MYO5, BOI1, PIN3, RVS...</td>
+      <td>[BEM1, BOI2, BZZ1, BBC1, MYO5, BUD14, LSB1, PI...</td>
     </tr>
     <tr>
       <th>17</th>
@@ -627,7 +638,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>39</td>
       <td>0.027451</td>
       <td>PH; Pleckstrin homology domain</td>
-      <td>[BEM3, BUD4, BOI1, CLA4, SLM2, BOI2, SLM1, BEM2]</td>
+      <td>[BEM2, BOI2, BEM3, SLM1, BOI1, SLM2, CLA4, BUD4]</td>
     </tr>
     <tr>
       <th>9</th>
@@ -636,7 +647,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>91</td>
       <td>0.023529</td>
       <td>Ras; Small GTPase superfamily</td>
-      <td>[RSR1, CDC42, RHO1, RHO4, TEM1, RHO2, RHO3]</td>
+      <td>[RHO3, RHO2, RHO4, TEM1, RHO1, CDC42, RSR1]</td>
     </tr>
     <tr>
       <th>14</th>
@@ -645,7 +656,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>116</td>
       <td>0.023529</td>
       <td>Cyclin_N; Cyclin, N-terminal</td>
-      <td>[CLB1, CLB4, CLB5, PCL2, PCL1, CLB2, CLB3]</td>
+      <td>[CLB1, CLB5, CLB3, CLB4, CLB2, PCL2, PCL1]</td>
     </tr>
   </tbody>
 </table>
@@ -680,6 +691,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="previous page">Feature postprocessing from paper.</a>
+    <a class='right-next' id="next-link" href="paralogs-and-SL-pairs.html" title="next page">Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
