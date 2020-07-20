@@ -10,6 +10,7 @@ kernelspec:
   language: python
   name: python3
 ---
+# Paralogs and synthetic lethals 
 
 ```{code-cell} ipython3
 
@@ -49,8 +50,7 @@ query_paralogs=pd.read_excel(abs_file_path_query)
 target_paralogs=pd.read_excel(abs_file_path_target)
 ```
 
-###  Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database. 
-- this is the first check to analyze if the reason why a SL pair shares domains is because they are also paralogs. 
+###  How many paralogs are also SL pairs? 
 
 
 ```{code-cell} ipython3

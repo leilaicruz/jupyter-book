@@ -99,21 +99,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#building-the-feature-matrix">
-   Building the feature matrix
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow">
-   Separate features from labels to set up the data from the ML workflow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#using-pca-to-reduce-the-dimensionality-of-the-problem">
-   Using PCA to reduce the dimensionality of the problem
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
    Feature postprocessing from paper.
   </a>
@@ -131,23 +116,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="evaluating-protein-domains-per-module.html#selecting-the-modules-to-evaluate-the-protein-domains">
-   Selecting the modules to evaluate the protein domains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="evaluating-protein-domains-per-module.html#sorting-the-dataframe-by-the-ratio-of-sharing">
-   Sorting the dataframe by the ratio of sharing
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="paralogs-and-SL-pairs.html">
-   Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="paralogs-and-SL-pairs.html#putting-1-s-if-the-paralog-pair-is-also-sl">
-   Putting 1’s if the paralog pair is also SL
+   Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
@@ -587,6 +557,9 @@ Affinity Capture-Luminescence        46
 Name: interaction-type, dtype: int64
 </pre></div>
 </div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -596,17 +569,17 @@ Name: interaction-type, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2       2676
-PUF3       2119
-HSP82      2042
-SSB2       2018
-RPN11      1735
-           ... 
-MRPL38        1
-MSW1          1
-YMR102C       1
-MFA1          1
-YNL208W       1
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>NAB2         2676
+PUF3         2119
+HSP82        2042
+SSB2         2018
+RPN11        1735
+             ... 
+tR(UCU)J1       1
+ABM1            1
+ECM4            1
+YJR124C         1
+tD(GUC)M        1
 Name: gene-query-name, Length: 5139, dtype: int64
 </pre></div>
 </div>

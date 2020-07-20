@@ -31,7 +31,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Build a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database." href="paralogs-and-SL-pairs.html" />
+    <link rel="next" title="Paralogs and synthetic lethals" href="paralogs-and-SL-pairs.html" />
     <link rel="prev" title="Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,21 +99,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#building-the-feature-matrix">
-   Building the feature matrix
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow">
-   Separate features from labels to set up the data from the ML workflow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html#using-pca-to-reduce-the-dimensionality-of-the-problem">
-   Using PCA to reduce the dimensionality of the problem
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
    Feature postprocessing from paper.
   </a>
@@ -131,23 +116,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="#selecting-the-modules-to-evaluate-the-protein-domains">
-   Selecting the modules to evaluate the protein domains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#sorting-the-dataframe-by-the-ratio-of-sharing">
-   Sorting the dataframe by the ratio of sharing
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="paralogs-and-SL-pairs.html">
-   Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="paralogs-and-SL-pairs.html#putting-1-s-if-the-paralog-pair-is-also-sl">
-   Putting 1’s if the paralog pair is also SL
+   Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
@@ -254,7 +224,19 @@
             <i class="fas fa-list"></i> On this page
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selecting-the-modules-to-evaluate-the-protein-domains">
+   Selecting the modules to evaluate the protein domains
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sorting-the-dataframe-by-the-ratio-of-sharing">
+   Sorting the dataframe by the ratio of sharing
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -285,9 +267,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="selecting-the-modules-to-evaluate-the-protein-domains">
-<h1>Selecting the modules to evaluate the protein domains<a class="headerlink" href="#selecting-the-modules-to-evaluate-the-protein-domains" title="Permalink to this headline">¶</a></h1>
+<h2>Selecting the modules to evaluate the protein domains<a class="headerlink" href="#selecting-the-modules-to-evaluate-the-protein-domains" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -555,7 +536,7 @@
 </div>
 </div>
 <div class="section" id="sorting-the-dataframe-by-the-ratio-of-sharing">
-<h1>Sorting the dataframe by the ratio of sharing<a class="headerlink" href="#sorting-the-dataframe-by-the-ratio-of-sharing" title="Permalink to this headline">¶</a></h1>
+<h2>Sorting the dataframe by the ratio of sharing<a class="headerlink" href="#sorting-the-dataframe-by-the-ratio-of-sharing" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">unique_domains</span><span class="p">)</span>
@@ -620,7 +601,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>18</td>
       <td>0.074510</td>
       <td>Pkinase; Protein kinase domain</td>
-      <td>[BCK1, KCC4, MPS1, SSK2, KIC1, STE20, CDC15, P...</td>
+      <td>[SNF1, CLA4, KIC1, CBK1, MPS1, BCK1, PBS2, KCC...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -629,7 +610,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>0</td>
       <td>0.058824</td>
       <td>SH3_1; SH3 domain</td>
-      <td>[BEM1, BOI2, BZZ1, BBC1, MYO5, BUD14, LSB1, PI...</td>
+      <td>[SLA1, BEM1, ABP1, PIN3, BZZ1, RVS167, BOI2, S...</td>
     </tr>
     <tr>
       <th>17</th>
@@ -638,7 +619,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>39</td>
       <td>0.027451</td>
       <td>PH; Pleckstrin homology domain</td>
-      <td>[BEM2, BOI2, BEM3, SLM1, BOI1, SLM2, CLA4, BUD4]</td>
+      <td>[BEM2, CLA4, BOI2, BEM3, SLM2, BUD4, BOI1, SLM1]</td>
     </tr>
     <tr>
       <th>9</th>
@@ -647,7 +628,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>91</td>
       <td>0.023529</td>
       <td>Ras; Small GTPase superfamily</td>
-      <td>[RHO3, RHO2, RHO4, TEM1, RHO1, CDC42, RSR1]</td>
+      <td>[RHO4, CDC42, RHO2, RHO1, RSR1, TEM1, RHO3]</td>
     </tr>
     <tr>
       <th>14</th>
@@ -656,7 +637,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>116</td>
       <td>0.023529</td>
       <td>Cyclin_N; Cyclin, N-terminal</td>
-      <td>[CLB1, CLB5, CLB3, CLB4, CLB2, PCL2, PCL1]</td>
+      <td>[CLB5, PCL1, PCL2, CLB4, CLB1, CLB3, CLB2]</td>
     </tr>
   </tbody>
 </table>
@@ -680,6 +661,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 </div>
+</div>
 
 
               </div>
@@ -691,7 +673,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="previous page">Feature postprocessing from paper.</a>
-    <a class='right-next' id="next-link" href="paralogs-and-SL-pairs.html" title="next page">Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.</a>
+    <a class='right-next' id="next-link" href="paralogs-and-SL-pairs.html" title="next page">Paralogs and synthetic lethals</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
