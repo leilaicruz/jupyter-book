@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
@@ -30,6 +31,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
 
@@ -72,12 +80,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/MysT_Notebooks.html">
-   Notebooks written entirely in markdown
+   1. Notebooks written entirely in markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/python_by_example.html">
-   An Introductory Example
+   2. An Introductory Example
   </a>
  </li>
 </ul>
@@ -89,17 +97,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="tutorial-categorical-data-on-yeast-interactions.html">
-   Tutorial on how to handle categorical data from here
+   1. Tutorial on how to handle categorical data from here
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html">
-   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+   2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
-   Feature postprocessing from paper.
+   3. Feature postprocessing from paper.
   </a>
  </li>
 </ul>
@@ -111,12 +119,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="evaluating-protein-domains-per-module.html">
-   What is the protein domain profile of genes from the same module ?
+   1. What are the most present protein domains per biological function?
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="paralogs-and-SL-pairs.html">
-   Paralogs and synthetic lethals
+   2. Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
