@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# What is the protein domain profile of genes from the same module ? 
+# What are the most present protein domains per biological function?  
 
 ```{code-cell} ipython3
 from intermine.webservice import Service
