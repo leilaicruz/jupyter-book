@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>2. Paralogs and synthetic lethals &#8212; Notebooks for data science</title>
+    <title>2. Build a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database. &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -124,7 +124,22 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Paralogs and synthetic lethals
+   2. Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#taking-the-indexes-of-the-paralogs-pairs-that-are-also-synthetic-lethals">
+   3. Taking the indexes of the paralogs pairs that are also synthetic lethals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#putting-1-s-if-the-paralog-pair-is-also-sl">
+   4. Putting 1’s if the paralog pair is also SL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#what-is-the-contribution-of-paralogs-to-sl-that-share-protein-domains">
+   5. What is the contribution of paralogs to SL that share protein domains?
   </a>
  </li>
 </ul>
@@ -228,19 +243,7 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-many-paralogs-are-also-sl-pairs">
-   2.1. How many paralogs are also SL pairs?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#putting-1-s-if-the-paralog-pair-is-also-sl">
-   2.2. Putting 1’s if the paralog pair is also SL
-  </a>
- </li>
-</ul>
-
+            
         </nav>
     </div>
 </div>
@@ -249,11 +252,10 @@
         
               <div>
                 
-  <div class="section" id="paralogs-and-synthetic-lethals">
-<h1><span class="section-number">2. </span>Paralogs and synthetic lethals<a class="headerlink" href="#paralogs-and-synthetic-lethals" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">intermine.webservice</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.io</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span><span class="p">,</span> <span class="n">optimize</span><span class="p">,</span> <span class="n">interpolate</span>
@@ -272,48 +274,76 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;__file__&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- absolute dir the script is in</span>
-<span class="n">rel_path_SL</span> <span class="o">=</span> <span class="s2">&quot;datasets/data-synthetic-lethals.xlsx&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;__file__&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- absolute dir the script is in</span>
+<span class="n">rel_path_sl</span><span class="o">=</span><span class="s2">&quot;datasets/data-synthetic-lethals.xlsx&quot;</span>
+<span class="n">rel_path_paralogs</span><span class="o">=</span><span class="s1">&#39;datasets/paralogs-all-unique-SL-pairs.xlsx&#39;</span>
 
-<span class="n">abs_file_path_domains</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_SL</span><span class="p">)</span>
+<span class="n">abs_file_path_sl</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_sl</span><span class="p">)</span>
+<span class="n">abs_file_path_paralogs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_paralogs</span><span class="p">)</span>
 
-<span class="n">my_path_domains</span><span class="o">=</span><span class="n">abs_file_path_domains</span>
-<span class="n">data_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">my_path_domains</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">data_sl</span><span class="o">=</span><span class="n">data_domains</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="c1"># os.chdir(&#39;../&#39;) #&lt;-- for binder os.chdir(&#39;../&#39;)</span>
 
-<span class="n">rel_path_query</span><span class="o">=</span><span class="s2">&quot;datasets/paralogs_sL_from_query-genes.xlsx&quot;</span>
-<span class="n">abs_file_path_query</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_query</span><span class="p">)</span>
-
-<span class="n">rel_path_target</span><span class="o">=</span><span class="s2">&quot;datasets/paralogs_sL_from_target-genes.xlsx&quot;</span>
-<span class="n">abs_file_path_target</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="n">rel_path_target</span><span class="p">)</span>
-
-<span class="n">query_paralogs</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">abs_file_path_query</span><span class="p">)</span>
-<span class="n">target_paralogs</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">abs_file_path_target</span><span class="p">)</span>
+<span class="n">data_sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">abs_file_path_sl</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">all_paralogs_from_sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">abs_file_path_paralogs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="how-many-paralogs-are-also-sl-pairs">
-<h2><span class="section-number">2.1. </span>How many paralogs are also SL pairs?<a class="headerlink" href="#how-many-paralogs-are-also-sl-pairs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="build-a-program-that-reads-the-paralogs-of-the-que-query-gene-and-see-if-that-paralog-is-also-sl-of-the-query-gene-by-inspecting-if-the-paralog-is-present-in-the-target-genes-of-the-sl-database">
+<h1><span class="section-number">2. </span>Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database.<a class="headerlink" href="#build-a-program-that-reads-the-paralogs-of-the-que-query-gene-and-see-if-that-paralog-is-also-sl-of-the-query-gene-by-inspecting-if-the-paralog-is-present-in-the-target-genes-of-the-sl-database" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>this is the first check to analyze if the reason why a SL pair shares domains is because they are also paralogs.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># query_paralogs=pd.read_excel(&#39;datasets/paralogs_sL_from_query-genes.xlsx&#39;)</span>
-<span class="c1"># target_paralogs=pd.read_excel(&#39;datasets/paralogs_sL_from_target-genes.xlsx&#39;)</span>
-
-<span class="n">query_paralogs_pd</span><span class="o">=</span><span class="n">query_paralogs</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">query_paralogs_pd</span><span class="o">=</span><span class="n">all_paralogs_from_sl</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
 <span class="n">query_paralogs_pd</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">,</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span>
+<span class="n">query_paralogs_pd_withoutnan</span><span class="o">=</span><span class="n">query_paralogs_pd</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">query_paralogs_pd_withoutnan</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query_paralogs_pd_withoutnan</span><span class="p">))</span>
+<span class="n">query_paralogs_pd</span><span class="o">=</span><span class="n">query_paralogs_pd_withoutnan</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="taking-the-indexes-of-the-paralogs-pairs-that-are-also-synthetic-lethals">
+<h1><span class="section-number">3. </span>Taking the indexes of the paralogs pairs that are also synthetic lethals<a class="headerlink" href="#taking-the-indexes-of-the-paralogs-pairs-that-are-also-synthetic-lethals" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">indexes_sl_query</span><span class="o">=</span><span class="p">[]</span>
 
-<span class="n">target_paralogs_pd</span><span class="o">=</span><span class="n">target_paralogs</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">)</span>
-<span class="n">target_paralogs_pd</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">,</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">)):</span>
+    <span class="n">paralog_target</span><span class="o">=</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">list_targets_sl</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+
+    
+    <span class="k">if</span> <span class="n">paralog_target</span> <span class="ow">in</span> <span class="n">list_targets_sl</span><span class="p">:</span>
+        <span class="n">indexes_sl_query</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">paralog_target</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="putting-1-s-if-the-paralog-pair-is-also-sl">
+<h1><span class="section-number">4. </span>Putting 1’s if the paralog pair is also SL<a class="headerlink" href="#putting-1-s-if-the-paralog-pair-is-also-sl" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sL_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indexes_sl_query</span><span class="p">:</span>
+        <span class="n">sL_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;sL&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sL_values</span>
+
+<span class="n">paralogs_sl_pd</span><span class="o">=</span><span class="n">query_paralogs_pd</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">query_paralogs_pd</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="n">target_paralogs_pd</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sl_that_are_paralogs</span><span class="o">=</span><span class="n">paralogs_sl_pd</span><span class="p">[</span><span class="n">paralogs_sl_pd</span><span class="p">[</span><span class="s1">&#39;sL&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sl_that_are_paralogs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -338,97 +368,43 @@
       <th></th>
       <th>name-gene</th>
       <th>name-paralogue</th>
+      <th>sL</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>FKH2</td>
-      <td>FKH1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>IXR1</td>
-      <td>ABF2</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>LEM3</td>
-      <td>CDC50</td>
+      <td>ADE16</td>
+      <td>ADE17</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>SHC1</td>
-      <td>SKT5</td>
+      <th>6</th>
+      <td>AFT1</td>
+      <td>AFT2</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>VIK1</td>
-      <td>CIK1</td>
+      <th>8</th>
+      <td>AGA1</td>
+      <td>FIG2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>AIR1</td>
+      <td>AIR2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>ALP1</td>
+      <td>CAN1</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">indexes_sl_query</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">)):</span>
-    <span class="n">paralog_target</span><span class="o">=</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">list_targets_sl</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
-
-    
-    <span class="k">if</span> <span class="n">paralog_target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">list_targets_sl</span><span class="p">:</span>
-        <span class="n">indexes_sl_query</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">paralog_target</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-
-<span class="n">indexes_sl_target</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">target_paralogs_pd</span><span class="p">)):</span> 
-    
-    <span class="n">paralog_query</span><span class="o">=</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">list_queries_sl</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
-
-    <span class="k">if</span> <span class="n">paralog_query</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">list_queries_sl</span><span class="p">:</span>
-        <span class="n">indexes_sl_target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-paralogue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">paralog_query</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="putting-1-s-if-the-paralog-pair-is-also-sl">
-<h2><span class="section-number">2.2. </span>Putting 1’s if the paralog pair is also SL<a class="headerlink" href="#putting-1-s-if-the-paralog-pair-is-also-sl" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sL_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">query_paralogs_pd</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indexes_sl_query</span><span class="p">:</span>
-        <span class="n">sL_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">query_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;sL&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sL_values</span>
-
-<span class="n">sL_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">target_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;name-gene&#39;</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">target_paralogs_pd</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indexes_sl_target</span><span class="p">:</span>
-        <span class="n">sL_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">target_paralogs_pd</span><span class="p">[</span><span class="s1">&#39;sL&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sL_values</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paralogs_sl_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">query_paralogs_pd</span><span class="p">,</span><span class="n">target_paralogs_pd</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sl_that_are_paralogs</span><span class="o">=</span><span class="n">paralogs_sl_pd</span><span class="p">[</span><span class="n">paralogs_sl_pd</span><span class="p">[</span><span class="s1">&#39;sL&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -463,32 +439,32 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>FKS1</td>
-      <td>GSC2</td>
+      <td>ADE16</td>
+      <td>ADE17</td>
       <td>1</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>RAS2</td>
-      <td>RAS1</td>
+      <td>AFT1</td>
+      <td>AFT2</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>GSC2</td>
-      <td>FKS1</td>
+      <td>AGA1</td>
+      <td>FIG2</td>
       <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>KRE6</td>
-      <td>SKN1</td>
+      <td>AIR1</td>
+      <td>AIR2</td>
       <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>DBF2</td>
-      <td>DBF20</td>
+      <td>ALP1</td>
+      <td>CAN1</td>
       <td>1</td>
     </tr>
     <tr>
@@ -498,100 +474,46 @@
       <td>...</td>
     </tr>
     <tr>
-      <th>263</th>
-      <td>RPS24B</td>
-      <td>RPS24A</td>
+      <th>171</th>
+      <td>YCK1</td>
+      <td>YCK2</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>264</th>
-      <td>RPS26B</td>
-      <td>RPS26A</td>
+      <th>172</th>
+      <td>YPC1</td>
+      <td>YDC1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>265</th>
-      <td>STD1</td>
-      <td>MTH1</td>
+      <th>173</th>
+      <td>YPK1</td>
+      <td>YPK2</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>266</th>
-      <td>ASK10</td>
-      <td>RGC1</td>
+      <th>174</th>
+      <td>YPS1</td>
+      <td>MKC7</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>267</th>
-      <td>LEU9</td>
-      <td>LEU4</td>
+      <th>175</th>
+      <td>YPT31</td>
+      <td>YPT32</td>
       <td>1</td>
     </tr>
   </tbody>
 </table>
-<p>268 rows × 3 columns</p>
+<p>176 rows × 3 columns</p>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sl_that_are_paralogs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-</pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;FKS1&#39;, &#39;GSC2&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BUD6&#39;</span><span class="p">,</span> <span class="s1">&#39;CDC42&#39;</span><span class="p">]</span>
-<span class="n">b</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CDC42&#39;</span><span class="p">,</span> <span class="s1">&#39;BUD6&#39;</span><span class="p">]</span>
-<span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">==</span><span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## use this to compare with the pairs of SL that have shared domains from FEATUREPROCESSINg script  </span>
-</pre></div>
-</div>
-</div>
-</div>
+<div class="section" id="what-is-the-contribution-of-paralogs-to-sl-that-share-protein-domains">
+<h1><span class="section-number">5. </span>What is the contribution of paralogs to SL that share protein domains?<a class="headerlink" href="#what-is-the-contribution-of-paralogs-to-sl-that-share-protein-domains" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pairs_sL</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;pairs-sL-that-share-domains.npy&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">pairs_sL</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>748
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>268
 </pre></div>
 </div>
 </div>
@@ -610,20 +532,53 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The contribution of paralogs to the SL pairs that shared domains is =&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">shared_sL_paralogs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs_sL</span><span class="p">),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Only&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">shared_sL_paralogs</span><span class="p">),</span><span class="s1">&#39;out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">),</span><span class="s1">&#39;paralogs that are SL , share annotated protein domains.&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of paralogs that are SL out of the total number of paralogs is&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">),</span><span class="s1">&#39;out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">paralogs_sl_pd</span><span class="p">),</span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">paralogs_sl_pd</span><span class="p">),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The contribution of paralogs to the total number of SL pairs is  =&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">)</span><span class="o">/</span><span class="mi">17871</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of SL that share domains out of the total number of SL pairs is =&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs_sL</span><span class="p">)</span><span class="o">/</span><span class="mi">17871</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The contribution of paralogs to the SL pairs that shared domains is = 2.0053475935828877 %
-The contribution of paralogs to the total number of SL pairs is  = 1.4996362822449778 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The contribution of paralogs to the SL pairs that shared domains is = 1.6042780748663101 %
+Only 12 out of 176 paralogs that are SL , share annotated protein domains.
+The number of paralogs that are SL out of the total number of paralogs is 176 out of 720 = 24.444444444444443 %
+The contribution of paralogs to the total number of SL pairs is  = 0.9848357674444631 %
 The number of SL that share domains out of the total number of SL pairs is = 4.185552011638968 %
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pie chart</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SL-paralogs&#39;</span><span class="p">,</span><span class="s1">&#39;Paralogs non SL&#39;</span><span class="p">]</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">paralogs_sl_pd</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">paralogs_sl_pd</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">paralogs_sl_pd</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">sl_that_are_paralogs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">paralogs_sl_pd</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#colors</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#ff9999&#39;</span><span class="p">,</span><span class="s1">&#39;#66b3ff&#39;</span><span class="p">,</span><span class="s1">&#39;#99ff99&#39;</span><span class="p">,</span><span class="s1">&#39;#ffcc99&#39;</span><span class="p">]</span>
+ 
+<span class="n">fig1</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">patches</span><span class="p">,</span> <span class="n">texts</span><span class="p">,</span> <span class="n">autotexts</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">autotext</span> <span class="ow">in</span> <span class="n">autotexts</span><span class="p">:</span>
+    <span class="n">autotext</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="c1"># Equal aspect ratio ensures that pie is drawn as a circle</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/paralogs-and-SL-pairs_15_0.png" src="_images/paralogs-and-SL-pairs_15_0.png" />
 </div>
 </div>
 </div>
