@@ -9,6 +9,8 @@ kernelspec:
   name: python3
 ---
 
+# What is the contribution of paralogs to SL pairs that share protein domains? 
+
 ```{code-cell} ipython3
 from intermine.webservice import Service
 import numpy as np
@@ -40,7 +42,8 @@ data_sl=pd.read_excel(abs_file_path_sl,header=0)
 all_paralogs_from_sl=pd.read_excel(abs_file_path_paralogs)
 ```
 
-###  Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database. 
+##  Inspecting the paralogs pairs
+
 - this is the first check to analyze if the reason why a SL pair shares domains is because they are also paralogs. 
 
 
@@ -52,7 +55,7 @@ query_paralogs_pd_withoutnan.index=np.arange(0,len(query_paralogs_pd_withoutnan)
 query_paralogs_pd=query_paralogs_pd_withoutnan
 ```
 
-### Taking the indexes of the paralogs pairs that are also synthetic lethals
+#### Taking the indexes of the paralogs pairs that are also synthetic lethal
 
 ```{code-cell} ipython3
 indexes_sl_query=[]
@@ -89,7 +92,7 @@ sl_that_are_paralogs.head()
 sl_that_are_paralogs.set_index(np.arange(0,len(sl_that_are_paralogs)))
 ```
 
-### What is the contribution of paralogs to SL that share protein domains? 
+## What is the contribution of paralogs to SL that share protein domains? 
 
 ```{code-cell} ipython3
 pairs_sL=np.load('pairs-sL-that-share-domains.npy')
