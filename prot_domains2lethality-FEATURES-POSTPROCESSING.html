@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Feature postprocessing from paper. &#8212; Notebooks for data science</title>
+    <title>3. Feature postprocessing from paper. &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
@@ -29,10 +30,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="What is the protein domain profile of genes from the same module ?" href="evaluating-protein-domains-per-module.html" />
-    <link rel="prev" title="Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION.html" />
+    <link rel="next" title="1. What are the most present protein domains per biological function?" href="evaluating-protein-domains-per-module.html" />
+    <link rel="prev" title="2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -73,12 +81,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/MysT_Notebooks.html">
-   Notebooks written entirely in markdown
+   1. Notebooks written entirely in markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/python_by_example.html">
-   An Introductory Example
+   2. An Introductory Example
   </a>
  </li>
 </ul>
@@ -90,17 +98,17 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="tutorial-categorical-data-on-yeast-interactions.html">
-   Tutorial on how to handle categorical data from here
+   1. Tutorial on how to handle categorical data from here
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html">
-   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+   2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Feature postprocessing from paper.
+   3. Feature postprocessing from paper.
   </a>
  </li>
 </ul>
@@ -112,12 +120,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="evaluating-protein-domains-per-module.html">
-   What is the protein domain profile of genes from the same module ?
+   1. What are the most present protein domains per biological function?
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="paralogs-and-SL-pairs.html">
-   Paralogs and synthetic lethals
+   2. Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
@@ -218,45 +226,45 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#importing-datasets">
-   Importing datasets
+   3.1. Importing datasets
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded">
-     Link to the github repo where the datasets to be downloaded:
+     3.1.1. Link to the github repo where the datasets to be downloaded:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#building-the-feature-matrix">
-   Building the feature matrix
+   3.2. Building the feature matrix
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately">
-     Building the list of proteins domains id per protein pair separately :
+     3.2.1. Building the list of proteins domains id per protein pair separately :
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain">
-     Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain
+     3.2.2. Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
-     Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair
+     3.2.3. Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#define-function-get-indexes">
-       Define function
+       3.2.3.1. Define function
        <code class="docutils literal notranslate">
         <span class="pre">
          get_indexes
@@ -268,61 +276,61 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-many-ones-and-twos-are-in-each-dataset">
-     How many ones and twos are in each dataset
+     3.2.4. How many ones and twos are in each dataset
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#bar-plot-to-visualize-these-numbers">
-       Bar plot to visualize these numbers
+       3.2.4.1. Bar plot to visualize these numbers
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#adding-the-labels-response-variables-to-each-dataset">
-       Adding the labels(response variables) to each dataset
+       3.2.4.2. Adding the labels(response variables) to each dataset
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#joining-both-datasets">
-       Joining both datasets
+       3.2.4.3. Joining both datasets
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets">
-     Postprocessing and exploration of the feature matrix of both datasets
+     3.2.5. Postprocessing and exploration of the feature matrix of both datasets
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#viz-of-the-stats">
-     Viz of the stats
+     3.2.6. Viz of the stats
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-redundant-are-each-of-the-protein-domains">
-   How redundant are each of the protein domains?
+   3.3. How redundant are each of the protein domains?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#which-are-the-shared-domains-between-nsl-and-sl-pairs-in-the-pca-reduced-samples">
-   which are the shared domains between nSL and SL pairs , in the PCA reduced samples
+   3.4. which are the shared domains between nSL and SL pairs , in the PCA reduced samples
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#domains-exclusive-to-sl">
-   Domains exclusive to SL
+   3.5. Domains exclusive to SL
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#let-see-to-the-domains-number-that-get-repeated-after-the-pca-analysis-and-selecting-the-most-explanatory-feature-by-its-explained-variance">
-   Let see to the domains-number that get repeated after the PCA analysis , and selecting the most explanatory feature by its explained variance.
+   3.6. Let see to the domains-number that get repeated after the PCA analysis , and selecting the most explanatory feature by its explained variance.
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#proof-of-concept-with-bem1">
-     Proof of concept with
+     3.6.1. Proof of concept with
      <em>
       BEM1
      </em>
@@ -341,7 +349,7 @@
               <div>
                 
   <div class="section" id="feature-postprocessing-from-paper">
-<h1>Feature postprocessing from paper.<a class="headerlink" href="#feature-postprocessing-from-paper" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Feature postprocessing from paper.<a class="headerlink" href="#feature-postprocessing-from-paper" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Title:  “Predicting yeast synthetic lethal genetic interactions using protein domains”</p></li>
 <li><p>Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA</p></li>
@@ -363,9 +371,9 @@
 </div>
 </div>
 <div class="section" id="importing-datasets">
-<h2>Importing datasets<a class="headerlink" href="#importing-datasets" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Importing datasets<a class="headerlink" href="#importing-datasets" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="link-to-the-github-repo-where-the-datasets-to-be-downloaded">
-<h3>Link to the github repo where the datasets to be downloaded:<a class="headerlink" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.1. </span>Link to the github repo where the datasets to be downloaded:<a class="headerlink" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning">DOWNLOAD THE DATASETS HERE</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -396,10 +404,10 @@
 </div>
 </div>
 <div class="section" id="building-the-feature-matrix">
-<h2>Building the feature matrix<a class="headerlink" href="#building-the-feature-matrix" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Building the feature matrix<a class="headerlink" href="#building-the-feature-matrix" title="Permalink to this headline">¶</a></h2>
 <p>One matrix for true SL where each row is one pair of SL. Every raw will be a vector of 0,1 or 2 depending on the comparison with the domain list. For row i the jth element = 0 if the jth element of the domain list is not in neither protein A and B, 1, if it is in one of them and 2 if it is in both of them .</p>
 <div class="section" id="building-the-list-of-proteins-domains-id-per-protein-pair-separately">
-<h3>Building the list of proteins domains id per protein pair separately :<a class="headerlink" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.1. </span>Building the list of proteins domains id per protein pair separately :<a class="headerlink" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>List of protein A: Search for the Sl/nSL database the query gene name and look in the protein domain database which protein domains id has each of those queries.</p></li>
 <li><p>List of protein B: Search for the Sl/nSL database the target gene name of the previous query and look in the protein domain database which protein domains id has each of those target genes.</p></li>
@@ -455,7 +463,7 @@ We are going to analyze 500 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="section" id="postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain">
-<h3>Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain<a class="headerlink" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.2. </span>Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain<a class="headerlink" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_empty_domains</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">,</span><span class="n">protein_list_pair</span><span class="p">):</span>
@@ -490,17 +498,17 @@ We are going to analyze 500 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 71 out of 500 domains
-The empty domain in the nSL were: 87 out of 500 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 83 out of 500 domains
+The empty domain in the nSL were: 68 out of 500 domains
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
-<h3>Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair<a class="headerlink" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.3. </span>Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair<a class="headerlink" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="define-function-get-indexes">
-<h4>Define function <code class="docutils literal notranslate"><span class="pre">get_indexes</span></code><a class="headerlink" href="#define-function-get-indexes" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.2.3.1. </span>Define function <code class="docutils literal notranslate"><span class="pre">get_indexes</span></code><a class="headerlink" href="#define-function-get-indexes" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_indexes</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span> <span class="c1"># a function that give the index of whether a value appear in array or not</span>
@@ -565,7 +573,7 @@ The empty domain in the nSL were: 87 out of 500 domains
 </div>
 </div>
 <div class="section" id="how-many-ones-and-twos-are-in-each-dataset">
-<h3>How many ones and twos are in each dataset<a class="headerlink" href="#how-many-ones-and-twos-are-in-each-dataset" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.4. </span>How many ones and twos are in each dataset<a class="headerlink" href="#how-many-ones-and-twos-are-in-each-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">index_2_true</span><span class="o">=</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
@@ -589,16 +597,16 @@ The empty domain in the nSL were: 87 out of 500 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.6182164942495523e-05
-fraction of ones in the SL array is 0.00101331175711341
-fraction of twos in the PI array is 9.605186800872471e-06
-fraction of ones in the PI array is 0.0008740719988793949
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 2.298987256475811e-05
+fraction of ones in the SL array is 0.0009885645202845988
+fraction of twos in the PI array is 5.356596265687175e-06
+fraction of ones in the PI array is 0.0008983777165595347
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="bar-plot-to-visualize-these-numbers">
-<h4>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.2.4.1. </span>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;fraction of 2 in the nSL&#39;</span><span class="p">,</span><span class="s1">&#39;fraction of 1 in the nSL&#39;</span><span class="p">],[</span><span class="n">index_2_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span><span class="n">index_1_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">))],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;lightblue&#39;</span><span class="p">]),</span> 
@@ -621,7 +629,7 @@ fraction of ones in the PI array is 0.0008740719988793949
 </div>
 </div>
 <div class="section" id="adding-the-labels-response-variables-to-each-dataset">
-<h4>Adding the labels(response variables) to each dataset<a class="headerlink" href="#adding-the-labels-response-variables-to-each-dataset" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.2.4.2. </span>Adding the labels(response variables) to each dataset<a class="headerlink" href="#adding-the-labels-response-variables-to-each-dataset" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">protein_feat_true_pd</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)))</span>
@@ -632,7 +640,7 @@ fraction of ones in the PI array is 0.0008740719988793949
 </div>
 </div>
 <div class="section" id="joining-both-datasets">
-<h4>Joining both datasets<a class="headerlink" href="#joining-both-datasets" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.2.4.3. </span>Joining both datasets<a class="headerlink" href="#joining-both-datasets" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feature_post</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">protein_feat_true_pd</span><span class="p">,</span><span class="n">protein_feat_non_true_pd</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -644,7 +652,7 @@ fraction of ones in the PI array is 0.0008740719988793949
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 842
+The number of samples are: 849
 </pre></div>
 </div>
 </div>
@@ -652,7 +660,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="section" id="postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets">
-<h3>Postprocessing and exploration of the feature matrix of both datasets<a class="headerlink" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.5. </span>Postprocessing and exploration of the feature matrix of both datasets<a class="headerlink" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
@@ -666,7 +674,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="section" id="viz-of-the-stats">
-<h3>Viz of the stats<a class="headerlink" href="#viz-of-the-stats" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.6. </span>Viz of the stats<a class="headerlink" href="#viz-of-the-stats" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">corr_keys</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;lethality&#39;</span><span class="p">,</span><span class="n">diag_kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;colorblind&#39;</span><span class="p">)</span>
@@ -708,7 +716,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(429, 3025)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(417, 3025)
 </pre></div>
 </div>
 </div>
@@ -716,7 +724,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="section" id="how-redundant-are-each-of-the-protein-domains">
-<h2>How redundant are each of the protein domains?<a class="headerlink" href="#how-redundant-are-each-of-the-protein-domains" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>How redundant are each of the protein domains?<a class="headerlink" href="#how-redundant-are-each-of-the-protein-domains" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PCA_component_contribution</span><span class="p">(</span><span class="n">scaled_matrix</span><span class="p">,</span><span class="n">original_data</span><span class="p">):</span>
@@ -794,27 +802,27 @@ The number of samples are: 842
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>2771</td>
+      <td>135</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PC1</td>
-      <td>989</td>
+      <td>467</td>
     </tr>
     <tr>
       <th>2</th>
       <td>PC2</td>
-      <td>834</td>
+      <td>221</td>
     </tr>
     <tr>
       <th>3</th>
       <td>PC3</td>
-      <td>242</td>
+      <td>305</td>
     </tr>
     <tr>
       <th>4</th>
       <td>PC4</td>
-      <td>1511</td>
+      <td>219</td>
     </tr>
   </tbody>
 </table>
@@ -822,7 +830,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="section" id="which-are-the-shared-domains-between-nsl-and-sl-pairs-in-the-pca-reduced-samples">
-<h2>which are the shared domains between nSL and SL pairs , in the PCA reduced samples<a class="headerlink" href="#which-are-the-shared-domains-between-nsl-and-sl-pairs-in-the-pca-reduced-samples" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>which are the shared domains between nSL and SL pairs , in the PCA reduced samples<a class="headerlink" href="#which-are-the-shared-domains-between-nsl-and-sl-pairs-in-the-pca-reduced-samples" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_shared_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
@@ -864,84 +872,363 @@ The number of samples are: 842
   <tbody>
     <tr>
       <th>0</th>
-      <td>PC8</td>
-      <td>293</td>
-      <td>PC16</td>
-      <td>Beach; BEACH domain</td>
+      <td>PC2</td>
+      <td>221</td>
+      <td>PC17</td>
+      <td>Apq12; Nuclear pore assembly and biogenesis pr...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PC12</td>
-      <td>875</td>
-      <td>PC19</td>
-      <td>FDF; FDF domain</td>
+      <td>PC3</td>
+      <td>305</td>
+      <td>PC2</td>
+      <td>Brr6_like_C_C; Brl1/Brr6 domain</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>PC14</td>
-      <td>463</td>
-      <td>PC15</td>
-      <td>Chitin_synth_1N; Chitin synthase N-terminal</td>
+      <td>PC5</td>
+      <td>242</td>
+      <td>PC3</td>
+      <td>Atg31; Autophagy-related protein 31</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PC21</td>
-      <td>773</td>
-      <td>PC98</td>
-      <td>Dynein_light; Dynein light chain, type 1/2</td>
+      <td>PC7</td>
+      <td>2113</td>
+      <td>PC8</td>
+      <td>Rav1p_C; RAVE complex protein Rav1 C-terminal</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PC23</td>
-      <td>1082</td>
-      <td>PC62</td>
-      <td>Gpi1; N-acetylglucosaminyl transferase component</td>
+      <td>PC8</td>
+      <td>488</td>
+      <td>PC28</td>
+      <td>Cnd1_N; Condensin complex subunit 1, N-terminal</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+      <th>5</th>
+      <td>PC12</td>
+      <td>861</td>
+      <td>PC132</td>
+      <td>FAD-oxidase_C; FAD-linked oxidase, C-terminal</td>
     </tr>
     <tr>
-      <th>67</th>
-      <td>PC269</td>
-      <td>1509</td>
-      <td>PC237</td>
-      <td>Motile_Sperm; Major sperm protein (MSP) domain</td>
+      <th>6</th>
+      <td>PC13</td>
+      <td>861</td>
+      <td>PC132</td>
+      <td>FAD-oxidase_C; FAD-linked oxidase, C-terminal</td>
     </tr>
     <tr>
-      <th>68</th>
-      <td>PC281</td>
-      <td>843</td>
-      <td>PC151</td>
-      <td>Enolase_C; Enolase, C-terminal TIM barrel domain</td>
+      <th>7</th>
+      <td>PC14</td>
+      <td>463</td>
+      <td>PC43</td>
+      <td>Chitin_synth_1N; Chitin synthase N-terminal</td>
     </tr>
     <tr>
-      <th>69</th>
-      <td>PC282</td>
-      <td>122</td>
-      <td>PC26</td>
-      <td>ATP-synt_10; ATPase assembly factor ATP10</td>
+      <th>8</th>
+      <td>PC15</td>
+      <td>877</td>
+      <td>PC34</td>
+      <td>FF; FF domain</td>
     </tr>
     <tr>
-      <th>70</th>
-      <td>PC282</td>
-      <td>122</td>
+      <th>9</th>
+      <td>PC16</td>
+      <td>926</td>
+      <td>PC24</td>
+      <td>Flp_C; Recombinase Flp protein</td>
+    </tr>
+    <tr>
+      <th>10</th>
       <td>PC27</td>
-      <td>ATP-synt_10; ATPase assembly factor ATP10</td>
+      <td>8</td>
+      <td>PC35</td>
+      <td>3Beta_HSD; 3-beta hydroxysteroid dehydrogenase...</td>
     </tr>
     <tr>
-      <th>71</th>
-      <td>PC289</td>
-      <td>569</td>
-      <td>PC178</td>
-      <td>DDHD; DDHD domain</td>
+      <th>11</th>
+      <td>PC27</td>
+      <td>8</td>
+      <td>PC46</td>
+      <td>3Beta_HSD; 3-beta hydroxysteroid dehydrogenase...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PC53</td>
+      <td>36</td>
+      <td>PC38</td>
+      <td>AA_permease_2; Amino acid/polyamine transporter I</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>PC68</td>
+      <td>440</td>
+      <td>PC9</td>
+      <td>Candida_ALS_N; Agglutinin-like protein, N-term...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>PC76</td>
+      <td>1041</td>
+      <td>PC267</td>
+      <td>Glutaredoxin</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>PC79</td>
+      <td>630</td>
+      <td>PC79</td>
+      <td>DSPc; Dual specificity phosphatase, catalytic ...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>PC80</td>
+      <td>876</td>
+      <td>PC50</td>
+      <td>FDX-ACB; Ferrodoxin-fold anticodon-binding domain</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>PC83</td>
+      <td>1021</td>
+      <td>PC124</td>
+      <td>Gal4_dimer; Gal4 dimerisation domain</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>PC84</td>
+      <td>37</td>
+      <td>PC30</td>
+      <td>ABC1; UbiB domain</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>PC86</td>
+      <td>37</td>
+      <td>PC30</td>
+      <td>ABC1; UbiB domain</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>PC99</td>
+      <td>773</td>
+      <td>PC15</td>
+      <td>Dynein_light; Dynein light chain, type 1/2</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>PC107</td>
+      <td>1267</td>
+      <td>PC133</td>
+      <td>Kelch_3</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>PC109</td>
+      <td>56</td>
+      <td>PC57</td>
+      <td>ADK_lid; Adenylate kinase, active site lid domain</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>PC119</td>
+      <td>40</td>
+      <td>PC127</td>
+      <td>ABC_membrane_2; ABC transporter type 1, transm...</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>PC120</td>
+      <td>40</td>
+      <td>PC127</td>
+      <td>ABC_membrane_2; ABC transporter type 1, transm...</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>PC124</td>
+      <td>1089</td>
+      <td>PC244</td>
+      <td>Guanylate_kin; Guanylate kinase/L-type calcium...</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>PC130</td>
+      <td>1745</td>
+      <td>PC165</td>
+      <td>PHM7_cyt; 10TM putative phosphate transporter,...</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>PC133</td>
+      <td>68</td>
+      <td>PC138</td>
+      <td>AIRC; PurE domain</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>PC140</td>
+      <td>68</td>
+      <td>PC138</td>
+      <td>AIRC; PurE domain</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>PC138</td>
+      <td>1701</td>
+      <td>PC112</td>
+      <td>PAP_central; Poly(A) polymerase, central domain</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>PC148</td>
+      <td>250</td>
+      <td>PC120</td>
+      <td>B3_4; B3/B4 tRNA-binding domain</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>PC148</td>
+      <td>250</td>
+      <td>PC121</td>
+      <td>B3_4; B3/B4 tRNA-binding domain</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>PC151</td>
+      <td>1295</td>
+      <td>PC213</td>
+      <td>LIM; Zinc finger, LIM-type</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>PC156</td>
+      <td>529</td>
+      <td>PC190</td>
+      <td>CybS</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>PC164</td>
+      <td>1731</td>
+      <td>PC179</td>
+      <td>PFU; PLAA family ubiquitin binding, PFU</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>PC165</td>
+      <td>271</td>
+      <td>PC185</td>
+      <td>BLI1</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>PC172</td>
+      <td>551</td>
+      <td>PC210</td>
+      <td>DAP3; Ribosomal protein S23/S29, mitochondrial</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>PC172</td>
+      <td>551</td>
+      <td>PC212</td>
+      <td>DAP3; Ribosomal protein S23/S29, mitochondrial</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>PC173</td>
+      <td>551</td>
+      <td>PC210</td>
+      <td>DAP3; Ribosomal protein S23/S29, mitochondrial</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>PC173</td>
+      <td>551</td>
+      <td>PC212</td>
+      <td>DAP3; Ribosomal protein S23/S29, mitochondrial</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>PC186</td>
+      <td>778</td>
+      <td>PC153</td>
+      <td>E1_UFD; Ubiquitin-activating enzyme E1, C-term...</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>PC192</td>
+      <td>39</td>
+      <td>PC189</td>
+      <td>ABC_membrane; ABC transporter type 1, transmem...</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>PC193</td>
+      <td>1842</td>
+      <td>PC224</td>
+      <td>PUL; PUL domain</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>PC193</td>
+      <td>1842</td>
+      <td>PC228</td>
+      <td>PUL; PUL domain</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>PC226</td>
+      <td>1969</td>
+      <td>PC56</td>
+      <td>RAI1; RAI1-like</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>PC230</td>
+      <td>1086</td>
+      <td>PC162</td>
+      <td>Gti1_Pac2; Gti1/Pac2 family</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>PC244</td>
+      <td>1013</td>
+      <td>PC95</td>
+      <td>GTP_EFTU_D3; Translation elongation factor EFT...</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>PC244</td>
+      <td>1013</td>
+      <td>PC100</td>
+      <td>GTP_EFTU_D3; Translation elongation factor EFT...</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>PC259</td>
+      <td>1688</td>
+      <td>PC92</td>
+      <td>PA14; PA14 domain</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>PC276</td>
+      <td>1688</td>
+      <td>PC92</td>
+      <td>PA14; PA14 domain</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>PC267</td>
+      <td>604</td>
+      <td>PC6</td>
+      <td>DNA_gyraseB; DNA topoisomerase, type IIA, subu...</td>
     </tr>
   </tbody>
 </table>
-<p>72 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -951,14 +1238,14 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of shared domains between SL and nSL pairs,after PCA, is =  72 out of 573 so the 12.565445026178011 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of shared domains between SL and nSL pairs,after PCA, is =  51 out of 565 so the 9.026548672566372 %
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="domains-exclusive-to-sl">
-<h2>Domains exclusive to SL<a class="headerlink" href="#domains-exclusive-to-sl" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.5. </span>Domains exclusive to SL<a class="headerlink" href="#domains-exclusive-to-sl" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl_exclusive</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
@@ -1000,37 +1287,37 @@ The number of samples are: 842
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>2771</td>
+      <td>135</td>
       <td>NaN</td>
-      <td>Ubiq-assoc; Ubiquitin-associated domain, SWA2-...</td>
+      <td>ATP-synt_ab_Xtn; ATPsynthase alpha/beta subuni...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PC1</td>
-      <td>989</td>
+      <td>467</td>
       <td>NaN</td>
-      <td>GLE1; GLE1-like</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PC2</td>
-      <td>834</td>
-      <td>NaN</td>
-      <td>Efg1; rRNA-processing protein Efg1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PC3</td>
-      <td>242</td>
-      <td>NaN</td>
-      <td>Atg31; Autophagy-related protein 31</td>
+      <td>Choline_transpo; Choline transporter-like</td>
     </tr>
     <tr>
       <th>4</th>
       <td>PC4</td>
-      <td>1511</td>
+      <td>219</td>
       <td>NaN</td>
-      <td>Mpv17_PMP22; Mpv17/PMP22</td>
+      <td>Apc15p; Anaphase-promoting complex subunit  15...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PC6</td>
+      <td>211</td>
+      <td>NaN</td>
+      <td>Ank_5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>PC9</td>
+      <td>55</td>
+      <td>NaN</td>
+      <td>ADK</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1040,43 +1327,43 @@ The number of samples are: 842
       <td>...</td>
     </tr>
     <tr>
-      <th>306</th>
-      <td>PC286</td>
-      <td>160</td>
+      <th>295</th>
+      <td>PC289</td>
+      <td>27</td>
       <td>NaN</td>
-      <td>Acyl-CoA_dh_M; Acyl-CoA oxidase/dehydrogenase,...</td>
+      <td>AAA_8; Dynein heavy chain, P-loop containing D...</td>
     </tr>
     <tr>
-      <th>307</th>
-      <td>PC287</td>
-      <td>1352</td>
-      <td>NaN</td>
-      <td>MATalpha_HMGbox; Mating-type protein MAT alpha...</td>
-    </tr>
-    <tr>
-      <th>308</th>
-      <td>PC288</td>
-      <td>1720</td>
-      <td>NaN</td>
-      <td>PDT; Prephenate dehydratase</td>
-    </tr>
-    <tr>
-      <th>310</th>
+      <th>296</th>
       <td>PC290</td>
-      <td>2711</td>
+      <td>1394</td>
       <td>NaN</td>
-      <td>Tti2; Tti2 family</td>
+      <td>MPS2; Monopolar spindle protein 2</td>
     </tr>
     <tr>
-      <th>311</th>
+      <th>297</th>
       <td>PC291</td>
-      <td>1639</td>
+      <td>439</td>
       <td>NaN</td>
-      <td>Nse4_C; Non-structural maintenance of chromoso...</td>
+      <td>Calreticulin; Calreticulin/calnexin</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>PC292</td>
+      <td>1733</td>
+      <td>NaN</td>
+      <td>PGAP1; GPI inositol-deacylase PGAP1-like</td>
+    </tr>
+    <tr>
+      <th>299</th>
+      <td>PC293</td>
+      <td>1035</td>
+      <td>NaN</td>
+      <td>Gln-synt_N; Glutamine synthetase, beta-Grasp d...</td>
     </tr>
   </tbody>
 </table>
-<p>240 rows × 4 columns</p>
+<p>249 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1086,7 +1373,7 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from SL pairs, after PCA, is =  312 out of 573 so the 54.45026178010471 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from SL pairs, after PCA, is =  300 out of 565 so the 53.097345132743364 %
 </pre></div>
 </div>
 </div>
@@ -1130,39 +1417,39 @@ The number of samples are: 842
   </thead>
   <tbody>
     <tr>
-      <th>72</th>
+      <th>0</th>
       <td>NaN</td>
       <td>1028</td>
       <td>PC0</td>
       <td>GatB_Yqey; Asn/Gln amidotransferase</td>
     </tr>
     <tr>
-      <th>73</th>
+      <th>1</th>
       <td>NaN</td>
-      <td>1175</td>
+      <td>1811</td>
       <td>PC1</td>
-      <td>Hist_deacetyl; Histone deacetylase domain</td>
+      <td>PRAI; N-(5&amp;apos;phosphoribosyl) anthranilate i...</td>
     </tr>
     <tr>
-      <th>74</th>
+      <th>4</th>
       <td>NaN</td>
-      <td>308</td>
-      <td>PC2</td>
-      <td>Bul1_N; Bul1, N-terminal</td>
-    </tr>
-    <tr>
-      <th>75</th>
-      <td>NaN</td>
-      <td>308</td>
-      <td>PC3</td>
-      <td>Bul1_N; Bul1, N-terminal</td>
-    </tr>
-    <tr>
-      <th>76</th>
-      <td>NaN</td>
-      <td>221</td>
+      <td>2771</td>
       <td>PC4</td>
-      <td>Apq12; Nuclear pore assembly and biogenesis pr...</td>
+      <td>Ubiq-assoc; Ubiquitin-associated domain, SWA2-...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>1519</td>
+      <td>PC5</td>
+      <td>Mtc; Tricarboxylate/iron carrier</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>1255</td>
+      <td>PC7</td>
+      <td>KCH; Potassium transporter Kch</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1172,43 +1459,43 @@ The number of samples are: 842
       <td>...</td>
     </tr>
     <tr>
-      <th>286</th>
+      <th>272</th>
       <td>NaN</td>
-      <td>595</td>
-      <td>PC275</td>
-      <td>DJ-1_PfpI; DJ-1/PfpI</td>
+      <td>2151</td>
+      <td>PC265</td>
+      <td>Ribosomal_60s</td>
     </tr>
     <tr>
-      <th>287</th>
+      <th>273</th>
       <td>NaN</td>
-      <td>2195</td>
-      <td>PC276</td>
-      <td>Ribosomal_L36; Ribosomal protein L36</td>
+      <td>2151</td>
+      <td>PC270</td>
+      <td>Ribosomal_60s</td>
     </tr>
     <tr>
-      <th>288</th>
+      <th>274</th>
       <td>NaN</td>
-      <td>396</td>
-      <td>PC277</td>
-      <td>COX5A; Cytochrome c oxidase, subunit Va/VI</td>
+      <td>858</td>
+      <td>PC266</td>
+      <td>F420_oxidored; Pyrroline-5-carboxylate reducta...</td>
     </tr>
     <tr>
-      <th>289</th>
+      <th>275</th>
       <td>NaN</td>
-      <td>2499</td>
-      <td>PC279</td>
-      <td>Spb1_C; Ribosomal RNA methyltransferase, Spb1,...</td>
+      <td>858</td>
+      <td>PC268</td>
+      <td>F420_oxidored; Pyrroline-5-carboxylate reducta...</td>
     </tr>
     <tr>
-      <th>290</th>
+      <th>277</th>
       <td>NaN</td>
-      <td>711</td>
-      <td>PC280</td>
-      <td>DUF382; Domain of unknown function DUF382</td>
+      <td>1492</td>
+      <td>PC269</td>
+      <td>MitMem_reg; Rpn11/EIF3F, C-terminal</td>
     </tr>
   </tbody>
 </table>
-<p>219 rows × 4 columns</p>
+<p>227 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1218,14 +1505,14 @@ The number of samples are: 842
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from non SL pairs, after PCA, is =  291 out of 573 so the 50.78534031413613 %
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from non SL pairs, after PCA, is =  278 out of 565 so the 49.203539823008846 %
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="let-see-to-the-domains-number-that-get-repeated-after-the-pca-analysis-and-selecting-the-most-explanatory-feature-by-its-explained-variance">
-<h2>Let see to the domains-number that get repeated after the PCA analysis , and selecting the most explanatory feature by its explained variance.<a class="headerlink" href="#let-see-to-the-domains-number-that-get-repeated-after-the-pca-analysis-and-selecting-the-most-explanatory-feature-by-its-explained-variance" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.6. </span>Let see to the domains-number that get repeated after the PCA analysis , and selecting the most explanatory feature by its explained variance.<a class="headerlink" href="#let-see-to-the-domains-number-that-get-repeated-after-the-pca-analysis-and-selecting-the-most-explanatory-feature-by-its-explained-variance" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">duplicated_features_sl</span><span class="o">=</span><span class="n">df_sl</span><span class="p">[</span><span class="n">df_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
@@ -1265,7 +1552,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   This is separate from the ipykernel package so we can avoid doing imports until
 </pre>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((51, 4), (312, 4))
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((44, 4), (300, 4))
 </pre></div>
 </div>
 </div>
@@ -1304,340 +1591,316 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   </thead>
   <tbody>
     <tr>
-      <th>2</th>
-      <td>PF00626</td>
+      <th>0</th>
+      <td>PF13401</td>
       <td>NaN</td>
-      <td>Bul1_N; Bul1, N-terminal</td>
+      <td>TPR_6; Tetratricopeptide repeat</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>PF01331</td>
+      <td>NaN</td>
+      <td>DLH; Dienelactone hydrolase</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PF00018</td>
+      <td>NaN</td>
+      <td>3Beta_HSD; 3-beta hydroxysteroid dehydrogenase...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PF13246</td>
+      <td>PF13855</td>
       <td>NaN</td>
-      <td>TPK_B1_binding; Thiamin pyrophosphokinase, vit...</td>
+      <td>Transketolase_N; Transketolase, N-terminal</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PF08423</td>
+      <td>PF00481</td>
       <td>NaN</td>
-      <td>Pex2_Pex12; Pex, N-terminal</td>
+      <td>Asn_synthase; Asparagine synthase</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>PF00249</td>
+      <td>PF08148</td>
       <td>NaN</td>
-      <td>ATP-synt_10; ATPase assembly factor ATP10</td>
+      <td>PRP21_like_P; Splicing factor 3A subunit 1</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>PF00172</td>
+      <td>PF08265</td>
       <td>NaN</td>
-      <td>AMPKBI; Association with the SNF1 complex (ASC...</td>
+      <td>Peptidase_C14</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>PF01384</td>
+      <td>PF08265</td>
       <td>NaN</td>
-      <td>DNA_photolyase; DNA photolyase, N-terminal</td>
+      <td>Peptidase_C14</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>PF08327</td>
+      <td>PF00134</td>
       <td>NaN</td>
-      <td>Peptidase_S9; Peptidase S9, prolyl oligopeptid...</td>
+      <td>AGA2</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>PF00183</td>
+      <td>PF00306</td>
       <td>NaN</td>
-      <td>ANAPC5; Anaphase-promoting complex subunit 5</td>
+      <td>Abi; CAAX amino terminal protease</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>PF13361</td>
+      <td>PF00005</td>
       <td>NaN</td>
-      <td>TPR_17</td>
+      <td>14-3-3; 14-3-3 domain</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>PF00324</td>
+      <td>PF02752</td>
       <td>NaN</td>
-      <td>Acyl-CoA_ox_N; Acyl-coenzyme A oxidase, N-term...</td>
+      <td>Fumble; Type II pantothenate kinase</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>PF03198</td>
+      <td>PF01434</td>
       <td>NaN</td>
-      <td>Glycos_transf_1; Glycosyl transferase, family 1</td>
+      <td>DSHCT; ATP-dependent RNA helicase Ski2, C-term...</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>PF03198</td>
+      <td>PF08214</td>
       <td>NaN</td>
-      <td>Glycos_transf_1; Glycosyl transferase, family 1</td>
+      <td>PXA; Phox-associated domain</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>PF07557</td>
+      <td>PF02936</td>
       <td>NaN</td>
-      <td>PEX11; Peroxisomal biogenesis factor 11</td>
+      <td>GTP_EFTU_D3; Translation elongation factor EFT...</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>PF07557</td>
+      <td>PF00929</td>
       <td>NaN</td>
-      <td>PEX11; Peroxisomal biogenesis factor 11</td>
+      <td>CT_A_B; Carboxyltransferase domain, subdomain ...</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>PF08457</td>
+      <td>PF03074</td>
       <td>NaN</td>
-      <td>Phos_pyr_kin; Pyridoxamine kinase/Phosphomethy...</td>
+      <td>Glu_syn_central; Glutamate synthase, central-N</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>PF05843</td>
+      <td>PF02104</td>
       <td>NaN</td>
-      <td>Na_Ca_ex; Sodium/calcium exchanger membrane re...</td>
+      <td>EOS1; N-glycosylation protein EOS1</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>PF00733</td>
+      <td>PF07535</td>
       <td>NaN</td>
-      <td>CLP1_N; Clp1, N-terminal beta-sandwich domain</td>
+      <td>PDZ_1; PDZ-like domain</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>PF05557</td>
+      <td>PF03452</td>
       <td>NaN</td>
-      <td>NIF; FCP1 homology domain</td>
+      <td>HHH_5</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>PF03142</td>
-      <td>NaN</td>
-      <td>Glyco_hydro_47; Glycoside hydrolase family 47</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>PF08613</td>
-      <td>NaN</td>
-      <td>RFX_DNA_binding; DNA-binding RFX-type winged-h...</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>PF04051</td>
-      <td>NaN</td>
-      <td>JAB; JAB1/MPN/MOV34 metalloenzyme domain</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>PF08236</td>
-      <td>NaN</td>
-      <td>ParBc; ParB/Sulfiredoxin</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>PF12341</td>
-      <td>NaN</td>
-      <td>Sin_N; DNA-directed RNA polymerase III subunit...</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>PF16282</td>
-      <td>NaN</td>
-      <td>YjeF_N; YjeF N-terminal domain</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>PF00025</td>
-      <td>NaN</td>
-      <td>5-FTHF_cyc-lig; 5-formyltetrahydrofolate cyclo...</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>PF04981</td>
-      <td>NaN</td>
-      <td>Metallophos; Calcineurin-like phosphoesterase ...</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>PF02732</td>
-      <td>NaN</td>
-      <td>Folliculin</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>PF00773</td>
-      <td>NaN</td>
-      <td>COG2; Conserved oligomeric Golgi complex, subu...</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>PF14304</td>
-      <td>NaN</td>
-      <td>UBA_3; Ubiquitin-conjugating enzyme, C-termina...</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>PF05529</td>
-      <td>NaN</td>
-      <td>NGP1NT; Nucleolar GTP-binding protein 2, N-ter...</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>PF07774</td>
-      <td>NaN</td>
-      <td>PI3_PI4_kinase; Phosphatidylinositol 3-/4-kina...</td>
-    </tr>
-    <tr>
-      <th>33</th>
       <td>PF00505</td>
       <td>NaN</td>
       <td>B3_4; B3/B4 tRNA-binding domain</td>
     </tr>
     <tr>
-      <th>34</th>
-      <td>PF08586</td>
+      <th>21</th>
+      <td>PF04420</td>
       <td>NaN</td>
-      <td>QLQ; Glutamine-Leucine-Glutamine, QLQ</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>PF04821</td>
+      <td>NaN</td>
+      <td>Mcl1_mid; Minichromosome loss protein Mcl1, mi...</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>PF12927</td>
+      <td>NaN</td>
+      <td>TFIID-18kDa; Transcription initiation factor I...</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>PF04121</td>
+      <td>NaN</td>
+      <td>LIAS_N; Lipoyl synthase, N-terminal</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>PF01145</td>
+      <td>NaN</td>
+      <td>Coq4; Ubiquinone biosynthesis protein Coq4</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>PF08784</td>
+      <td>NaN</td>
+      <td>RRF; Ribosome recycling factor domain</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>PF08784</td>
+      <td>NaN</td>
+      <td>RRF; Ribosome recycling factor domain</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>PF10429</td>
+      <td>NaN</td>
+      <td>SAPS; SIT4 phosphatase-associated protein family</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>PF10429</td>
+      <td>NaN</td>
+      <td>SAPS; SIT4 phosphatase-associated protein family</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>PF04082</td>
+      <td>NaN</td>
+      <td>Kei1; Protein of unknown function DUF1753, Golgi</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>PF14475</td>
+      <td>NaN</td>
+      <td>UDPGT; UDP-glucuronosyl/UDP-glucosyltransferase</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>PF04091</td>
+      <td>NaN</td>
+      <td>Ketoacyl-synt_C; Beta-ketoacyl synthase, C-ter...</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>PF02441</td>
+      <td>NaN</td>
+      <td>FMN_dh; FMN-dependent dehydrogenase</td>
     </tr>
     <tr>
       <th>35</th>
-      <td>PF03637</td>
+      <td>PF00227</td>
       <td>NaN</td>
-      <td>HTH_44; Helix-turn-helix DNA-binding domain of...</td>
+      <td>ATG13; Autophagy-related protein 13</td>
     </tr>
     <tr>
       <th>36</th>
-      <td>PF09696</td>
+      <td>PF00227</td>
       <td>NaN</td>
-      <td>Ribosom_S12_S23; Ribosomal protein S12/S23</td>
+      <td>ATG13; Autophagy-related protein 13</td>
     </tr>
     <tr>
       <th>37</th>
-      <td>PF03031</td>
+      <td>PF00227</td>
       <td>NaN</td>
-      <td>Gcn1_N; Gcn1, N-terminal</td>
+      <td>ATG13; Autophagy-related protein 13</td>
     </tr>
     <tr>
       <th>38</th>
-      <td>PF08729</td>
+      <td>PF03966</td>
       <td>NaN</td>
-      <td>RNase_HII; Ribonuclease HII/HIII domain</td>
+      <td>INSIG; Insulin-induced protein family</td>
     </tr>
     <tr>
       <th>39</th>
-      <td>PF08729</td>
+      <td>PF00233</td>
       <td>NaN</td>
-      <td>RNase_HII; Ribonuclease HII/HIII domain</td>
+      <td>ATG22; Autophagy-related protein 22-like</td>
     </tr>
     <tr>
       <th>40</th>
-      <td>PF00332</td>
+      <td>PF08208</td>
       <td>NaN</td>
-      <td>Ad_cyc_g-alpha; Adenylate cyclase G-alpha binding</td>
+      <td>PUL; PUL domain</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>PF00332</td>
+      <td>PF00307</td>
       <td>NaN</td>
-      <td>Ad_cyc_g-alpha; Adenylate cyclase G-alpha binding</td>
+      <td>AcetylCoA_hyd_C; Acetyl-CoA hydrolase/transfer...</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>PF03915</td>
+      <td>PF09295</td>
       <td>NaN</td>
-      <td>ICL; Isocitrate lyase</td>
+      <td>Rad52_Rad22; DNA repair protein Rad52/59/22</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>PF12739</td>
+      <td>PF06432</td>
       <td>NaN</td>
-      <td>Stm1_N; Stm1-like, N-terminal</td>
+      <td>OGG_N; 8-oxoguanine DNA glycosylase, N-terminal</td>
     </tr>
     <tr>
       <th>44</th>
-      <td>PF12739</td>
+      <td>PF02386</td>
       <td>NaN</td>
-      <td>Stm1_N; Stm1-like, N-terminal</td>
+      <td>FIN1</td>
     </tr>
     <tr>
       <th>45</th>
-      <td>PF04900</td>
+      <td>PF04893</td>
       <td>NaN</td>
-      <td>Med2; Mediator complex, subunit Med2, fungi</td>
+      <td>Med22; Mediator of RNA polymerase II transcrip...</td>
     </tr>
     <tr>
       <th>46</th>
-      <td>PF04031</td>
+      <td>PF12271</td>
       <td>NaN</td>
-      <td>Ion_trans; Ion transport domain</td>
+      <td>Sgf11; SAGA complex, Sgf11 subunit</td>
     </tr>
     <tr>
       <th>47</th>
-      <td>PF04031</td>
+      <td>PF00920</td>
       <td>NaN</td>
-      <td>Ion_trans; Ion transport domain</td>
+      <td>CTK3_C; CTD kinase subunit gamma Ctk3, C-terminal</td>
     </tr>
     <tr>
       <th>48</th>
-      <td>PF04939</td>
+      <td>PF05224</td>
       <td>NaN</td>
-      <td>Memo; MEMO1 family</td>
+      <td>MutS_IV; DNA mismatch repair protein MutS, clamp</td>
     </tr>
     <tr>
       <th>49</th>
-      <td>PF05282</td>
+      <td>PF12894</td>
       <td>NaN</td>
-      <td>Myotub-related; Myotubularin-like phosphatase ...</td>
+      <td>TEA; TEA/ATTS domain</td>
     </tr>
     <tr>
       <th>50</th>
-      <td>PF05282</td>
+      <td>PF04099</td>
       <td>NaN</td>
-      <td>Myotub-related; Myotubularin-like phosphatase ...</td>
+      <td>Kinetochor_Ybp2; YAP-binding/ALF4/Glomulin</td>
     </tr>
     <tr>
       <th>51</th>
-      <td>PF05282</td>
+      <td>PF02259</td>
       <td>NaN</td>
-      <td>Myotub-related; Myotubularin-like phosphatase ...</td>
+      <td>F420_oxidored; Pyrroline-5-carboxylate reducta...</td>
     </tr>
     <tr>
       <th>52</th>
-      <td>PF01513</td>
+      <td>PF09724</td>
       <td>NaN</td>
-      <td>DUF1744; DNA polymerase epsilon, catalytic sub...</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td>PF06419</td>
-      <td>NaN</td>
-      <td>Nup188; Nucleoporin Nup188</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>PF05817</td>
-      <td>NaN</td>
-      <td>NUC173; Uncharacterised domain NUC173</td>
-    </tr>
-    <tr>
-      <th>55</th>
-      <td>PF11635</td>
-      <td>NaN</td>
-      <td>SRP72; Signal recognition particle, SRP72 subu...</td>
-    </tr>
-    <tr>
-      <th>56</th>
-      <td>PF11635</td>
-      <td>NaN</td>
-      <td>SRP72; Signal recognition particle, SRP72 subu...</td>
-    </tr>
-    <tr>
-      <th>57</th>
-      <td>PF02970</td>
-      <td>NaN</td>
-      <td>G_glu_transpept; Gamma-glutamyltranspeptidase</td>
+      <td>Ribosomal_60s</td>
     </tr>
   </tbody>
 </table>
@@ -1677,15 +1940,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>0</th>
-      <td>PF08647</td>
-      <td>RNA_pol_L_2; DNA-directed RNA polymerase, RBP1...</td>
-      <td>RNA_pol_L_2; DNA-directed RNA polymerase, RBP1...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PF04762</td>
-      <td>Mak16; Mak16 protein</td>
-      <td>Mak16; Mak16 protein</td>
+      <td>PF01217</td>
+      <td>DAP3; Ribosomal protein S23/S29, mitochondrial</td>
+      <td>DAP3; Ribosomal protein S23/S29, mitochondrial</td>
     </tr>
   </tbody>
 </table>
@@ -1724,7 +1981,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="section" id="proof-of-concept-with-bem1">
-<h3>Proof of concept with <em>BEM1</em><a class="headerlink" href="#proof-of-concept-with-bem1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.6.1. </span>Proof of concept with <em>BEM1</em><a class="headerlink" href="#proof-of-concept-with-bem1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Gather the domains of SL and nSL pairs from BEM1</p></li>
 <li><p>Check if the domains for the SL and nSL pairs are inside the most important domains after PCA.</p></li>
@@ -1877,6 +2134,25 @@ Name: gene-target-name, dtype: object
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -1886,8 +2162,8 @@ Name: gene-target-name, dtype: object
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="prot_domains2lethality-PAPER-REPLICATION.html" title="previous page">Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
-    <a class='right-next' id="next-link" href="evaluating-protein-domains-per-module.html" title="next page">What is the protein domain profile of genes from the same module ?</a>
+    <a class='left-prev' id="prev-link" href="prot_domains2lethality-PAPER-REPLICATION.html" title="previous page"><span class="section-number">2. </span>Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”</a>
+    <a class='right-next' id="next-link" href="evaluating-protein-domains-per-module.html" title="next page"><span class="section-number">1. </span>What are the most present protein domains per biological function?</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

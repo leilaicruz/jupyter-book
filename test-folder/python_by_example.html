@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>An Introductory Example &#8212; Notebooks for data science</title>
+    <title>2. An Introductory Example &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/sphinx-book-theme.js"></script>
@@ -29,10 +30,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorial on how to handle categorical data from here" href="../tutorial-categorical-data-on-yeast-interactions.html" />
-    <link rel="prev" title="Notebooks written entirely in markdown" href="MysT_Notebooks.html" />
+    <link rel="next" title="1. Tutorial on how to handle categorical data from here" href="../tutorial-categorical-data-on-yeast-interactions.html" />
+    <link rel="prev" title="1. Notebooks written entirely in markdown" href="MysT_Notebooks.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -73,12 +81,12 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="MysT_Notebooks.html">
-   Notebooks written entirely in markdown
+   1. Notebooks written entirely in markdown
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   An Introductory Example
+   2. An Introductory Example
   </a>
  </li>
 </ul>
@@ -90,17 +98,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../tutorial-categorical-data-on-yeast-interactions.html">
-   Tutorial on how to handle categorical data from here
+   1. Tutorial on how to handle categorical data from here
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../prot_domains2lethality-PAPER-REPLICATION.html">
-   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+   2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../prot_domains2lethality-FEATURES-POSTPROCESSING.html">
-   Feature postprocessing from paper.
+   3. Feature postprocessing from paper.
   </a>
  </li>
 </ul>
@@ -112,12 +120,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../evaluating-protein-domains-per-module.html">
-   What is the protein domain profile of genes from the same module ?
+   1. What are the most present protein domains per biological function?
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../paralogs-and-SL-pairs.html">
-   Paralogs and synthetic lethals
+   2. Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
@@ -218,156 +226,156 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#overview">
-   Overview
+   2.1. Overview
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-task-plotting-a-white-noise-process">
-   The Task: Plotting a White Noise Process
+   2.2. The Task: Plotting a White Noise Process
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#version-1">
-   Version 1
+   2.3. Version 1
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#imports">
-     Imports
+     2.3.1. Imports
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#why-so-many-imports">
-       Why So Many Imports?
+       2.3.1.1. Why So Many Imports?
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#packages">
-       Packages
+       2.3.1.2. Packages
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#subpackages">
-       Subpackages
+       2.3.1.3. Subpackages
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#importing-names-directly">
-     Importing Names Directly
+     2.3.2. Importing Names Directly
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#random-draws">
-     Random Draws
+     2.3.3. Random Draws
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#alternative-implementations">
-   Alternative Implementations
+   2.4. Alternative Implementations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-version-with-a-for-loop">
-     A Version with a For Loop
+     2.4.1. A Version with a For Loop
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lists">
-     Lists
+     2.4.2. Lists
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-for-loop">
-     The For Loop
+     2.4.3. The For Loop
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-comment-on-indentation">
-     A Comment on Indentation
+     2.4.4. A Comment on Indentation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#while-loops">
-     While Loops
+     2.4.5. While Loops
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#another-application">
-   Another Application
+   2.5. Another Application
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   Exercises
+   2.6. Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-1">
-     Exercise 1
+     2.6.1. Exercise 1
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-2">
-     Exercise 2
+     2.6.2. Exercise 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-3">
-     Exercise 3
+     2.6.3. Exercise 3
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-4">
-     Exercise 4
+     2.6.4. Exercise 4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-5">
-     Exercise 5
+     2.6.5. Exercise 5
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solutions">
-   Solutions
+   2.7. Solutions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     Exercise 1
+     2.7.1. Exercise 1
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     Exercise 2
+     2.7.2. Exercise 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     Exercise 3
+     2.7.3. Exercise 3
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     Exercise 4
+     2.7.4. Exercise 4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
-     Exercise 5
+     2.7.5. Exercise 5
     </a>
    </li>
   </ul>
@@ -384,9 +392,9 @@
                 
   <p><a class="reference external" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/d8702db318b3fc7a85331898d8bcb76c9bdc96f4"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <div class="section" id="an-introductory-example">
-<h1>An Introductory Example<a class="headerlink" href="#an-introductory-example" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>An Introductory Example<a class="headerlink" href="#an-introductory-example" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>We’re now ready to start learning the Python language itself.</p>
 <p>In this lecture, we will write and then pick apart small Python
 programs.</p>
@@ -396,7 +404,7 @@ structures.</p>
 <p>You should have read the <span class="xref std std-ref">lecture</span> on getting started with Python before beginning this one.</p>
 </div>
 <div class="section" id="the-task-plotting-a-white-noise-process">
-<h2>The Task: Plotting a White Noise Process<a class="headerlink" href="#the-task-plotting-a-white-noise-process" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>The Task: Plotting a White Noise Process<a class="headerlink" href="#the-task-plotting-a-white-noise-process" title="Permalink to this headline">¶</a></h2>
 <p>Suppose we want to simulate and plot the white noise process
 <span class="math notranslate nohighlight">\(\epsilon_0, \epsilon_1, \ldots, \epsilon_T\)</span>, where each draw
 <span class="math notranslate nohighlight">\(\epsilon_t\)</span> is independent standard normal.</p>
@@ -420,7 +428,7 @@ in the notebook if you run it on your own machine.</p>
 </div>
 </div>
 <div class="section" id="version-1">
-<h2>Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Version 1<a class="headerlink" href="#version-1" title="Permalink to this headline">¶</a></h2>
 <p id="ourfirstprog">Here are a few lines of code that perform the task we set</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -439,7 +447,7 @@ in the notebook if you run it on your own machine.</p>
 </div>
 <p>Let’s break this program down and see how it works.</p>
 <div class="section" id="imports">
-<span id="import"></span><h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<span id="import"></span><h3><span class="section-number">2.3.1. </span>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
 <p>The first two lines of the program import functionality from external
 code libraries.</p>
 <p>The first line imports NumPy, a
@@ -495,7 +503,7 @@ syntax <code class="docutils literal notranslate"><span class="pre">np.attribute
 <p>But the former method (using the short name <code class="docutils literal notranslate"><span class="pre">np</span></code>) is convenient and more
 standard.</p>
 <div class="section" id="why-so-many-imports">
-<h4>Why So Many Imports?<a class="headerlink" href="#why-so-many-imports" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.3.1.1. </span>Why So Many Imports?<a class="headerlink" href="#why-so-many-imports" title="Permalink to this headline">¶</a></h4>
 <p>Python programs typically require several import statements.</p>
 <p>The reason is that the core language is deliberately kept small, so that
 it’s easy to learn and maintain.</p>
@@ -503,7 +511,7 @@ it’s easy to learn and maintain.</p>
 need to import additional functionality.</p>
 </div>
 <div class="section" id="packages">
-<h4>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.3.1.2. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h4>
 <p>As stated above, NumPy is a Python <em>package</em>.</p>
 <p>Packages are used by developers to organize code they wish to share.</p>
 <p>In fact, a package is just a directory containing</p>
@@ -522,7 +530,7 @@ computer easily enough if you look around.</p>
 </div>
 </div>
 <div class="section" id="subpackages">
-<h4>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.3.1.3. </span>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h4>
 <p>Consider the line <code class="docutils literal notranslate"><span class="pre">ϵ_values</span> <span class="pre">=</span> <span class="pre">np.random.randn(100)</span></code>.</p>
 <p>Here <code class="docutils literal notranslate"><span class="pre">np</span></code> refers to the package NumPy, while <code class="docutils literal notranslate"><span class="pre">random</span></code> is a
 <strong>subpackage</strong> of NumPy.</p>
@@ -531,7 +539,7 @@ package.</p>
 </div>
 </div>
 <div class="section" id="importing-names-directly">
-<h3>Importing Names Directly<a class="headerlink" href="#importing-names-directly" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.2. </span>Importing Names Directly<a class="headerlink" href="#importing-names-directly" title="Permalink to this headline">¶</a></h3>
 <p>Recall this code that we saw above</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -570,7 +578,7 @@ separated by many other lines.</p>
 they wish to.</p>
 </div>
 <div class="section" id="random-draws">
-<h3>Random Draws<a class="headerlink" href="#random-draws" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.3. </span>Random Draws<a class="headerlink" href="#random-draws" title="Permalink to this headline">¶</a></h3>
 <p>Returning to our program that plots white noise, the remaining three
 lines after the import statements are</p>
 <div class="cell docutils container">
@@ -593,7 +601,7 @@ below.</p>
 </div>
 </div>
 <div class="section" id="alternative-implementations">
-<h2>Alternative Implementations<a class="headerlink" href="#alternative-implementations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Alternative Implementations<a class="headerlink" href="#alternative-implementations" title="Permalink to this headline">¶</a></h2>
 <p>Let’s try writing some alternative versions of
 <a class="reference internal" href="#ourfirstprog"><span class="std std-ref">our first program</span></a>, which
 plotted IID draws from the normal distribution.</p>
@@ -602,7 +610,7 @@ somewhat artificial.</p>
 <p>But they do help us illustrate some important Python syntax and
 semantics in a familiar setting.</p>
 <div class="section" id="a-version-with-a-for-loop">
-<h3>A Version with a For Loop<a class="headerlink" href="#a-version-with-a-for-loop" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.4.1. </span>A Version with a For Loop<a class="headerlink" href="#a-version-with-a-for-loop" title="Permalink to this headline">¶</a></h3>
 <p>Here’s a version that illustrates <code class="docutils literal notranslate"><span class="pre">for</span></code> loops and Python lists.</p>
 <div class="cell docutils container" id="firstloopprog">
 <div class="cell_input docutils container">
@@ -637,7 +645,7 @@ new random number <span class="math notranslate nohighlight">\(\epsilon_t\)</spa
 <p>Let’s study some parts of this program in more detail.</p>
 </div>
 <div class="section" id="lists">
-<span id="lists-ref"></span><h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<span id="lists-ref"></span><h3><span class="section-number">2.4.2. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
 <p>Consider the statement <code class="docutils literal notranslate"><span class="pre">ϵ_values</span> <span class="pre">=</span> <span class="pre">[]</span></code>, which creates an empty list.</p>
 <p>Lists are a <em>native Python data structure</em> used to group a collection of
 objects.</p>
@@ -762,7 +770,7 @@ element is referenced by <code class="docutils literal notranslate"><span class=
 </div>
 </div>
 <div class="section" id="the-for-loop">
-<h3>The For Loop<a class="headerlink" href="#the-for-loop" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.4.3. </span>The For Loop<a class="headerlink" href="#the-for-loop" title="Permalink to this headline">¶</a></h3>
 <p>Now let’s consider the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop from
 <a class="reference internal" href="#firstloopprog"><span class="std std-ref">the program above</span></a>, which
 was</p>
@@ -816,7 +824,7 @@ a loop of the form</p>
 see soon enough.</p>
 </div>
 <div class="section" id="a-comment-on-indentation">
-<h3>A Comment on Indentation<a class="headerlink" href="#a-comment-on-indentation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.4.4. </span>A Comment on Indentation<a class="headerlink" href="#a-comment-on-indentation" title="Permalink to this headline">¶</a></h3>
 <p>In discussing the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we explained that the code blocks being
 looped over are delimited by indentation.</p>
 <p>In fact, in Python, <strong>all</strong> code blocks (i.e., those occurring inside
@@ -846,7 +854,7 @@ remember:</p>
 </ul>
 </div>
 <div class="section" id="while-loops">
-<h3>While Loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.4.5. </span>While Loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is the most common technique for iteration in Python.</p>
 <p>But, for the purpose of illustration, let’s modify
 <a class="reference internal" href="#firstloopprog"><span class="std std-ref">the program above</span></a> to use
@@ -877,7 +885,7 @@ a <code class="docutils literal notranslate"><span class="pre">while</span></cod
 </div>
 </div>
 <div class="section" id="another-application">
-<h2>Another Application<a class="headerlink" href="#another-application" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Another Application<a class="headerlink" href="#another-application" title="Permalink to this headline">¶</a></h2>
 <p>Let’s do one more application before we turn to exercises.</p>
 <p>In this application, we plot the balance of a bank account over time.</p>
 <p>There are no withdraws over the time period, the last date of which is
@@ -885,9 +893,9 @@ denoted by <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p>The initial balance is <span class="math notranslate nohighlight">\(b_0\)</span> and the interest rate is <span class="math notranslate nohighlight">\(r\)</span>.</p>
 <p>The balance updates from period <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t+1\)</span> according to</p>
 <div class="math notranslate nohighlight" id="equation-ilom">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ilom" title="Permalink to this equation">¶</a></span>\[    b_{t+1} = (1 + r) b_t\]</div>
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-ilom" title="Permalink to this equation">¶</a></span>\[    b_{t+1} = (1 + r) b_t\]</div>
 <p>In the code below, we generate and plot the sequence <span class="math notranslate nohighlight">\(b_0, b_1, \ldots, b_T\)</span>
-generated by <a class="reference internal" href="#equation-ilom">(1)</a>.</p>
+generated by <a class="reference internal" href="#equation-ilom">(2.1)</a>.</p>
 <p>Instead of using a Python list to store this sequence, we will use a
 NumPy array.</p>
 <div class="cell docutils container">
@@ -920,11 +928,11 @@ space from the operating system.</p>
 asked to use in the exercises.</p>
 </div>
 <div class="section" id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <p>Now we turn to exercises. It is important that you complete them before
 continuing, since they present new concepts we will need.</p>
 <div class="section" id="exercise-1">
-<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.6.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
 <p>Your first task is to simulate and plot the correlated time series</p>
 <div class="math notranslate nohighlight">
 \[
@@ -947,7 +955,7 @@ standard normal.</p>
 <p>Set <span class="math notranslate nohighlight">\(T=200\)</span> and <span class="math notranslate nohighlight">\(\alpha = 0.9\)</span>.</p>
 </div>
 <div class="section" id="exercise-2">
-<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.6.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
 <p>Starting with your solution to exercise 2, plot three simulated time
 series, one for each of the cases <span class="math notranslate nohighlight">\(\alpha=0\)</span>, <span class="math notranslate nohighlight">\(\alpha=0.8\)</span> and
 <span class="math notranslate nohighlight">\(\alpha=0.98\)</span>.</p>
@@ -964,7 +972,7 @@ evaluates to <code class="docutils literal notranslate"><span class="pre">'foo42
 </ul>
 </div>
 <div class="section" id="exercise-3">
-<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.6.3. </span>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
 <p>Similar to the previous exercises, plot the time series</p>
 <div class="math notranslate nohighlight">
 \[
@@ -978,7 +986,7 @@ x_0 = 0
 value <span class="math notranslate nohighlight">\(|x_t|\)</span>.</p>
 </div>
 <div class="section" id="exercise-4">
-<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.6.4. </span>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
 <p>One important aspect of essentially all programming languages is
 branching and conditions.</p>
 <p>In Python, conditions are usually implemented with if–else syntax.</p>
@@ -1015,7 +1023,7 @@ function to compute the absolute value.</p>
 <p>Replace this existing function with an if–else condition.</p>
 </div>
 <div class="section" id="exercise-5">
-<span id="pbe-ex3"></span><h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+<span id="pbe-ex3"></span><h3><span class="section-number">2.6.5. </span>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
 <p>Here’s a harder exercise, that takes some thought and planning.</p>
 <p>The task is to compute an approximation to <span class="math notranslate nohighlight">\(\pi\)</span> using <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a>.</p>
 <p>Use no imports besides</p>
@@ -1039,9 +1047,9 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </div>
 </div>
 <div class="section" id="solutions">
-<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.7. </span>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
-<h3>Exercise 1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.7.1. </span>Exercise 1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Here’s one solution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1064,7 +1072,7 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </div>
 </div>
 <div class="section" id="id2">
-<h3>Exercise 2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.7.2. </span>Exercise 2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">α_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">]</span>
@@ -1088,7 +1096,7 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </div>
 </div>
 <div class="section" id="id3">
-<h3>Exercise 3<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.7.3. </span>Exercise 3<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Here’s one solution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1111,7 +1119,7 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </div>
 </div>
 <div class="section" id="id4">
-<h3>Exercise 4<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.7.4. </span>Exercise 4<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Here’s one way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1159,7 +1167,7 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </div>
 </div>
 <div class="section" id="id5">
-<h3>Exercise 5<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.7.5. </span>Exercise 5<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Consider the circle of diameter 1 embedded in the unit square.</p>
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be its area and let <span class="math notranslate nohighlight">\(r=1/2\)</span> be its radius.</p>
 <p>If we know <span class="math notranslate nohighlight">\(\pi\)</span> then we can compute <span class="math notranslate nohighlight">\(A\)</span> via <span class="math notranslate nohighlight">\(A = \pi r^2\)</span>.</p>
@@ -1187,7 +1195,7 @@ fraction that falls into the circle.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.136
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.14616
 </pre></div>
 </div>
 </div>
@@ -1196,6 +1204,25 @@ fraction that falls into the circle.</p>
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./test-folder"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -1205,8 +1232,8 @@ fraction that falls into the circle.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="MysT_Notebooks.html" title="previous page">Notebooks written entirely in markdown</a>
-    <a class='right-next' id="next-link" href="../tutorial-categorical-data-on-yeast-interactions.html" title="next page">Tutorial on how to handle categorical data from here</a>
+    <a class='left-prev' id="prev-link" href="MysT_Notebooks.html" title="previous page"><span class="section-number">1. </span>Notebooks written entirely in markdown</a>
+    <a class='right-next' id="next-link" href="../tutorial-categorical-data-on-yeast-interactions.html" title="next page"><span class="section-number">1. </span>Tutorial on how to handle categorical data from here</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

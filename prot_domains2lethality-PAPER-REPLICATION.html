@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains” &#8212; Notebooks for data science</title>
+    <title>2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains” &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
@@ -29,10 +30,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
-    <link rel="prev" title="Tutorial on how to handle categorical data from here" href="tutorial-categorical-data-on-yeast-interactions.html" />
+    <link rel="next" title="3. Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
+    <link rel="prev" title="1. Tutorial on how to handle categorical data from here" href="tutorial-categorical-data-on-yeast-interactions.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -73,12 +81,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/MysT_Notebooks.html">
-   Notebooks written entirely in markdown
+   1. Notebooks written entirely in markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/python_by_example.html">
-   An Introductory Example
+   2. An Introductory Example
   </a>
  </li>
 </ul>
@@ -90,17 +98,17 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="tutorial-categorical-data-on-yeast-interactions.html">
-   Tutorial on how to handle categorical data from here
+   1. Tutorial on how to handle categorical data from here
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+   2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
-   Feature postprocessing from paper.
+   3. Feature postprocessing from paper.
   </a>
  </li>
 </ul>
@@ -112,12 +120,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="evaluating-protein-domains-per-module.html">
-   What is the protein domain profile of genes from the same module ?
+   1. What are the most present protein domains per biological function?
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="paralogs-and-SL-pairs.html">
-   Paralogs and synthetic lethals
+   2. Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
@@ -218,45 +226,45 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#importing-datasets">
-   Importing datasets
+   2.1. Importing datasets
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded">
-     Link to the github repo where the datasets to be downloaded:
+     2.1.1. Link to the github repo where the datasets to be downloaded:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#building-the-feature-matrix">
-   Building the feature matrix
+   2.2. Building the feature matrix
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately">
-     Building the list of proteins domains id per protein pair separately :
+     2.2.1. Building the list of proteins domains id per protein pair separately :
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain">
-     Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain
+     2.2.2. Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
-     Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair
+     2.2.3. Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#define-function-get-indexes">
-       Define function
+       2.2.3.1. Define function
        <code class="docutils literal notranslate">
         <span class="pre">
          get_indexes
@@ -268,90 +276,90 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-many-ones-and-twos-are-in-each-dataset">
-     How many ones and twos are in each dataset
+     2.2.4. How many ones and twos are in each dataset
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#bar-plot-to-visualize-these-numbers">
-       Bar plot to visualize these numbers
+       2.2.4.1. Bar plot to visualize these numbers
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#adding-the-labels-response-variables-to-each-dataset">
-       Adding the labels(response variables) to each dataset
+       2.2.4.2. Adding the labels(response variables) to each dataset
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#joining-both-datasets">
-       Joining both datasets
+       2.2.4.3. Joining both datasets
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets">
-     Postprocessing and exploration of the feature matrix of both datasets
+     2.2.5. Postprocessing and exploration of the feature matrix of both datasets
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#viz-of-the-stats">
-     Viz of the stats
+     2.2.6. Viz of the stats
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow">
-   Separate features from labels to set up the data from the ML workflow
+   2.3. Separate features from labels to set up the data from the ML workflow
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#choosing-the-best-svm-model">
-     Choosing the best SVM model
+     2.3.1. Choosing the best SVM model
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#training-with-the-best-model">
-     Training with the best model
+     2.3.2. Training with the best model
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#note-this-learning-is-without-applying-reduction-of-dimensionality-with-pca-this-make-the-svm-not-optimized-at-all">
-       Note : This learning is without applying reduction of dimensionality with PCA . This make the SVM not optimized at all.
+       2.3.2.1. Note : This learning is without applying reduction of dimensionality with PCA . This make the SVM not optimized at all.
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#saving-the-model">
-     Saving the model
+     2.3.3. Saving the model
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#loading-the-model">
-     Loading the model
+     2.3.4. Loading the model
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#making-predictions">
-     Making predictions
+     2.3.5. Making predictions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting">
-     Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting
+     2.3.6. Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#viz-of-the-variation-of-the-test-error-per-fold-if-the-variation-is-high-the-classifier-may-be-proned-to-overfitting">
-     Viz of the variation of the test error per fold . If the variation is high , the classifier may be proned to overfitting.
+     2.3.7. Viz of the variation of the test error per fold . If the variation is high , the classifier may be proned to overfitting.
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-pca-to-reduce-the-dimensionality-of-the-problem">
-   Using PCA to reduce the dimensionality of the problem
+   2.4. Using PCA to reduce the dimensionality of the problem
   </a>
  </li>
 </ul>
@@ -365,7 +373,7 @@
               <div>
                 
   <div class="section" id="replication-of-results-from-paper-predicting-yeast-synthetic-lethal-genetic-interactions-using-protein-domains">
-<h1>Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”<a class="headerlink" href="#replication-of-results-from-paper-predicting-yeast-synthetic-lethal-genetic-interactions-using-protein-domains" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”<a class="headerlink" href="#replication-of-results-from-paper-predicting-yeast-synthetic-lethal-genetic-interactions-using-protein-domains" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Authors: Bo Li, Feng Luo,School of Computing,Clemson University,Clemson, SC, USA</p></li>
 <li><p>e-mail: bol, luofeng&#64;clemson.edu</p></li>
@@ -386,9 +394,9 @@
 </div>
 </div>
 <div class="section" id="importing-datasets">
-<h2>Importing datasets<a class="headerlink" href="#importing-datasets" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Importing datasets<a class="headerlink" href="#importing-datasets" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="link-to-the-github-repo-where-the-datasets-to-be-downloaded">
-<h3>Link to the github repo where the datasets to be downloaded:<a class="headerlink" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.1. </span>Link to the github repo where the datasets to be downloaded:<a class="headerlink" href="#link-to-the-github-repo-where-the-datasets-to-be-downloaded" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning">DOWNLOAD THE DATASETS HERE</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -419,10 +427,10 @@
 </div>
 </div>
 <div class="section" id="building-the-feature-matrix">
-<h2>Building the feature matrix<a class="headerlink" href="#building-the-feature-matrix" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Building the feature matrix<a class="headerlink" href="#building-the-feature-matrix" title="Permalink to this headline">¶</a></h2>
 <p>One matrix for true SL where each row is one pair of SL. Every raw will be a vector of 0,1 or 2 depending on the comparison with the domain list. For row i the jth element = 0 if the jth element of the domain list is not in neither protein A and B, 1, if it is in one of them and 2 if it is in both of them .</p>
 <div class="section" id="building-the-list-of-proteins-domains-id-per-protein-pair-separately">
-<h3>Building the list of proteins domains id per protein pair separately :<a class="headerlink" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.1. </span>Building the list of proteins domains id per protein pair separately :<a class="headerlink" href="#building-the-list-of-proteins-domains-id-per-protein-pair-separately" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>List of protein A: Search for the Sl/nSL database the query gene name and look in the protein domain database which protein domains id has each of those queries.</p></li>
 <li><p>List of protein B: Search for the Sl/nSL database the target gene name of the previous query and look in the protein domain database which protein domains id has each of those target genes.</p></li>
@@ -478,7 +486,7 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="section" id="postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain">
-<h3>Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain<a class="headerlink" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.2. </span>Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain<a class="headerlink" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_empty_domains</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">,</span><span class="n">protein_list_pair</span><span class="p">):</span>
@@ -513,17 +521,17 @@ We are going to analyze 100 protein pairs, out of 43340 positive protein pairs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 18 out of 100 domains
-The empty domain in the nSL were: 19 out of 100 domains
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 14 out of 100 domains
+The empty domain in the nSL were: 24 out of 100 domains
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair">
-<h3>Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair<a class="headerlink" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.3. </span>Feature engineering: Select from each ordered indexes of domain id list which of them appear once, in both or in any of the domains of each protein pair<a class="headerlink" href="#feature-engineering-select-from-each-ordered-indexes-of-domain-id-list-which-of-them-appear-once-in-both-or-in-any-of-the-domains-of-each-protein-pair" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="define-function-get-indexes">
-<h4>Define function <code class="docutils literal notranslate"><span class="pre">get_indexes</span></code><a class="headerlink" href="#define-function-get-indexes" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.2.3.1. </span>Define function <code class="docutils literal notranslate"><span class="pre">get_indexes</span></code><a class="headerlink" href="#define-function-get-indexes" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_indexes</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span> <span class="c1"># a function that give the index of whether a value appear in array or not</span>
@@ -588,7 +596,7 @@ The empty domain in the nSL were: 19 out of 100 domains
 </div>
 </div>
 <div class="section" id="how-many-ones-and-twos-are-in-each-dataset">
-<h3>How many ones and twos are in each dataset<a class="headerlink" href="#how-many-ones-and-twos-are-in-each-dataset" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.4. </span>How many ones and twos are in each dataset<a class="headerlink" href="#how-many-ones-and-twos-are-in-each-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">index_2_true</span><span class="o">=</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
@@ -612,16 +620,16 @@ The empty domain in the nSL were: 19 out of 100 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.2094335819391251e-05
-fraction of ones in the SL array is 0.0010401128804676477
-fraction of twos in the PI array is 1.6324864809713294e-05
-fraction of ones in the PI array is 0.0009590858075706561
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.9219680953296175e-05
+fraction of ones in the SL array is 0.0009571401114741496
+fraction of twos in the PI array is 4.349717268377555e-06
+fraction of ones in the PI array is 0.0008742931709438887
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="bar-plot-to-visualize-these-numbers">
-<h4>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.2.4.1. </span>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;fraction of 2 in the nSL&#39;</span><span class="p">,</span><span class="s1">&#39;fraction of 1 in the nSL&#39;</span><span class="p">],[</span><span class="n">index_2_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span><span class="n">index_1_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">))],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;lightblue&#39;</span><span class="p">]),</span> 
@@ -644,7 +652,7 @@ fraction of ones in the PI array is 0.0009590858075706561
 </div>
 </div>
 <div class="section" id="adding-the-labels-response-variables-to-each-dataset">
-<h4>Adding the labels(response variables) to each dataset<a class="headerlink" href="#adding-the-labels-response-variables-to-each-dataset" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.2.4.2. </span>Adding the labels(response variables) to each dataset<a class="headerlink" href="#adding-the-labels-response-variables-to-each-dataset" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">protein_feat_true_pd</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)))</span>
@@ -655,7 +663,7 @@ fraction of ones in the PI array is 0.0009590858075706561
 </div>
 </div>
 <div class="section" id="joining-both-datasets">
-<h4>Joining both datasets<a class="headerlink" href="#joining-both-datasets" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.2.4.3. </span>Joining both datasets<a class="headerlink" href="#joining-both-datasets" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feature_post</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">protein_feat_true_pd</span><span class="p">,</span><span class="n">protein_feat_non_true_pd</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -667,7 +675,7 @@ fraction of ones in the PI array is 0.0009590858075706561
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 163
+The number of samples are: 162
 </pre></div>
 </div>
 </div>
@@ -675,7 +683,7 @@ The number of samples are: 163
 </div>
 </div>
 <div class="section" id="postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets">
-<h3>Postprocessing and exploration of the feature matrix of both datasets<a class="headerlink" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.5. </span>Postprocessing and exploration of the feature matrix of both datasets<a class="headerlink" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
@@ -689,7 +697,7 @@ The number of samples are: 163
 </div>
 </div>
 <div class="section" id="viz-of-the-stats">
-<h3>Viz of the stats<a class="headerlink" href="#viz-of-the-stats" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.6. </span>Viz of the stats<a class="headerlink" href="#viz-of-the-stats" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -759,7 +767,7 @@ The number of samples are: 163
 </div>
 </div>
 <div class="section" id="separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow">
-<h2>Separate features from labels to set up the data from the ML workflow<a class="headerlink" href="#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Separate features from labels to set up the data from the ML workflow<a class="headerlink" href="#separate-features-from-labels-to-set-up-the-data-from-the-ml-workflow" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">feature_post</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lethality&quot;</span><span class="p">]),</span> <span class="n">feature_post</span><span class="p">[</span><span class="s2">&quot;lethality&quot;</span><span class="p">]</span>
@@ -778,14 +786,14 @@ The number of samples are: 163
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (114, 3025) (114,)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Train set: (113, 3025) (113,)
 Test set: (49, 3025) (49,)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="choosing-the-best-svm-model">
-<h3>Choosing the best SVM model<a class="headerlink" href="#choosing-the-best-svm-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.1. </span>Choosing the best SVM model<a class="headerlink" href="#choosing-the-best-svm-model" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
@@ -805,7 +813,7 @@ Test set: (49, 3025) (49,)
 </pre>
 </div>
 <div class="stderr docutils container">
-<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.0s finished
+<pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    2.3s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -824,16 +832,16 @@ Test set: (49, 3025) (49,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=1)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="training-with-the-best-model">
-<h3>Training with the best model<a class="headerlink" href="#training-with-the-best-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.2. </span>Training with the best model<a class="headerlink" href="#training-with-the-best-model" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="note-this-learning-is-without-applying-reduction-of-dimensionality-with-pca-this-make-the-svm-not-optimized-at-all">
-<h4>Note : This learning is without applying reduction of dimensionality with PCA . This make the SVM not optimized at all.<a class="headerlink" href="#note-this-learning-is-without-applying-reduction-of-dimensionality-with-pca-this-make-the-svm-not-optimized-at-all" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.3.2.1. </span>Note : This learning is without applying reduction of dimensionality with PCA . This make the SVM not optimized at all.<a class="headerlink" href="#note-this-learning-is-without-applying-reduction-of-dimensionality-with-pca-this-make-the-svm-not-optimized-at-all" title="Permalink to this headline">¶</a></h4>
 <p>Later we shall see how this svm is affected after <code class="docutils literal notranslate"><span class="pre">PCA</span></code> transformation to the data .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -848,7 +856,7 @@ Test set: (49, 3025) (49,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.5510204081632653
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.6938775510204082
 </pre></div>
 </div>
 </div>
@@ -856,7 +864,7 @@ Test set: (49, 3025) (49,)
 </div>
 </div>
 <div class="section" id="saving-the-model">
-<h3>Saving the model<a class="headerlink" href="#saving-the-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.3. </span>Saving the model<a class="headerlink" href="#saving-the-model" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
@@ -872,7 +880,7 @@ Test set: (49, 3025) (49,)
 </div>
 </div>
 <div class="section" id="loading-the-model">
-<h3>Loading the model<a class="headerlink" href="#loading-the-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.4. </span>Loading the model<a class="headerlink" href="#loading-the-model" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
@@ -883,7 +891,7 @@ Test set: (49, 3025) (49,)
 </div>
 </div>
 <div class="section" id="making-predictions">
-<h3>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.5. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
@@ -911,13 +919,13 @@ Test set: (49, 3025) (49,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.4489795918367347
-Test set Accuracy:  0.5510204081632653
-The Jaccard index is = 0.26666666666666666
-The log-loss is = 15.50733627484646
-The f1-score is = 0.4210526315789474
-Precision: 0.5
-Recall: 0.36363636363636365
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.30612244897959184
+Test set Accuracy:  0.6938775510204082
+The Jaccard index is = 0.53125
+The log-loss is = 10.573241679602695
+The f1-score is = 0.693877551020408
+Precision: 0.6538461538461539
+Recall: 0.7391304347826086
 </pre></div>
 </div>
 </div>
@@ -932,12 +940,12 @@ Recall: 0.36363636363636365
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.58      0.70      0.63        27
-          SL       0.50      0.36      0.42        22
+       NonSl       0.74      0.65      0.69        26
+          SL       0.65      0.74      0.69        23
 
-    accuracy                           0.55        49
-   macro avg       0.54      0.53      0.53        49
-weighted avg       0.54      0.55      0.54        49
+    accuracy                           0.69        49
+   macro avg       0.70      0.70      0.69        49
+weighted avg       0.70      0.69      0.69        49
 
 </pre></div>
 </div>
@@ -963,7 +971,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8fb089ec90&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3840fe81d0&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_46_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_46_1.png" />
@@ -988,7 +996,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8fabfdf610&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f383fa0a050&gt;
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-PAPER-REPLICATION_47_1.png" src="_images/prot_domains2lethality-PAPER-REPLICATION_47_1.png" />
@@ -1029,7 +1037,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="section" id="step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting">
-<h3>Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting<a class="headerlink" href="#step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.6. </span>Step of crossvalidation to evaluate the peformance of the classifier in terms of overfitting<a class="headerlink" href="#step-of-crossvalidation-to-evaluate-the-peformance-of-the-classifier-in-terms-of-overfitting" title="Permalink to this headline">¶</a></h3>
 <p>(<strong>Caution!</strong>) Highly time consuming ~2h for 10000 X 3072 matrix</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1047,7 +1055,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 9.415699999948401e-05
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.0001633910000009564
 </pre></div>
 </div>
 </div>
@@ -1067,7 +1075,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.584450855
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The elapsed time was 0.7543639999999989
 </pre></div>
 </div>
 </div>
@@ -1096,7 +1104,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="section" id="viz-of-the-variation-of-the-test-error-per-fold-if-the-variation-is-high-the-classifier-may-be-proned-to-overfitting">
-<h3>Viz of the variation of the test error per fold . If the variation is high , the classifier may be proned to overfitting.<a class="headerlink" href="#viz-of-the-variation-of-the-test-error-per-fold-if-the-variation-is-high-the-classifier-may-be-proned-to-overfitting" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.7. </span>Viz of the variation of the test error per fold . If the variation is high , the classifier may be proned to overfitting.<a class="headerlink" href="#viz-of-the-variation-of-the-test-error-per-fold-if-the-variation-is-high-the-classifier-may-be-proned-to-overfitting" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -1120,7 +1128,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="section" id="using-pca-to-reduce-the-dimensionality-of-the-problem">
-<h2>Using PCA to reduce the dimensionality of the problem<a class="headerlink" href="#using-pca-to-reduce-the-dimensionality-of-the-problem" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Using PCA to reduce the dimensionality of the problem<a class="headerlink" href="#using-pca-to-reduce-the-dimensionality-of-the-problem" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -1152,7 +1160,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((114, 3025), (49, 3025), (91, 3025), (114, 91))
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((113, 3025), (49, 3025), (95, 3025), (113, 95))
 </pre></div>
 </div>
 </div>
@@ -1173,7 +1181,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 <div class="stderr docutils container">
 <pre class="stderr literal-block">[Parallel(n_jobs=-1)]: Using backend LokyBackend with 2 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    0.1s finished
+[Parallel(n_jobs=-1)]: Done  30 out of  30 | elapsed:    0.2s finished
 </pre>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=SVC(), n_jobs=-1,
@@ -1192,7 +1200,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=10, gamma=&#39;auto&#39;)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>SVC(C=100)
 </pre></div>
 </div>
 </div>
@@ -1210,7 +1218,7 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.5918367346938775
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.5714285714285714
 </pre></div>
 </div>
 </div>
@@ -1256,13 +1264,16 @@ weighted avg       0.54      0.55      0.54        49
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.40816326530612246
-Test set Accuracy:  0.5918367346938775
-The Jaccard index is = 0.48717948717948717
-The log-loss is = 14.097737164378103
-The f1-score is = 0.6551724137931034
-Precision: 0.5277777777777778
-Recall: 0.8636363636363636
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The mean squared error is = 0.42857142857142855
+Test set Accuracy:  
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.5714285714285714
+The Jaccard index is = 0.5
+The log-loss is = 14.802642788659146
+The f1-score is = 0.6666666666666667
+Precision: 0.525
+Recall: 0.9130434782608695
 </pre></div>
 </div>
 </div>
@@ -1308,12 +1319,12 @@ Recall: 0.8636363636363636
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       NonSl       0.77      0.37      0.50        27
-          SL       0.53      0.86      0.66        22
+       NonSl       0.78      0.27      0.40        26
+          SL       0.53      0.91      0.67        23
 
-    accuracy                           0.59        49
-   macro avg       0.65      0.62      0.58        49
-weighted avg       0.66      0.59      0.57        49
+    accuracy                           0.57        49
+   macro avg       0.65      0.59      0.53        49
+weighted avg       0.66      0.57      0.53        49
 
 </pre></div>
 </div>
@@ -1322,6 +1333,25 @@ weighted avg       0.66      0.59      0.57        49
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -1331,8 +1361,8 @@ weighted avg       0.66      0.59      0.57        49
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="tutorial-categorical-data-on-yeast-interactions.html" title="previous page">Tutorial on how to handle categorical data from here</a>
-    <a class='right-next' id="next-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="next page">Feature postprocessing from paper.</a>
+    <a class='left-prev' id="prev-link" href="tutorial-categorical-data-on-yeast-interactions.html" title="previous page"><span class="section-number">1. </span>Tutorial on how to handle categorical data from here</a>
+    <a class='right-next' id="next-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="next page"><span class="section-number">3. </span>Feature postprocessing from paper.</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

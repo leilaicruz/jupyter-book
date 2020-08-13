@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>What is the protein domain profile of genes from the same module ? &#8212; Notebooks for data science</title>
+    <title>1. What are the most present protein domains per biological function? &#8212; Notebooks for data science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
@@ -29,10 +30,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Paralogs and synthetic lethals" href="paralogs-and-SL-pairs.html" />
-    <link rel="prev" title="Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
+    <link rel="next" title="2. Paralogs and synthetic lethals" href="paralogs-and-SL-pairs.html" />
+    <link rel="prev" title="3. Feature postprocessing from paper." href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -73,12 +81,12 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/MysT_Notebooks.html">
-   Notebooks written entirely in markdown
+   1. Notebooks written entirely in markdown
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="test-folder/python_by_example.html">
-   An Introductory Example
+   2. An Introductory Example
   </a>
  </li>
 </ul>
@@ -90,17 +98,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="tutorial-categorical-data-on-yeast-interactions.html">
-   Tutorial on how to handle categorical data from here
+   1. Tutorial on how to handle categorical data from here
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-PAPER-REPLICATION.html">
-   Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
+   2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html">
-   Feature postprocessing from paper.
+   3. Feature postprocessing from paper.
   </a>
  </li>
 </ul>
@@ -112,12 +120,12 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   What is the protein domain profile of genes from the same module ?
+   1. What are the most present protein domains per biological function?
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="paralogs-and-SL-pairs.html">
-   Paralogs and synthetic lethals
+   2. Paralogs and synthetic lethals
   </a>
  </li>
 </ul>
@@ -218,18 +226,18 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#selecting-the-modules-to-evaluate-the-protein-domains">
-   Selecting the modules to evaluate the protein domains
+   1.1. Selecting the modules to evaluate the protein domains
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sorting-the-dataframe-by-the-ratio-of-sharing">
-   Sorting the dataframe by the ratio of sharing
+   1.2. Sorting the dataframe by the ratio of sharing
   </a>
  </li>
 </ul>
@@ -242,8 +250,8 @@
         
               <div>
                 
-  <div class="section" id="what-is-the-protein-domain-profile-of-genes-from-the-same-module">
-<h1>What is the protein domain profile of genes from the same module ?<a class="headerlink" href="#what-is-the-protein-domain-profile-of-genes-from-the-same-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="what-are-the-most-present-protein-domains-per-biological-function">
+<h1><span class="section-number">1. </span>What are the most present protein domains per biological function?<a class="headerlink" href="#what-are-the-most-present-protein-domains-per-biological-function" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">intermine.webservice</span> <span class="kn">import</span> <span class="n">Service</span>
@@ -265,7 +273,7 @@
 </div>
 </div>
 <div class="section" id="selecting-the-modules-to-evaluate-the-protein-domains">
-<h2>Selecting the modules to evaluate the protein domains<a class="headerlink" href="#selecting-the-modules-to-evaluate-the-protein-domains" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.1. </span>Selecting the modules to evaluate the protein domains<a class="headerlink" href="#selecting-the-modules-to-evaluate-the-protein-domains" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -533,7 +541,7 @@
 </div>
 </div>
 <div class="section" id="sorting-the-dataframe-by-the-ratio-of-sharing">
-<h2>Sorting the dataframe by the ratio of sharing<a class="headerlink" href="#sorting-the-dataframe-by-the-ratio-of-sharing" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2. </span>Sorting the dataframe by the ratio of sharing<a class="headerlink" href="#sorting-the-dataframe-by-the-ratio-of-sharing" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stats_module</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">unique_domains</span><span class="p">)</span>
@@ -598,7 +606,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>18</td>
       <td>0.074510</td>
       <td>Pkinase; Protein kinase domain</td>
-      <td>[CDC28, CLA4, CDC5, KCC4, PBS2, STE20, ARK1, S...</td>
+      <td>[SSK2, PRK1, KCC4, MPS1, ARK1, CBK1, CDC5, KIC...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -607,7 +615,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>0</td>
       <td>0.058824</td>
       <td>SH3_1; SH3 domain</td>
-      <td>[SLA1, BBC1, SHO1, LSB1, BUD14, MYO5, BEM1, BO...</td>
+      <td>[BZZ1, BEM1, RVS167, YSC84, ABP1, BBC1, SLA1, ...</td>
     </tr>
     <tr>
       <th>17</th>
@@ -616,7 +624,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>39</td>
       <td>0.027451</td>
       <td>PH; Pleckstrin homology domain</td>
-      <td>[BUD4, BEM2, SLM1, BEM3, BOI2, CLA4, BOI1, SLM2]</td>
+      <td>[BEM2, BEM3, SLM1, SLM2, BOI2, CLA4, BOI1, BUD4]</td>
     </tr>
     <tr>
       <th>9</th>
@@ -625,7 +633,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>91</td>
       <td>0.023529</td>
       <td>Ras; Small GTPase superfamily</td>
-      <td>[TEM1, RHO1, CDC42, RSR1, RHO3, RHO4, RHO2]</td>
+      <td>[RHO4, RHO3, CDC42, RHO2, RHO1, RSR1, TEM1]</td>
     </tr>
     <tr>
       <th>14</th>
@@ -634,7 +642,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>116</td>
       <td>0.023529</td>
       <td>Cyclin_N; Cyclin, N-terminal</td>
-      <td>[PCL2, CLB1, PCL1, CLB4, CLB3, CLB2, CLB5]</td>
+      <td>[PCL1, CLB2, CLB1, PCL2, CLB3, CLB5, CLB4]</td>
     </tr>
   </tbody>
 </table>
@@ -660,6 +668,25 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -669,8 +696,8 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="previous page">Feature postprocessing from paper.</a>
-    <a class='right-next' id="next-link" href="paralogs-and-SL-pairs.html" title="next page">Paralogs and synthetic lethals</a>
+    <a class='left-prev' id="prev-link" href="prot_domains2lethality-FEATURES-POSTPROCESSING.html" title="previous page"><span class="section-number">3. </span>Feature postprocessing from paper.</a>
+    <a class='right-next' id="next-link" href="paralogs-and-SL-pairs.html" title="next page"><span class="section-number">2. </span>Paralogs and synthetic lethals</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
