@@ -27,7 +27,17 @@ import os, fnmatch
 ```
 
 ```{code-cell} ipython3
-data_sl=pd.read_excel(r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation\Calculations\data_BioGrid\data-synthetic-lethals.xlsx',header=0)
+script_dir = os.path.dirname('__file__') #<-- absolute dir the script is in
+rel_path_sl="datasets/data-synthetic-lethals.xlsx"
+rel_path_paralogs='datasets/paralogs-all-unique-SL-pairs.xlsx'
+
+abs_file_path_sl = os.path.join(script_dir, rel_path_sl)
+abs_file_path_paralogs = os.path.join(script_dir, rel_path_paralogs)
+
+# os.chdir('../') #<-- for binder os.chdir('../')
+
+data_sl=pd.read_excel(abs_file_path_sl,header=0)
+all_paralogs_from_sl=pd.read_excel(abs_file_path_paralogs)
 ```
 
 ###  Build  a program that reads the paralogs of the que query gene and see if that paralog is also SL of the query gene , by inspecting if the paralog is present in the target genes of the SL database. 
@@ -35,7 +45,6 @@ data_sl=pd.read_excel(r'C:\Users\linigodelacruz\Documents\PhD_2018\Documentation
 
 
 ```{code-cell} ipython3
-all_paralogs_from_sl=pd.read_excel('paralogs-all-unique-SL-pairs.xlsx')
 query_paralogs_pd=all_paralogs_from_sl.drop(columns='Unnamed: 0')
 query_paralogs_pd.columns=['name-gene','name-paralogue']
 query_paralogs_pd_withoutnan=query_paralogs_pd.dropna()
