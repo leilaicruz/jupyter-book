@@ -92,7 +92,7 @@ sl_that_are_paralogs.set_index(np.arange(0,len(sl_that_are_paralogs)))
 ### What is the contribution of paralogs to SL that share protein domains? 
 
 ```{code-cell} ipython3
-pairs_sL=np.load('../pairs-sL-that-share-domains.npy')
+pairs_sL=np.load('pairs-sL-that-share-domains.npy')
 ```
 
 
