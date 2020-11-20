@@ -43,6 +43,41 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "https://github.com/leilaicruz/jupyter-book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -637,7 +672,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
       <td>18</td>
       <td>0.074510</td>
       <td>Pkinase; Protein kinase domain</td>
-      <td>[SPS1, PBS2, ELM1, GIN4, STE20, CLA4, CDC28, S...</td>
+      <td>[CDC28, IPL1, BCK1, SSK2, ELM1, PBS2, CBK1, GI...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -646,7 +681,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
       <td>0</td>
       <td>0.054902</td>
       <td>SH3_1; SH3 domain</td>
-      <td>[SHO1, YSC84, BOI2, BZZ1, LSB1, MYO5, PIN3, MY...</td>
+      <td>[RVS167, SHO1, LSB1, MYO3, SLA1, PIN3, BEM1, Y...</td>
     </tr>
     <tr>
       <th>17</th>
@@ -655,7 +690,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
       <td>39</td>
       <td>0.027451</td>
       <td>PH; Pleckstrin homology domain</td>
-      <td>[BEM2, SLM2, BOI2, CLA4, BEM3, BOI1, SLM1, BUD4]</td>
+      <td>[SLM1, BUD4, SLM2, BOI2, BEM2, BEM3, BOI1, CLA4]</td>
     </tr>
     <tr>
       <th>9</th>
@@ -664,7 +699,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
       <td>91</td>
       <td>0.023529</td>
       <td>Ras; Small GTPase superfamily</td>
-      <td>[RHO3, CDC42, RSR1, TEM1, RHO2, RHO1, RHO4]</td>
+      <td>[TEM1, RSR1, RHO3, CDC42, RHO1, RHO2, RHO4]</td>
     </tr>
     <tr>
       <th>14</th>
@@ -673,7 +708,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
       <td>116</td>
       <td>0.019608</td>
       <td>Cyclin_N; Cyclin, N-terminal</td>
-      <td>[CLB4, CLB5, PCL1, CLB1, CLB3, PCL2]</td>
+      <td>[PCL2, PCL1, CLB3, CLB5, CLB1, CLB4]</td>
     </tr>
   </tbody>
 </table>
