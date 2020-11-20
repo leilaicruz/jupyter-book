@@ -56,7 +56,7 @@ biological_processes_goterm=["cell morphogenesis involved in conjugation with ce
 ```{code-cell} ipython3
 def from_go_to_genes(go,label):
     #label=["GOTerm" or "GOSlimTerm"]
-    service = Service('https://yeastmine.yeastgenome.org/yeastmine/service', token = '11d7t1Y007Fa97c82f27')
+    service = Service('https://yeastmine.yeastgenome.org/yeastmine/service', token = 'K1P7y5Oeb608Hcu06e44')
     query = service.new_query("Gene")
     query.add_constraint("goAnnotation.ontologyTerm.parents", label)
     query.add_view(
