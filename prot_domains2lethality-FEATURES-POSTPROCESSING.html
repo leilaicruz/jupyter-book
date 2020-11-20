@@ -1,22 +1,41 @@
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>3. Feature postprocessing from paper. &#8212; Notebooks for data science</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -24,12 +43,10 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -37,13 +54,14 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/butterfly.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. What are the most present protein domains per biological function?" href="evaluating-protein-domains-per-module.html" />
     <link rel="prev" title="2. Replication of results from paper: “Predicting yeast synthetic lethal genetic interactions using protein domains”" href="prot_domains2lethality-PAPER-REPLICATION.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 
@@ -65,15 +83,19 @@
   <h1 class="site-logo" id="site-title">Notebooks for data science</h1>
   
 </a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
-
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <p class="caption">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   To reproduce an example of  Jupyter book, and you are a Windows user:
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Get started
  </span>
@@ -95,7 +117,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Machine learning related projects
  </span>
@@ -117,7 +139,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Bioinformatics examples
  </span>
@@ -135,9 +157,11 @@
  </li>
 </ul>
 
-</nav>
+</nav> <!-- To handle the deprecated key -->
 
- <!-- To handle the deprecated key -->
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -162,11 +186,11 @@
             <i class="fas fa-arrow-up"></i>
         </button>
         
-        <div class="dropdown-buttons-trigger">
+        
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         <a class="dropdown-buttons"
@@ -181,8 +205,8 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
+
         <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
@@ -204,7 +228,8 @@
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
@@ -214,7 +239,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/leilaicruz/jupyter-book/master?urlpath=tree/mini_book/docs/prot_domains2lethality-FEATURES-POSTPROCESSING.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org//v2/gh/leilaicruz/jupyter-book/master?urlpath=lab/tree/mini_book/docs/prot_domains2lethality-FEATURES-POSTPROCESSING.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -230,6 +255,7 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
@@ -346,6 +372,7 @@
 </ul>
 
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -363,7 +390,7 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> 
@@ -382,7 +409,7 @@
 <p><a class="reference external" href="https://github.com/leilaicruz/machine-learning-for-yeast/tree/dev_Leila/datasets-for-learning">DOWNLOAD THE DATASETS HERE</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="s1">&#39;__file__&#39;</span><span class="p">)</span> <span class="c1">#&lt;-- absolute dir the script is in</span>
 <span class="n">rel_path_SL</span> <span class="o">=</span> <span class="s2">&quot;datasets/data-synthetic-lethals.xlsx&quot;</span>
 <span class="n">rel_path_nSL</span><span class="o">=</span><span class="s2">&quot;datasets/data-positive-genetic.xlsx&quot;</span>
@@ -419,7 +446,7 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting the meaningful columns in the respective dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting the meaningful columns in the respective dataset</span>
 <span class="n">domain_id_list</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">]</span>
 <span class="n">query_gene</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span>
 <span class="n">target_gene</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span>
@@ -454,13 +481,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_sl</span><span class="p">),</span><span class="s1">&#39;SL protein pairs&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_sl</span><span class="p">),</span><span class="s1">&#39;SL protein pairs&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We are going to analyze&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">((</span><span class="n">protein_a_list_non</span><span class="p">))</span> <span class="p">,</span><span class="s1">&#39;protein pairs, out of&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data_nonsl</span><span class="p">),</span><span class="s1">&#39;positive protein pairs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>We are going to analyze 500 protein pairs, out of 17871 SL protein pairs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>We are going to analyze 500 protein pairs, out of 17871 SL protein pairs
 We are going to analyze 500 protein pairs, out of 43340 positive protein pairs
 </pre></div>
 </div>
@@ -471,7 +498,7 @@ We are going to analyze 500 protein pairs, out of 43340 positive protein pairs
 <h3><span class="section-number">3.2.2. </span>Postprocessing #1:  Remove protein pairs from study if either protein in the pair does not contain any domain<a class="headerlink" href="#postprocessing-1-remove-protein-pairs-from-study-if-either-protein-in-the-pair-does-not-contain-any-domain" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_empty_domains</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">,</span><span class="n">protein_list_pair</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_empty_domains</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">,</span><span class="n">protein_list_pair</span><span class="p">):</span>
     <span class="n">index</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_list_search</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">protein_list_search</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="p">[]</span> <span class="ow">or</span> <span class="n">protein_list_pair</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="p">[]:</span>
@@ -497,14 +524,14 @@ We are going to analyze 500 protein pairs, out of 43340 positive protein pairs
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The empty domain in the SL were:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">),</span><span class="s1">&#39;domains&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The empty domain in the SL were:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list</span><span class="p">),</span><span class="s1">&#39;domains&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The empty domain in the nSL were:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non_new</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non</span><span class="p">),</span><span class="s1">&#39;domains&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 91 out of 500 domains
-The empty domain in the nSL were: 92 out of 500 domains
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The empty domain in the SL were: 83 out of 500 domains
+The empty domain in the nSL were: 102 out of 500 domains
 </pre></div>
 </div>
 </div>
@@ -516,21 +543,21 @@ The empty domain in the nSL were: 92 out of 500 domains
 <h4><span class="section-number">3.2.3.1. </span>Define function <code class="docutils literal notranslate"><span class="pre">get_indexes</span></code><a class="headerlink" href="#define-function-get-indexes" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_indexes</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span> <span class="c1"># a function that give the index of whether a value appear in array or not</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_indexes</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">]</span> <span class="c1"># a function that give the index of whether a value appear in array or not</span>
 <span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">get_indexes</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feature_building</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">,</span><span class="n">protein_b_list_new</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">feature_building</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">,</span><span class="n">protein_b_list_new</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">domain_id_list</span><span class="p">)</span>
     <span class="c1">## To avoid taking repeated domains from one protein of the pairs , lets reduced the domains of each protein from the pairs to their unique members</span>
     <span class="n">protein_a_list_unique</span><span class="o">=</span><span class="p">[]</span>
@@ -566,7 +593,7 @@ The empty domain in the nSL were: 92 out of 500 domains
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">protein_feat_true</span><span class="o">=</span><span class="n">feature_building</span><span class="p">(</span><span class="n">protein_b_list_new</span><span class="o">=</span><span class="n">protein_b_list_new</span><span class="p">,</span><span class="n">protein_a_list_new</span><span class="o">=</span><span class="n">protein_a_list_new</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">protein_feat_true</span><span class="o">=</span><span class="n">feature_building</span><span class="p">(</span><span class="n">protein_b_list_new</span><span class="o">=</span><span class="n">protein_b_list_new</span><span class="p">,</span><span class="n">protein_a_list_new</span><span class="o">=</span><span class="n">protein_a_list_new</span><span class="p">)</span>
 <span class="n">protein_feat_true_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">protein_feat_true</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 
 <span class="n">protein_feat_non_true</span><span class="o">=</span><span class="n">feature_building</span><span class="p">(</span><span class="n">protein_b_list_new</span><span class="o">=</span><span class="n">protein_b_list_non_new</span><span class="p">,</span><span class="n">protein_a_list_new</span><span class="o">=</span><span class="n">protein_a_list_non_new</span><span class="p">)</span>
@@ -581,7 +608,7 @@ The empty domain in the nSL were: 92 out of 500 domains
 <h3><span class="section-number">3.2.4. </span>How many ones and twos are in each dataset<a class="headerlink" href="#how-many-ones-and-twos-are-in-each-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">index_2_true</span><span class="o">=</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_2_true</span><span class="o">=</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">index_2_true_count</span><span class="o">=</span><span class="n">index_2_true</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
 <span class="n">index_1_true</span><span class="o">=</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
@@ -602,10 +629,10 @@ The empty domain in the nSL were: 92 out of 500 domains
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 1.4548687587140577e-05
-fraction of ones in the SL array is 0.0010167916102568249
-fraction of twos in the PI array is 6.481931615621455e-06
-fraction of ones in the PI array is 0.000906660184735051
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fraction of twos in the SL array is 2.8539152149354895e-05
+fraction of ones in the SL array is 0.0009600253681352438
+fraction of twos in the PI array is 9.967191328543544e-06
+fraction of ones in the PI array is 0.0008862494289629968
 </pre></div>
 </div>
 </div>
@@ -614,7 +641,7 @@ fraction of ones in the PI array is 0.000906660184735051
 <h4><span class="section-number">3.2.4.1. </span>Bar plot to visualize these numbers<a class="headerlink" href="#bar-plot-to-visualize-these-numbers" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;fraction of 2 in the nSL&#39;</span><span class="p">,</span><span class="s1">&#39;fraction of 1 in the nSL&#39;</span><span class="p">],[</span><span class="n">index_2_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span><span class="n">index_1_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">))],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;lightblue&#39;</span><span class="p">]),</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;fraction of 2 in the nSL&#39;</span><span class="p">,</span><span class="s1">&#39;fraction of 1 in the nSL&#39;</span><span class="p">],[</span><span class="n">index_2_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span><span class="n">index_1_nontrue_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">))],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;lightblue&#39;</span><span class="p">]),</span> 
 
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;fraction of 2 in SL &#39;</span><span class="p">,</span><span class="s1">&#39;fraction of 1 in SL&#39;</span><span class="p">],[</span><span class="n">index_2_true_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">)),</span><span class="n">index_1_true_count</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">columns</span><span class="p">))],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span><span class="s1">&#39;lightcoral&#39;</span><span class="p">])</span>
 
@@ -625,8 +652,7 @@ fraction of ones in the PI array is 0.000906660184735051
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>([0, 1, 2, 3],
- [Text(0, 0, &#39;&#39;), Text(0, 0, &#39;&#39;), Text(0, 0, &#39;&#39;), Text(0, 0, &#39;&#39;)])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([0, 1, 2, 3], &lt;a list of 4 Text xticklabel objects&gt;)
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_18_1.png" src="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_18_1.png" />
@@ -637,7 +663,7 @@ fraction of ones in the PI array is 0.000906660184735051
 <h4><span class="section-number">3.2.4.2. </span>Adding the labels(response variables) to each dataset<a class="headerlink" href="#adding-the-labels-response-variables-to-each-dataset" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">protein_feat_true_pd</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">protein_feat_true_pd</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)))</span>
 <span class="n">protein_feat_non_true_pd</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non_new</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -648,7 +674,7 @@ fraction of ones in the PI array is 0.000906660184735051
 <h4><span class="section-number">3.2.4.3. </span>Joining both datasets<a class="headerlink" href="#joining-both-datasets" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feature_post</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">protein_feat_true_pd</span><span class="p">,</span><span class="n">protein_feat_non_true_pd</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_post</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">protein_feat_true_pd</span><span class="p">,</span><span class="n">protein_feat_non_true_pd</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">feature_post</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_new</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_a_list_non_new</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of features are:&#39;</span><span class="p">,</span><span class="n">feature_post</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of samples are:&#39;</span><span class="p">,</span><span class="n">feature_post</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -656,8 +682,8 @@ fraction of ones in the PI array is 0.000906660184735051
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
-The number of samples are: 817
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of features are: 3026
+The number of samples are: 815
 </pre></div>
 </div>
 </div>
@@ -668,7 +694,7 @@ The number of samples are: 817
 <h3><span class="section-number">3.2.5. </span>Postprocessing and exploration of the feature matrix of both datasets<a class="headerlink" href="#postprocessing-and-exploration-of-the-feature-matrix-of-both-datasets" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
 <span class="n">std</span><span class="o">=</span><span class="n">feature_post</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span>
 <span class="n">lethality</span><span class="o">=</span><span class="n">feature_post</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">]</span>
 
@@ -682,13 +708,13 @@ The number of samples are: 817
 <h3><span class="section-number">3.2.6. </span>Viz of the stats<a class="headerlink" href="#viz-of-the-stats" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">corr_keys</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;lethality&#39;</span><span class="p">,</span><span class="n">diag_kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;colorblind&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">corr_keys</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;lethality&#39;</span><span class="p">,</span><span class="n">diag_kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;colorblind&#39;</span><span class="p">)</span>
 <span class="n">pair</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pairplot to see data dependencies with Lethality&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mf">1.08</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.08, &#39;Pairplot to see data dependencies with Lethality&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.08, &#39;Pairplot to see data dependencies with Lethality&#39;)
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_26_1.png" src="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_26_1.png" />
@@ -696,14 +722,14 @@ The number of samples are: 817
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">feature_post</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lethality&quot;</span><span class="p">]),</span> <span class="n">feature_post</span><span class="p">[</span><span class="s2">&quot;lethality&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">feature_post</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lethality&quot;</span><span class="p">]),</span> <span class="n">feature_post</span><span class="p">[</span><span class="s2">&quot;lethality&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">x_sl</span><span class="o">=</span><span class="n">protein_feat_true_pd</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">])</span>
 <span class="n">x_nsl</span><span class="o">=</span><span class="n">protein_feat_non_true_pd</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lethality&#39;</span><span class="p">])</span>
@@ -716,12 +742,12 @@ The number of samples are: 817
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X_sl_scaled</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X_sl_scaled</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(409, 3025)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(417, 3025)
 </pre></div>
 </div>
 </div>
@@ -732,7 +758,7 @@ The number of samples are: 817
 <h2><span class="section-number">3.3. </span>How redundant are each of the protein domains?<a class="headerlink" href="#how-redundant-are-each-of-the-protein-domains" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PCA_component_contribution</span><span class="p">(</span><span class="n">scaled_matrix</span><span class="p">,</span><span class="n">original_data</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PCA_component_contribution</span><span class="p">(</span><span class="n">scaled_matrix</span><span class="p">,</span><span class="n">original_data</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 
     <span class="n">model</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">scaled_matrix</span><span class="p">)</span>
@@ -768,7 +794,7 @@ The number of samples are: 817
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl</span><span class="p">,</span><span class="n">components_pca_nsl</span><span class="o">=</span><span class="n">PCA_component_contribution</span><span class="p">(</span><span class="n">X_nsl_scaled</span><span class="p">,</span><span class="n">x_nsl</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl</span><span class="p">,</span><span class="n">components_pca_nsl</span><span class="o">=</span><span class="n">PCA_component_contribution</span><span class="p">(</span><span class="n">X_nsl_scaled</span><span class="p">,</span><span class="n">x_nsl</span><span class="p">)</span>
 <span class="n">df_nsl</span><span class="p">,</span><span class="n">components_pca_sl</span><span class="o">=</span><span class="n">PCA_component_contribution</span><span class="p">(</span><span class="n">X_sl_scaled</span><span class="p">,</span><span class="n">x_sl</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -776,7 +802,7 @@ The number of samples are: 817
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -807,27 +833,27 @@ The number of samples are: 817
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>50</td>
+      <td>135</td>
     </tr>
     <tr>
       <th>1</th>
       <td>PC1</td>
-      <td>135</td>
+      <td>1774</td>
     </tr>
     <tr>
       <th>2</th>
       <td>PC2</td>
-      <td>192</td>
+      <td>2082</td>
     </tr>
     <tr>
       <th>3</th>
       <td>PC3</td>
-      <td>467</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>4</th>
       <td>PC4</td>
-      <td>1519</td>
+      <td>221</td>
     </tr>
   </tbody>
 </table>
@@ -838,7 +864,7 @@ The number of samples are: 817
 <h2><span class="section-number">3.4. </span>which are the shared domains between nSL and SL pairs , in the PCA reduced samples<a class="headerlink" href="#which-are-the-shared-domains-between-nsl-and-sl-pairs-in-the-pca-reduced-samples" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_shared_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_shared_domains</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
 <span class="n">domains_name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
 <span class="n">domains_description</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">])</span>
 
@@ -877,94 +903,422 @@ The number of samples are: 817
   <tbody>
     <tr>
       <th>0</th>
-      <td>PC8</td>
-      <td>625</td>
-      <td>PC94</td>
-      <td>DRE2_N; Fe-S cluster assembly protein Dre2, N-...</td>
+      <td>PC2</td>
+      <td>2082</td>
+      <td>PC16</td>
+      <td>RXT2_N; Transcriptional regulatory protein RXT...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>PC11</td>
-      <td>302</td>
-      <td>PC15</td>
-      <td>Brix; Brix domain</td>
+      <td>PC3</td>
+      <td>2</td>
+      <td>PC27</td>
+      <td>2-Hacid_dh; D-isomer specific 2-hydroxyacid de...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>PC14</td>
-      <td>3</td>
-      <td>PC7</td>
-      <td>2-Hacid_dh_C; D-isomer specific 2-hydroxyacid ...</td>
+      <td>463</td>
+      <td>PC20</td>
+      <td>Chitin_synth_1N; Chitin synthase N-terminal</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PC18</td>
-      <td>2875</td>
-      <td>PC13</td>
-      <td>YchF-GTPase_C; Domain of unknown function DUF933</td>
+      <td>PC17</td>
+      <td>926</td>
+      <td>PC24</td>
+      <td>Flp_C; Recombinase Flp protein</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PC20</td>
-      <td>832</td>
-      <td>PC21</td>
-      <td>Ecl1; Life-span regulatory factor</td>
+      <td>PC18</td>
+      <td>926</td>
+      <td>PC24</td>
+      <td>Flp_C; Recombinase Flp protein</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+      <th>5</th>
+      <td>PC26</td>
+      <td>369</td>
+      <td>PC72</td>
+      <td>CNH; Citron homology (CNH) domain</td>
     </tr>
     <tr>
-      <th>62</th>
-      <td>PC255</td>
-      <td>1418</td>
-      <td>PC194</td>
-      <td>Mak16; Mak16 protein</td>
+      <th>6</th>
+      <td>PC35</td>
+      <td>665</td>
+      <td>PC162</td>
+      <td>DUF202; Domain of unknown function DUF202</td>
     </tr>
     <tr>
-      <th>63</th>
-      <td>PC255</td>
-      <td>1418</td>
+      <th>7</th>
+      <td>PC42</td>
+      <td>983</td>
+      <td>PC88</td>
+      <td>GHMP_kinases_N; GHMP kinase N-terminal domain</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>PC42</td>
+      <td>983</td>
+      <td>PC93</td>
+      <td>GHMP_kinases_N; GHMP kinase N-terminal domain</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>PC45</td>
+      <td>876</td>
+      <td>PC28</td>
+      <td>FDX-ACB; Ferrodoxin-fold anticodon-binding domain</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PC46</td>
+      <td>876</td>
+      <td>PC28</td>
+      <td>FDX-ACB; Ferrodoxin-fold anticodon-binding domain</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>PC47</td>
+      <td>599</td>
+      <td>PC55</td>
+      <td>DLIC; Dynein family light intermediate chain</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>PC47</td>
+      <td>599</td>
+      <td>PC56</td>
+      <td>DLIC; Dynein family light intermediate chain</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>PC62</td>
+      <td>1859</td>
+      <td>PC69</td>
+      <td>Pcc1; CTAG/Pcc1 family</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>PC78</td>
+      <td>1</td>
+      <td>PC126</td>
+      <td>14-3-3; 14-3-3 domain</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>PC81</td>
+      <td>625</td>
+      <td>PC151</td>
+      <td>DRE2_N; Fe-S cluster assembly protein Dre2, N-...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>PC95</td>
+      <td>475</td>
+      <td>PC211</td>
+      <td>CitMHS; Citrate transporter-like domain</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>PC107</td>
+      <td>1627</td>
+      <td>PC42</td>
+      <td>Not3; CCR4-Not complex component, Not N-termin...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>PC108</td>
+      <td>1627</td>
+      <td>PC42</td>
+      <td>Not3; CCR4-Not complex component, Not N-termin...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>PC120</td>
+      <td>491</td>
+      <td>PC11</td>
+      <td>Cnl2_NKP2; Kinetochore subunit NKP2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>PC126</td>
+      <td>108</td>
+      <td>PC235</td>
+      <td>ATG11; Autophagy-related protein 11</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>PC126</td>
+      <td>108</td>
+      <td>PC251</td>
+      <td>ATG11; Autophagy-related protein 11</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>PC130</td>
+      <td>2598</td>
+      <td>PC51</td>
+      <td>TIM; Triosephosphate isomerase</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>PC131</td>
+      <td>1094</td>
+      <td>PC214</td>
+      <td>HAND; ISWI, HAND domain</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>PC133</td>
+      <td>924</td>
+      <td>PC112</td>
+      <td>Flocculin</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>PC139</td>
+      <td>830</td>
+      <td>PC232</td>
+      <td>EamA; EamA domain</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>PC141</td>
+      <td>1701</td>
+      <td>PC103</td>
+      <td>PAP_central; Poly(A) polymerase, central domain</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>PC146</td>
+      <td>328</td>
+      <td>PC270</td>
+      <td>CBM_48; Glycoside hydrolase, family 13, N-term...</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>PC150</td>
+      <td>1449</td>
+      <td>PC266</td>
+      <td>Med4; Mediator complex, subunit Med4</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>PC152</td>
+      <td>1352</td>
+      <td>PC229</td>
+      <td>MATalpha_HMGbox; Mating-type protein MAT alpha...</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>PC156</td>
+      <td>1352</td>
+      <td>PC229</td>
+      <td>MATalpha_HMGbox; Mating-type protein MAT alpha...</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>PC161</td>
+      <td>1347</td>
+      <td>PC134</td>
+      <td>MAM33; Mitochondrial glycoprotein</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>PC165</td>
+      <td>2646</td>
+      <td>PC249</td>
+      <td>TauD; TauD/TfdA-like domain</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>PC169</td>
+      <td>6</td>
+      <td>PC215</td>
+      <td>2OG-FeII_Oxy_4</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>PC190</td>
+      <td>2150</td>
+      <td>PC224</td>
+      <td>Ribosom_S12_S23; Ribosomal protein S12/S23</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>PC190</td>
+      <td>2150</td>
+      <td>PC227</td>
+      <td>Ribosom_S12_S23; Ribosomal protein S12/S23</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>PC201</td>
+      <td>2916</td>
       <td>PC195</td>
-      <td>Mak16; Mak16 protein</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
     </tr>
     <tr>
-      <th>64</th>
-      <td>PC269</td>
-      <td>118</td>
-      <td>PC116</td>
-      <td>ATP-grasp; ATP-grasp fold, ATP-dependent carbo...</td>
+      <th>37</th>
+      <td>PC201</td>
+      <td>2916</td>
+      <td>PC196</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
     </tr>
     <tr>
-      <th>65</th>
-      <td>PC269</td>
-      <td>118</td>
-      <td>PC117</td>
-      <td>ATP-grasp; ATP-grasp fold, ATP-dependent carbo...</td>
+      <th>38</th>
+      <td>PC202</td>
+      <td>869</td>
+      <td>PC261</td>
+      <td>FAT; PIK-related kinase, FAT</td>
     </tr>
     <tr>
-      <th>66</th>
-      <td>PC271</td>
-      <td>1362</td>
-      <td>PC67</td>
-      <td>MDM31_MDM32; Mitochondrial distribution and mo...</td>
+      <th>39</th>
+      <td>PC206</td>
+      <td>869</td>
+      <td>PC261</td>
+      <td>FAT; PIK-related kinase, FAT</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>PC208</td>
+      <td>2526</td>
+      <td>PC189</td>
+      <td>Stm1_N; Stm1-like, N-terminal</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>PC211</td>
+      <td>2651</td>
+      <td>PC188</td>
+      <td>Telomere_reg-2; Telomere length regulation pro...</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>PC212</td>
+      <td>161</td>
+      <td>PC190</td>
+      <td>Acyl-CoA_ox_N; Acyl-coenzyme A oxidase, N-term...</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>PC213</td>
+      <td>2123</td>
+      <td>PC184</td>
+      <td>Rep_fac-A_C; Replication factor A, C-terminal</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>PC216</td>
+      <td>2123</td>
+      <td>PC184</td>
+      <td>Rep_fac-A_C; Replication factor A, C-terminal</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>PC222</td>
+      <td>1264</td>
+      <td>PC209</td>
+      <td>Kdo; Lipopolysaccharide kinase</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>PC222</td>
+      <td>1264</td>
+      <td>PC244</td>
+      <td>Kdo; Lipopolysaccharide kinase</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>PC224</td>
+      <td>1264</td>
+      <td>PC209</td>
+      <td>Kdo; Lipopolysaccharide kinase</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>PC224</td>
+      <td>1264</td>
+      <td>PC244</td>
+      <td>Kdo; Lipopolysaccharide kinase</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>PC223</td>
+      <td>1046</td>
+      <td>PC87</td>
+      <td>Glyco_hydro_18; Glycoside hydrolase family 18,...</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>PC226</td>
+      <td>486</td>
+      <td>PC221</td>
+      <td>Cmc1; Cytochrome c oxidase biogenesis protein ...</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>PC226</td>
+      <td>486</td>
+      <td>PC241</td>
+      <td>Cmc1; Cytochrome c oxidase biogenesis protein ...</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>PC246</td>
+      <td>846</td>
+      <td>PC179</td>
+      <td>Erf4; Golgin subfamily A member 7/ERF4</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>PC247</td>
+      <td>1168</td>
+      <td>PC164</td>
+      <td>Hira; TUP1-like enhancer of split</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>PC247</td>
+      <td>1168</td>
+      <td>PC165</td>
+      <td>Hira; TUP1-like enhancer of split</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>PC252</td>
+      <td>843</td>
+      <td>PC114</td>
+      <td>Enolase_C; Enolase, C-terminal TIM barrel domain</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>PC255</td>
+      <td>2324</td>
+      <td>PC118</td>
+      <td>SHR-BD; Vacuolar protein sorting-associated pr...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>PC262</td>
+      <td>107</td>
+      <td>PC259</td>
+      <td>ATE_N; Arginine-tRNA-protein transferase, N-te...</td>
     </tr>
   </tbody>
 </table>
-<p>67 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of shared domains between SL and nSL pairs,after PCA, is = &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shared_domains</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">),</span> <span class="s1">&#39;so the&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shared_domains</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">)),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of shared domains between SL and nSL pairs,after PCA, is = &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shared_domains</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">),</span> <span class="s1">&#39;so the&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_shared_domains</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">)),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of shared domains between SL and nSL pairs,after PCA, is =  67 out of 554 so the 12.093862815884476 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of shared domains between SL and nSL pairs,after PCA, is =  58 out of 537 so the 10.80074487895717 %
 </pre></div>
 </div>
 </div>
@@ -974,7 +1328,7 @@ The number of samples are: 817
 <h2><span class="section-number">3.5. </span>Domains exclusive to SL<a class="headerlink" href="#domains-exclusive-to-sl" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl_exclusive</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sl_exclusive</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
 
 <span class="n">domains_name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
 <span class="n">domains_description</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">])</span>
@@ -1013,37 +1367,37 @@ The number of samples are: 817
     <tr>
       <th>0</th>
       <td>PC0</td>
-      <td>50</td>
-      <td>NaN</td>
-      <td>ACT_7; GATS-like  ACT domain</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PC1</td>
       <td>135</td>
       <td>NaN</td>
       <td>ATP-synt_ab_Xtn; ATPsynthase alpha/beta subuni...</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>PC2</td>
-      <td>192</td>
+      <th>1</th>
+      <td>PC1</td>
+      <td>1774</td>
       <td>NaN</td>
-      <td>Alkyl_sulf_C; Alkyl sulfatase, C-terminal</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PC3</td>
-      <td>467</td>
-      <td>NaN</td>
-      <td>Choline_transpo; Choline transporter-like</td>
+      <td>PIN_6; Ribonuclease, PIN domain</td>
     </tr>
     <tr>
       <th>4</th>
       <td>PC4</td>
-      <td>1519</td>
+      <td>221</td>
       <td>NaN</td>
-      <td>Mtc; Tricarboxylate/iron carrier</td>
+      <td>Apq12; Nuclear pore assembly and biogenesis pr...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PC5</td>
+      <td>190</td>
+      <td>NaN</td>
+      <td>Alg6_Alg8; Glycosyl transferase, ALG6/ALG8</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>PC6</td>
+      <td>1511</td>
+      <td>NaN</td>
+      <td>Mpv17_PMP22; Mpv17/PMP22</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1053,60 +1407,60 @@ The number of samples are: 817
       <td>...</td>
     </tr>
     <tr>
-      <th>281</th>
-      <td>PC270</td>
-      <td>2651</td>
+      <th>269</th>
+      <td>PC260</td>
+      <td>1066</td>
       <td>NaN</td>
-      <td>Telomere_reg-2; Telomere length regulation pro...</td>
+      <td>Glyco_transf_34; Glycosyltransferase 34</td>
     </tr>
     <tr>
-      <th>283</th>
-      <td>PC272</td>
-      <td>672</td>
+      <th>270</th>
+      <td>PC261</td>
+      <td>622</td>
       <td>NaN</td>
-      <td>DUF2370; NEDD4/Bsd2</td>
+      <td>DNA_topoisoIV; DNA topoisomerase, type IIA, su...</td>
     </tr>
     <tr>
-      <th>284</th>
-      <td>PC273</td>
-      <td>645</td>
+      <th>272</th>
+      <td>PC263</td>
+      <td>1575</td>
       <td>NaN</td>
-      <td>DUF1689; Protein of unknown function DUF1689</td>
+      <td>NOC3p; Nucleolar complex-associated protein 3,...</td>
     </tr>
     <tr>
-      <th>285</th>
-      <td>PC274</td>
-      <td>96</td>
+      <th>273</th>
+      <td>PC264</td>
+      <td>376</td>
       <td>NaN</td>
-      <td>APG6; Atg6/Beclin</td>
+      <td>COG2; Conserved oligomeric Golgi complex, subu...</td>
     </tr>
     <tr>
-      <th>286</th>
-      <td>PC275</td>
-      <td>685</td>
+      <th>274</th>
+      <td>PC265</td>
+      <td>2292</td>
       <td>NaN</td>
-      <td>DUF2722; Protein of unknown function DUF2722</td>
+      <td>SAP30_Sin3_bdg; Histone deacetylase complex su...</td>
     </tr>
   </tbody>
 </table>
-<p>220 rows × 4 columns</p>
+<p>217 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of exclusive domains from SL pairs, after PCA, is = &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl_exclusive</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">),</span> <span class="s1">&#39;so the&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl_exclusive</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">)),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of exclusive domains from SL pairs, after PCA, is = &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl_exclusive</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">),</span> <span class="s1">&#39;so the&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl_exclusive</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">)),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from SL pairs, after PCA, is =  287 out of 554 so the 51.805054151624546 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from SL pairs, after PCA, is =  275 out of 537 so the 51.21042830540037 %
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_nsl_exclusive</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_nsl_exclusive</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sl</span><span class="p">,</span><span class="n">df_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;domain-number&#39;</span><span class="p">)</span>
 
 <span class="n">domains_name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
 <span class="n">domains_description</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">])</span>
@@ -1143,39 +1497,39 @@ The number of samples are: 817
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>58</th>
       <td>NaN</td>
-      <td>2</td>
+      <td>305</td>
       <td>PC0</td>
-      <td>2-Hacid_dh; D-isomer specific 2-hydroxyacid de...</td>
+      <td>Brr6_like_C_C; Brl1/Brr6 domain</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>59</th>
       <td>NaN</td>
-      <td>1811</td>
+      <td>998</td>
       <td>PC1</td>
-      <td>PRAI; N-(5&amp;apos;phosphoribosyl) anthranilate i...</td>
+      <td>GRAB; GRIP-related Arf-binding domain</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>NaN</td>
-      <td>858</td>
-      <td>PC2</td>
-      <td>F420_oxidored; Pyrroline-5-carboxylate reducta...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>NaN</td>
-      <td>2771</td>
-      <td>PC3</td>
-      <td>Ubiq-assoc; Ubiquitin-associated domain, SWA2-...</td>
-    </tr>
-    <tr>
-      <th>4</th>
+      <th>60</th>
       <td>NaN</td>
       <td>2113</td>
-      <td>PC4</td>
+      <td>PC2</td>
       <td>Rav1p_C; RAVE complex protein Rav1 C-terminal</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>NaN</td>
+      <td>2057</td>
+      <td>PC3</td>
+      <td>RRM_1; RNA recognition motif domain</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>NaN</td>
+      <td>858</td>
+      <td>PC4</td>
+      <td>F420_oxidored; Pyrroline-5-carboxylate reducta...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1185,53 +1539,53 @@ The number of samples are: 817
       <td>...</td>
     </tr>
     <tr>
-      <th>287</th>
+      <th>274</th>
       <td>NaN</td>
-      <td>1416</td>
-      <td>PC271</td>
-      <td>Maf1; Repressor of RNA polymerase III transcri...</td>
+      <td>1932</td>
+      <td>PC262</td>
+      <td>Pox_MCEL; mRNA (guanine-N(7))-methyltransferas...</td>
     </tr>
     <tr>
-      <th>288</th>
+      <th>275</th>
       <td>NaN</td>
-      <td>310</td>
-      <td>PC273</td>
-      <td>C1_1; Protein kinase C-like, phorbol ester/dia...</td>
+      <td>1932</td>
+      <td>PC263</td>
+      <td>Pox_MCEL; mRNA (guanine-N(7))-methyltransferas...</td>
     </tr>
     <tr>
-      <th>289</th>
+      <th>276</th>
       <td>NaN</td>
-      <td>2768</td>
-      <td>PC274</td>
-      <td>UbiA; UbiA prenyltransferase family</td>
+      <td>196</td>
+      <td>PC264</td>
+      <td>Alpha-amylase_C; Alpha-amylase/branching enzym...</td>
     </tr>
     <tr>
-      <th>290</th>
+      <th>277</th>
       <td>NaN</td>
-      <td>867</td>
-      <td>PC275</td>
-      <td>FAD_binding_7; Cryptochrome/DNA photolyase, FA...</td>
+      <td>2971</td>
+      <td>PC265</td>
+      <td>zf-C2HE; Aprataxin, C2HE/C2H2/C2HC zinc finger</td>
     </tr>
     <tr>
-      <th>291</th>
+      <th>278</th>
       <td>NaN</td>
-      <td>1189</td>
-      <td>PC277</td>
-      <td>Hydantoinase_A; Hydantoinase/oxoprolinase</td>
+      <td>2520</td>
+      <td>PC267</td>
+      <td>Ste50p-SAM; Ste50, sterile alpha motif</td>
     </tr>
   </tbody>
 </table>
-<p>225 rows × 4 columns</p>
+<p>221 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of exclusive domains from non SL pairs, after PCA, is = &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl_exclusive</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">),</span> <span class="s1">&#39;so the&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl_exclusive</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">)),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of exclusive domains from non SL pairs, after PCA, is = &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl_exclusive</span><span class="p">),</span> <span class="s1">&#39;out of&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">),</span> <span class="s1">&#39;so the&#39;</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl_exclusive</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sl</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df_nsl</span><span class="p">)),</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from non SL pairs, after PCA, is =  292 out of 554 so the 52.707581227436826 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of exclusive domains from non SL pairs, after PCA, is =  279 out of 537 so the 51.95530726256983 %
 </pre></div>
 </div>
 </div>
@@ -1241,7 +1595,7 @@ The number of samples are: 817
 <h2><span class="section-number">3.6. </span>Let see to the domains-number that get repeated after the PCA analysis , and selecting the most explanatory feature by its explained variance.<a class="headerlink" href="#let-see-to-the-domains-number-that-get-repeated-after-the-pca-analysis-and-selecting-the-most-explanatory-feature-by-its-explained-variance" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">duplicated_features_sl</span><span class="o">=</span><span class="n">df_sl</span><span class="p">[</span><span class="n">df_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">duplicated_features_sl</span><span class="o">=</span><span class="n">df_sl</span><span class="p">[</span><span class="n">df_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
 <span class="n">repeated_features_sl</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
 <span class="n">domains_name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
@@ -1261,7 +1615,7 @@ The number of samples are: 817
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">only_sl_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">repeated_features_sl</span><span class="p">,</span><span class="n">repeated_features_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">only_sl_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">repeated_features_sl</span><span class="p">,</span><span class="n">repeated_features_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
 <span class="n">data_only_sl</span> <span class="o">=</span> <span class="n">only_sl_pd</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">only_sl_pd</span><span class="p">[</span><span class="s1">&#39;domain-description_y&#39;</span><span class="p">])]</span>
 <span class="n">data_only_sl</span><span class="p">[</span><span class="s1">&#39;domain-description&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data_only_sl</span><span class="p">[</span><span class="s1">&#39;domain-description_x&#39;</span><span class="p">]</span>
 <span class="n">data_only_sl</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">df_sl_exclusive</span><span class="o">.</span><span class="n">shape</span>
@@ -1269,23 +1623,22 @@ The number of samples are: 817
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/usr/share/miniconda3/envs/wintest/lib/python3.7/site-packages/ipykernel_launcher.py:3: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\linigodelacruz\appdata\local\continuum\anaconda3\envs\wintest\lib\site-packages\ipykernel_launcher.py:3: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   This is separate from the ipykernel package so we can avoid doing imports until
-</pre>
+</pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>((44, 4), (287, 4))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((40, 4), (275, 4))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">only_nsl_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">repeated_features_sl</span><span class="p">,</span><span class="n">repeated_features_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">only_nsl_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">repeated_features_sl</span><span class="p">,</span><span class="n">repeated_features_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
 <span class="n">data_only_nsl</span> <span class="o">=</span> <span class="n">only_nsl_pd</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">only_nsl_pd</span><span class="p">[</span><span class="s1">&#39;domain-description_x&#39;</span><span class="p">])]</span>
 <span class="n">data_only_nsl</span>
 </pre></div>
@@ -1317,262 +1670,280 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>PF00175</td>
-      <td>NaN</td>
-      <td>ANAPC10; APC10/DOC domain</td>
-    </tr>
-    <tr>
       <th>1</th>
-      <td>PF03943</td>
+      <td>PF09279</td>
       <td>NaN</td>
-      <td>IGPS; Indole-3-glycerol phosphate synthase</td>
+      <td>Rad4; Rad4/PNGase transglutaminase-like fold</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>PF06733</td>
+      <td>PF03177</td>
       <td>NaN</td>
-      <td>Ost5; Oligosaccharyltransferase complex subunit</td>
+      <td>Glyco_transf_4; Glycosyltransferase subfamily ...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>PF00227</td>
+      <td>PF01096</td>
       <td>NaN</td>
-      <td>ATG13; Autophagy-related protein 13</td>
+      <td>Cnd1_N; Condensin complex subunit 1, N-terminal</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>PF06470</td>
+      <td>PF01336</td>
       <td>NaN</td>
-      <td>ORC2; Origin recognition complex, subunit 2</td>
+      <td>DLIC; Dynein family light intermediate chain</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>PF06470</td>
+      <td>PF05397</td>
       <td>NaN</td>
-      <td>ORC2; Origin recognition complex, subunit 2</td>
+      <td>NAP; Nucleosome assembly protein (NAP)</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>PF00613</td>
+      <td>PF00063</td>
       <td>NaN</td>
-      <td>Biotin_carb_C; Biotin carboxylase, C-terminal</td>
+      <td>AAA_5; ATPase, dynein-related, AAA domain</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>PF02204</td>
+      <td>PF12090</td>
       <td>NaN</td>
-      <td>Endosulfine; Endosulphine</td>
+      <td>Sec61_beta; Protein transport protein SecG/Sec...</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>PF05764</td>
+      <td>PF01644</td>
       <td>NaN</td>
-      <td>NPR3; Nitrogen permease regulator 3</td>
+      <td>DUF3402; Protein of unknown function DUF3402</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>PF03372</td>
+      <td>PF01644</td>
       <td>NaN</td>
-      <td>HCO3_cotransp; Bicarbonate transporter, C-term...</td>
+      <td>DUF3402; Protein of unknown function DUF3402</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>PF03372</td>
+      <td>PF02854</td>
       <td>NaN</td>
-      <td>HCO3_cotransp; Bicarbonate transporter, C-term...</td>
+      <td>GHMP_kinases_N; GHMP kinase N-terminal domain</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>PF00735</td>
+      <td>PF11789</td>
       <td>NaN</td>
-      <td>CLP1_P; Polyribonucleotide 5&amp;apos;-hydroxyl-ki...</td>
+      <td>SWIRM; SWIRM domain</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>PF00115</td>
+      <td>PF11766</td>
       <td>NaN</td>
-      <td>ACPS; 4&amp;apos;-phosphopantetheinyl transferase ...</td>
+      <td>SURF4; Surfeit locus 4</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>PF03126</td>
+      <td>PF00153</td>
       <td>NaN</td>
-      <td>Glyco_hydro_31; Glycoside hydrolase family 31</td>
+      <td>AIRC; PurE domain</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>PF00244</td>
+      <td>PF12998</td>
       <td>NaN</td>
-      <td>ATP-grasp; ATP-grasp fold, ATP-dependent carbo...</td>
+      <td>TFIIIC_sub6; Transcription factor TFIIIC, tau5...</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>PF03134</td>
+      <td>PF03153</td>
       <td>NaN</td>
-      <td>Glyco_hydro_38C; Glycosyl hydrolase family 38,...</td>
+      <td>Glyco_hydro_76; Glycoside hydrolase, family 76</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>PF04889</td>
+      <td>PF05160</td>
       <td>NaN</td>
-      <td>Med21; Mediator complex, subunit Med21</td>
+      <td>MmgE_PrpD; MmgE/PrpD</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>PF05843</td>
+      <td>PF05160</td>
       <td>NaN</td>
-      <td>Na_Ca_ex; Sodium/calcium exchanger membrane re...</td>
+      <td>MmgE_PrpD; MmgE/PrpD</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>PF05839</td>
+      <td>PF01920</td>
       <td>NaN</td>
-      <td>NUP214</td>
+      <td>E1_UFD; Ubiquitin-activating enzyme E1, C-term...</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>PF15619</td>
+      <td>PF08375</td>
       <td>NaN</td>
-      <td>Vps55; Vacuolar protein sorting 55</td>
+      <td>Pet100; Protein Pet100</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>PF04091</td>
+      <td>PF00071</td>
       <td>NaN</td>
-      <td>Ketoacyl-synt_C; Beta-ketoacyl synthase, C-ter...</td>
+      <td>AAA_8; Dynein heavy chain, P-loop containing D...</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>PF16892</td>
+      <td>PF02984</td>
       <td>NaN</td>
-      <td>tRNA-synt_1c_C; Glutamyl/glutaminyl-tRNA synth...</td>
+      <td>Gal4_dimer; Gal4 dimerisation domain</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>PF08238</td>
+      <td>PF03770</td>
       <td>NaN</td>
-      <td>Patatin; Patatin-like phospholipase domain</td>
+      <td>Hira; TUP1-like enhancer of split</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>PF00082</td>
+      <td>PF02940</td>
       <td>NaN</td>
-      <td>AA_kinase; Aspartate/glutamate/uridylate kinase</td>
+      <td>GTP_cyclohydroI; GTP cyclohydrolase I domain</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>PF07569</td>
+      <td>PF03999</td>
       <td>NaN</td>
-      <td>PFU; PLAA family ubiquitin binding, PFU</td>
+      <td>Inhibitor_I34; Protease A inhibitor IA3</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>PF10429</td>
+      <td>PF03999</td>
       <td>NaN</td>
-      <td>SAPS; SIT4 phosphatase-associated protein family</td>
+      <td>Inhibitor_I34; Protease A inhibitor IA3</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>PF04981</td>
+      <td>PF09724</td>
       <td>NaN</td>
-      <td>Metallophos; Calcineurin-like phosphoesterase ...</td>
+      <td>Ribosomal_60s</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>PF09724</td>
+      <td>NaN</td>
+      <td>Ribosomal_60s</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>PF11051</td>
+      <td>PF08286</td>
       <td>NaN</td>
-      <td>SNARE_assoc; SNARE associated Golgi protein</td>
+      <td>Peptidase_C50</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>PF08658</td>
+      <td>NaN</td>
+      <td>RNA_pol_Rpb1_7; RNA polymerase Rpb1, domain 7</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>PF01494</td>
+      <td>PF16796</td>
       <td>NaN</td>
-      <td>DUF1691; Domain of unknown function DUF1691</td>
+      <td>fn3_2; Fibronectin type III domain, fungi</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>PF01876</td>
+      <td>PF00909</td>
       <td>NaN</td>
-      <td>Dsl1_C; Retrograde transport protein Dsl1, C-t...</td>
+      <td>CTD</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>PF00831</td>
+      <td>PF00909</td>
       <td>NaN</td>
-      <td>COX7a</td>
+      <td>CTD</td>
     </tr>
     <tr>
       <th>33</th>
-      <td>PF05970</td>
+      <td>PF00501</td>
       <td>NaN</td>
-      <td>NifU; NIF system FeS cluster assembly, NifU, C...</td>
+      <td>Avl9; AVL9/DENND6 domain</td>
     </tr>
     <tr>
       <th>34</th>
-      <td>PF10452</td>
+      <td>PF04110</td>
       <td>NaN</td>
-      <td>SDA1; SDA1 domain</td>
+      <td>KxDL; Uncharacterised domain KxDL</td>
     </tr>
     <tr>
       <th>35</th>
-      <td>PF04191</td>
+      <td>PF02374</td>
       <td>NaN</td>
-      <td>Lgl_C; Lethal giant larvae (Lgl)-like, C-termi...</td>
+      <td>FGGY_N; Carbohydrate kinase, FGGY, N-terminal</td>
     </tr>
     <tr>
       <th>36</th>
-      <td>PF04191</td>
+      <td>PF09696</td>
       <td>NaN</td>
-      <td>Lgl_C; Lethal giant larvae (Lgl)-like, C-termi...</td>
+      <td>Ribosom_S12_S23; Ribosomal protein S12/S23</td>
     </tr>
     <tr>
       <th>37</th>
-      <td>PF05129</td>
+      <td>PF08637</td>
       <td>NaN</td>
-      <td>MitMem_reg; Rpn11/EIF3F, C-terminal</td>
+      <td>RNA_POL_M_15KD; DNA-directed RNA polymerase, M...</td>
     </tr>
     <tr>
       <th>38</th>
-      <td>PF02441</td>
+      <td>PF00186</td>
       <td>NaN</td>
-      <td>FMN_dh; FMN-dependent dehydrogenase</td>
+      <td>ANAPC9; Anaphase-promoting complex, subunit 9</td>
     </tr>
     <tr>
       <th>39</th>
-      <td>PF02115</td>
+      <td>PF03901</td>
       <td>NaN</td>
-      <td>ERCC4; ERCC4 domain</td>
+      <td>Hydrolase_like</td>
     </tr>
     <tr>
       <th>40</th>
-      <td>PF03637</td>
+      <td>PF01090</td>
       <td>NaN</td>
-      <td>HTH_44; Helix-turn-helix DNA-binding domain of...</td>
+      <td>Cmc1; Cytochrome c oxidase biogenesis protein ...</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>PF00411</td>
+      <td>PF00026</td>
       <td>NaN</td>
-      <td>Aminotran_4; Aminotransferase class IV</td>
+      <td>60KD_IMP; Membrane insertase OXA1/ALB3/YidC</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>PF01245</td>
+      <td>PF01227</td>
       <td>NaN</td>
-      <td>DCB; Mon2, dimerisation and cyclophilin-bindin...</td>
+      <td>DASH_Dad4; DASH complex subunit Dad4</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>PF08729</td>
+      <td>PF00226</td>
       <td>NaN</td>
-      <td>RNase_HII; Ribonuclease HII/HIII domain</td>
+      <td>ATG11; Autophagy-related protein 11</td>
     </tr>
     <tr>
       <th>44</th>
-      <td>PF07572</td>
+      <td>PF00102</td>
       <td>NaN</td>
-      <td>PGAP1; GPI inositol-deacylase PGAP1-like</td>
+      <td>ABC_tran; ABC transporter-like</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>PF08528</td>
+      <td>NaN</td>
+      <td>Pox_MCEL; mRNA (guanine-N(7))-methyltransferas...</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>PF00443</td>
+      <td>NaN</td>
+      <td>Anticodon_1; Methionyl/Valyl/Leucyl/Isoleucyl-...</td>
     </tr>
   </tbody>
 </table>
@@ -1580,7 +1951,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shared_domains_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">repeated_features_sl</span><span class="p">,</span><span class="n">repeated_features_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shared_domains_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">repeated_features_sl</span><span class="p">,</span><span class="n">repeated_features_nsl</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;domain-name&#39;</span><span class="p">])</span>
 <span class="n">shared_domains_pd</span>
 </pre></div>
 </div>
@@ -1612,15 +1983,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>0</th>
-      <td>PF10471</td>
-      <td>SET; SET domain</td>
-      <td>SET; SET domain</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PF04762</td>
-      <td>Mak16; Mak16 protein</td>
-      <td>Mak16; Mak16 protein</td>
+      <td>PF04080</td>
+      <td>Kdo; Lipopolysaccharide kinase</td>
+      <td>Kdo; Lipopolysaccharide kinase</td>
     </tr>
   </tbody>
 </table>
@@ -1628,7 +1993,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a_sl</span><span class="o">=</span><span class="n">x_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">df_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_sl</span><span class="o">=</span><span class="n">x_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">df_sl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])]</span>
 <span class="n">a_sl</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
 <span class="n">a_sl</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">])</span>
@@ -1636,7 +2001,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.0, 0.2)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 0.2)
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_47_1.png" src="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_47_1.png" />
@@ -1644,7 +2009,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a_nsl</span><span class="o">=</span><span class="n">x_nsl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">df_nsl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_nsl</span><span class="o">=</span><span class="n">x_nsl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">df_nsl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])]</span>
 <span class="n">a_nsl</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
 <span class="n">a_nsl</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">])</span>
@@ -1652,7 +2017,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.0, 0.2)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 0.2)
 </pre></div>
 </div>
 <img alt="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_48_1.png" src="_images/prot_domains2lethality-FEATURES-POSTPROCESSING_48_1.png" />
@@ -1666,7 +2031,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">domains_bem1</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BEM1&#39;</span><span class="p">][</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domains_bem1</span><span class="o">=</span><span class="n">data_domains</span><span class="p">[</span><span class="n">data_domains</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BEM1&#39;</span><span class="p">][</span><span class="s1">&#39;domain-descrip&#39;</span><span class="p">]</span>
 <span class="n">sl_bem1</span><span class="o">=</span><span class="n">data_sl</span><span class="p">[</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BEM1&#39;</span><span class="p">][</span><span class="s1">&#39;gene-target-name&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1674,12 +2039,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sl_bem1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl_bem1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2846      BEM2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2846      BEM2
 2847     CDC24
 5004      MSB1
 13777     SMI1
@@ -1693,7 +2058,7 @@ Name: gene-target-name, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_sl</span><span class="p">[</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BEM1&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_sl</span><span class="p">[</span><span class="n">data_sl</span><span class="p">[</span><span class="s1">&#39;gene-query-name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;BEM1&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1851,6 +2216,9 @@ Name: gene-target-name, dtype: object
           By Leila Iñigo<br/>
         
             &copy; Copyright GPL License 3.0.<br/>
+          <div class="extra_footer">
+            Enjoy coding!
+          </div>
       </p>
     </div>
   </footer>
@@ -1860,7 +2228,10 @@ Name: gene-target-name, dtype: object
       </div>
     </div>
 
-    <script src="_static/js/index.js"></script>
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
     
   </body>
 </html>
